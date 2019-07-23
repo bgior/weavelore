@@ -1,0 +1,222 @@
+/* © Copyright 2019 Bruno Giorello. Released under GNU AGPLv3, see 'LICENSE.md'. */
+
+/* This file contains application-wide styles. */
+
+/* Links */
+header a:hover {
+  text-decoration: none;
+}
+main a {
+  color: #a3c9fb;
+}
+main a:hover {
+  color: white;
+  text-decoration: none;
+}
+/* Titles */
+h1 {
+  font-size: 1.7rem;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #333;
+}
+h1 > img {
+  height: 32px;
+  float: right;
+}
+h2 {
+  font-size: 1.6rem;
+}
+/* Tables */
+.table {
+  color: white;
+}
+.table th, .table td {
+  border-top: 1px solid #363636;
+}
+.table thead th {
+  border-bottom: 0;
+}
+/* Scrollbars */
+::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+  background: #1b1b1b;
+}
+::-webkit-scrollbar-thumb {
+    background: #282828;
+    -webkit-border-radius: 1ex;
+    -webkit-box-shadow: 0px 1px 2px #222;
+}
+::-webkit-scrollbar-corner {
+    background: #1b1b1b;
+}
+/* Buttons */
+.btn {
+  background-color: transparent !important;
+  margin: 3px;
+  padding: 5px;
+  border-radius: 4px;
+  color: white;
+  min-width: 60px;
+}
+.btn:hover, .btn:focus, .btn:active {
+  background-color: transparent !important;
+  color: white;
+  border: 1px solid #eee !important;
+}
+.btn-primary {
+  border: 1px solid #a6b9e0 !important;
+  box-shadow: 0px 0px 4px #7f9be0 !important;
+}
+.btn-primary:hover {
+  box-shadow: 0px 0px 8px #7f9be0 !important;
+}
+.btn-danger {
+  border-color: 1px solid #b17177;
+  box-shadow: 0px 0px 4px #e07f7f !important;
+}
+.btn-danger:hover {
+  box-shadow: 0px 0px 8px #e07f7f !important;
+}
+/* Modals */
+.modal-content {
+    background-color: #222;
+    color: white;
+    border: 2px solid #303030;
+    box-shadow: 0px 0px 5px #a1c6f8;
+}
+.modal-header {
+  border-bottom: 0;
+}
+.modal-footer {
+  border-top: 0;
+}
+/* Form controls */
+.form-control {
+  color: white;
+}
+input.form-control {
+  background-color: transparent;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid gray;
+}
+.form-control:focus {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid #a7b4ba;
+  box-shadow: none;
+  color: white;
+}
+select.form-control {
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid gray;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+/* Radio buttons */
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #5076a7;
+    border-color: #272727;
+    background-color: #637bb6;
+    box-shadow: 0px 0px 3px #84a4e6;
+}
+.custom-radio .custom-control-label::before {
+    background-color: #232323;
+    border: 1px solid #4d4d4d;
+    box-shadow: 0px 0px 3px #666;
+}
+/* Range controls */
+input[type=range] {
+  height: 21px;
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+  background-color: transparent;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 14px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #0F0F0F inset;
+  background: #212121;
+  border-radius: 10px;
+  border: 1px solid #0F0F0F;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 2px #637BB6;
+  border: 1px solid #EDEDED;
+  height: 14px;
+  width: 14px;
+  border-radius: 10px;
+  background: #637BB6;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -1px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #212121;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 14px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #0F0F0F inset;
+  background: #212121;
+  border-radius: 10px;
+  border: 1px solid #0F0F0F;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 2px #637BB6;
+  border: 1px solid #EDEDED;
+  height: 14px;
+  width: 14px;
+  border-radius: 10px;
+  background: #637BB6;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 14px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #212121;
+  border: 1px solid #0F0F0F;
+  border-radius: 20px;
+  box-shadow: 1px 1px 1px #0F0F0F;
+}
+input[type=range]::-ms-fill-upper {
+  background: #212121;
+  border: 1px solid #0F0F0F;
+  border-radius: 20px;
+  box-shadow: 1px 1px 1px #0F0F0F;
+}
+input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  box-shadow: 0px 0px 2px #637BB6;
+  border: 1px solid #EDEDED;
+  height: 14px;
+  width: 14px;
+  border-radius: 10px;
+  background: #637BB6;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #212121;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #212121;
+}
+/* Misc */
