@@ -10,7 +10,7 @@
         <div class="col-12 col-md-8">
           <h2>WeaveLore {{ app.version }}</h2>
           <p>This project is open-source and released under <a href="https://www.gnu.org/licenses/agpl-3.0.en.html" target="_blank">GNU AGPL v3</a>. You can find the repository and more information on <a href="https://github.com/bgior/weavelore" target="_blank">GitHub</a>.</p>
-          <p>The SRD content included is Open Game Content, which is distributed under <router-link to="/ogl">OGL</router-link> and not GPL.</p>
+          <p>The SRD content included is Open Game Content, which is distributed under <router-link to="/ogl">OGL</router-link> and not AGPL.</p>
           <p>This project is not affiliated in any way to Wizards of the Coast.</p>
         </div>
       </div>

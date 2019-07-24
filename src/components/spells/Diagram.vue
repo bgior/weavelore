@@ -273,7 +273,7 @@ export default {
         ctx.strokeStyle = "#ccc";
         ctx.moveTo(caster.x + circleRadius, caster.y);
         ctx.lineTo(this.aoe ? target.x : target.x - circleRadius, target.y); // unless spell is AOE, end the line a bit earlier so that it doesn't overlap the mob circle
-        ctx.setLineDash([4, 6]); // 5px long, 3px separated
+        ctx.setLineDash([4, 6]); // 4px long, 6px separated
         ctx.stroke();
         // Add range legend above the line
         ctx.fillStyle = "#ccc";

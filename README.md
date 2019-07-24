@@ -14,7 +14,7 @@ The application is a Vue project, you can run it from source by following the st
 ## License
 
 ### Game content
-The SRD data is based on the [SRD Spells](https://github.com/vorpalhex/srd_spells) repository, which in turn comes from the [SRD 5.1](https://dnd.wizards.com/articles/features/systems-reference-document-srd), released under the terms of the OGL (Open Game License). I strived to make the application comply with these terms, if you notice any deviation please let me know.
+The SRD data is based on the [SRD Spells](https://github.com/vorpalhex/srd_spells) repository, which in turn comes from the [SRD 5.1](https://dnd.wizards.com/articles/features/systems-reference-document-srd), released under the terms of the OGL (Open Game License). I strove to make the application comply with these terms, if you notice any deviation please let me know.
 
 ### Software
 The rest of the project is released under GNU AGPL v3 (see `LICENSE.md`).
