@@ -60,8 +60,8 @@ export default {
     const settingsDatabase = SettingsDatabase.getFromStorageOrDefault();
     return {
       app: {
-        version: '0.23.0',
-        srdVersion: 11,
+        version: '0.23.1',
+        srdVersion: 12,
         contentDatabase,
         settingsDatabase,
         spells: contentDatabase.getSpells(),

@@ -5,7 +5,7 @@
     {
       "name": "SRD 5.1",
       "description": "Default spells and rules for WeaveLore, taken from the SRD 5.1.",
-      "version": 11,
+      "version": 12,
       "spells": [
         {
           "name": "Acid Arrow",
