@@ -21,6 +21,7 @@ import OGLPage from './OGLPage.vue'
 import TipsPage from './TipsPage.vue'
 import AreasPage from './AreasPage.vue'
 import AboutPage from './AboutPage.vue'
+import NewsPage from './NewsPage.vue'
 import ComingSoon from './ComingSoon.vue'
 import TestPage from './TestPage.vue'
 import NotFound from './NotFound.vue'
@@ -41,6 +42,7 @@ const router = new VueRouter({
     { path: '/tips', component: TipsPage },
     { path: '/areas', component: AreasPage },
     { path: '/about', component: AboutPage },
+    { path: '/news', component: NewsPage },
     { path: '/ogl', component: OGLPage },
     { path: '/test', component: TestPage },
     { path: '*', component: NotFound }
@@ -58,7 +60,7 @@ export default {
     const settingsDatabase = SettingsDatabase.getFromStorageOrDefault();
     return {
       app: {
-        version: '0.22.0',
+        version: '0.23.0',
         srdVersion: 11,
         contentDatabase,
         settingsDatabase,

@@ -25,20 +25,11 @@ export default {
     licenseText: "Loading..."
   }},
   created: function() {
-    var xhttp = new XMLHttpRequest();
-    var self = this;
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4) {
-        if (this.status == 200) {
-          self.licenseText = xhttp.responseText.replace(/\n/g, "<br/>");
-        } else {
-          self.licenseText = "Sorry, we could not load the license text."
-        }
-      }
-    };
-    xhttp.open("GET", '/ogl.txt', true);
-    xhttp.send();
-
+    fetch('/ogl.txt').then(res => res.text()).then(text => {
+      this.licenseText = text.replace(/\n/g, "<br/>");
+    }).catch(error => {
+      this.licenseText = "Sorry, we could not load the license text.";
+    });
   }
 }
 </script>

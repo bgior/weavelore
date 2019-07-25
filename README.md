@@ -7,6 +7,7 @@ You can currently find it hosted here: https://weavelore.bgior.com
 ## Development
 The application is a Vue project, you can run it from source by following the steps below:
 
+* Install [Vue CLI](https://cli.vuejs.org/guide/installation.html): `npm install -g @vue/cli`
 * Install dependencies: `npm install`
 * Run the development server: `npm run serve`
 * Generate the production build: `npm run build`
@@ -37,5 +38,4 @@ This project is not affiliated in any way to Wizards of the Coast.
 ## Contact
 
 Github: @bgior
-
-Reddit: /u/bgior
+Reddit: [/r/WeaveLore](https://www.reddit.com/r/WeaveLore/) [/u/bgior](https://www.reddit.com/user/bgior)
