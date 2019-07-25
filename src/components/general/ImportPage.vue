@@ -54,7 +54,7 @@
       handleFileSelect: function(evt) {
         getLines(evt.target.files[0]).then(lines => {
           try {
-            this.app.contentDatabase.loadJSON(lines.join(''));
+            this.app.contentDatabase.loadJSON(JSON.parse(lines.join('')));
             this.$router.push("/");
           } catch (e) {
             alert("Sorry, the file could not be loaded.");
