@@ -8,7 +8,7 @@
         <div class="col-12 col-md-4 about-image" :style="{ backgroundImage: `url(${require('@/assets/images/logo/logo_large.jpg')})`}">
         </div>
         <div class="col-12 col-md-8">
-          <h2>WeaveLore {{ app.version }}</h2>
+          <h2>WeaveLore {{ appVersion }}</h2>
           <p>This project is open-source and released under <a href="https://www.gnu.org/licenses/agpl-3.0.en.html" target="_blank">GNU AGPL v3</a>. You can find the repository and more information on <a href="https://github.com/bgior/weavelore" target="_blank">GitHub</a>.</p>
           <p>The SRD content included is Open Game Content, which is distributed under <router-link to="/ogl">OGL</router-link> and not AGPL.</p>
           <p>This project is not affiliated in any way to Wizards of the Coast.</p>
@@ -27,11 +27,17 @@
   }
 </style>
 <script>
+import constants from '@/util/constants.js';
 
 export default {
   name: 'AboutPage',
   props: {
     app: Object
+  },
+  computed: {
+    appVersion() {
+      return constants.appVersion;
+    }
   }
 }
 </script>

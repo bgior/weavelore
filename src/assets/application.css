@@ -30,11 +30,11 @@ h2 {
 .table {
   color: white;
 }
-.table th, .table td {
+.table td {
   border-top: 1px solid #363636;
 }
 .table thead th {
-  border-bottom: 0;
+  border: 0;
 }
 /* Scrollbars */
 ::-webkit-scrollbar {
@@ -52,31 +52,48 @@ h2 {
 }
 /* Buttons */
 .btn {
-  background-color: transparent !important;
   margin: 3px;
-  padding: 5px;
+  padding: 5px 10px;
   border-radius: 4px;
-  color: white;
+  color: white !important;
   min-width: 60px;
 }
-.btn:hover, .btn:focus, .btn:active {
+.btn-glow {
   background-color: transparent !important;
-  color: white;
-  border: 1px solid #eee !important;
-}
-.btn-primary {
   border: 1px solid #a6b9e0 !important;
   box-shadow: 0px 0px 4px #7f9be0 !important;
 }
-.btn-primary:hover {
+.btn-glow:hover {
+  background-color: transparent !important;
+  color: white;
+  border: 1px solid #eee !important;
   box-shadow: 0px 0px 8px #7f9be0 !important;
 }
-.btn-danger {
-  border-color: 1px solid #b17177;
-  box-shadow: 0px 0px 4px #e07f7f !important;
+.btn-primary, .btn-secondary {
+  background-color: #222;
+  border: 1px solid #282828;
+  box-shadow: 0px 0px 4px #0f0f0f;
+  transition: background-color 0.3s;
 }
-.btn-danger:hover {
-  box-shadow: 0px 0px 8px #e07f7f !important;
+.btn-primary:hover, .btn-secondary:hover {
+  background-color: #262626;
+  border: 1px solid #2b2b2b;
+  box-shadow: 0px 0px 6px #0a0a0a;
+}
+.btn-primary:focus, .btn-secondary:hover {
+  border: 1px solid #444;
+  box-shadow: 0px 0px 6px #0a0a0a;
+}
+.btn-primary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled):active {
+  background-color: #222;
+  border: 1px solid #282828;
+  box-shadow: 0px 0px 6px #0a0a0a !important;
+}
+.btn-primary:disabled, .btn-secondary:disabled {
+  background-color: #202020;
+  color: #3f3f3f !important;
+  border: 1px solid #2b2b2b;
+  box-shadow: 0px 0px 4px #0f0f0f;
 }
 /* Modals */
 .modal-content {

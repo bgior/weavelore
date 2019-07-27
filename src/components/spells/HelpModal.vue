@@ -4,7 +4,7 @@
   <b-modal id="helpModal" :title="topic">
 
     <div v-if="topic == 'classes'" class="row">
-      <div v-for="c in app.classes" class="col-6 col-sm-4 capitalize">
+      <div v-for="c in classes" class="col-6 col-sm-4 capitalize">
         <img :src="icons.classIcon(c)"> {{ c }}
       </div>
     </div>
@@ -16,7 +16,7 @@
     </div>
 
     <div v-if="topic == 'schools'" class="row">
-      <div v-for="s in app.schools" class="col-6 capitalize">
+      <div v-for="s in schools" class="col-6 capitalize">
         <img :src="icons.schoolIcon({school:s})"> {{ s }}
       </div>
     </div>
@@ -27,7 +27,8 @@
   </b-modal>
 </template>
 <script>
-import Icons from '@/util/icons.js'
+import Icons from '@/util/icons.js';
+import constants from '@/util/constants.js';
 
 export default {
   name: 'HelpModal',
@@ -38,6 +39,12 @@ export default {
   computed: {
     icons: function() {
       return Icons;
+    },
+    schools() {
+      return constants.schools;
+    },
+    classes() {
+      return constants.classes;
     }
   }
 }

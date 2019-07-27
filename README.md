@@ -12,6 +12,9 @@ The application is a Vue project, you can run it from source by following the st
 * Run the development server: `npm run serve`
 * Generate the production build: `npm run build`
 
+## Documentation
+You can find more information about the project in the [wiki](https://github.com/bgior/weavelore/wiki/Content-FAQ), including how to start using custom content.
+
 ## License
 
 ### Game content
@@ -36,6 +39,5 @@ This project is not affiliated in any way to Wizards of the Coast.
 - This project was made entirely using open-source software, including Atom, Inkscape, GIMP and Ubuntu, as well as the great libraries included.
 
 ## Contact
-
-Github: @bgior
-Reddit: [/r/WeaveLore](https://www.reddit.com/r/WeaveLore/) [/u/bgior](https://www.reddit.com/user/bgior)
+- Github: @bgior
+- Reddit: [/r/WeaveLore](https://www.reddit.com/r/WeaveLore/) - [/u/bgior](https://www.reddit.com/user/bgior)

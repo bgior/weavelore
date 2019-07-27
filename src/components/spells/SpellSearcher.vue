@@ -35,6 +35,7 @@
 <script>
 import CustomSelect from "@/components/general/CustomSelect.vue";
 import Icons from '@/util/icons.js';
+import constants from '@/util/constants.js';
 import { debounce } from "debounce";
 
 export default {
@@ -50,7 +51,7 @@ export default {
   computed: {
     classOptions: function() {
       return [{ value: '', text: 'Any class', image: require('@/assets/images/icons/misc/none.png') }].
-      concat(this.app.classes.map(c => { return { value: c, text: c, image: Icons.classIcon(c) }}));
+      concat(constants.classes.map(c => { return { value: c, text: c, image: Icons.classIcon(c) }}));
     },
     levelOptions: function() {
       return [
@@ -60,7 +61,7 @@ export default {
     },
     schoolOptions: function() {
       return [{value: '', text: 'Any school', image: require('@/assets/images/icons/misc/none.png')}].
-      concat(this.app.schools.map(s => { return { value: s, text: s, image: Icons.schoolIcon({school: s}) }}));
+      concat(constants.schools.map(s => { return { value: s, text: s, image: Icons.schoolIcon({school: s}) }}));
     }
   },
   methods: {

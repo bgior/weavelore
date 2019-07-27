@@ -5,29 +5,22 @@
     <div class="col-12 col-md-10 col-xl-8">
       <h1 class="my-4">Stats<img :src="require('@/assets/images/icons/menu/stats.png')"/></h1>
       <p>Total spells: <b>{{ app.spells.length }}</b> ({{ app.settings.favorites.size }} favorites)</p>
-      <p>Sources:
-        <ul>
-          <li v-for="source of app.contentDatabase.data.sources">
-            <b>{{ source.name }}</b> <span class="source-version">(v{{ source.version }})</span>: {{ source.spells.length }} spells
-          </li>
-        </ul>
-      </p>
       <div class="row">
         <div class="col-12 col-sm-4">
           <p><b>By school</b></p>
-          <p v-for="school in app.schools">
+          <p v-for="school in constants.schools">
             <img class="stats-icon" :src="icons.schoolIcon({school})"/> {{ stats.schools[school] }} {{ school }}
           </p>
         </div>
         <div class="col-12 col-sm-4">
           <p><b>By level</b></p>
-          <p v-for="level in [0,1,2,3,4,5,6,7,8,9]">
+          <p v-for="level in constants.levels">
             <span class="level">{{ level }}</span>  {{ stats.levels[level] }} spells
           </p>
         </div>
         <div class="col-12 col-sm-4">
           <p><b>By class</b></p>
-          <p v-for="className in app.classes">
+          <p v-for="className in constants.classes">
             <img class="stats-icon" :src="icons.classIcon(className)"/>  {{ stats.classes[className] }} {{ className }} spells
           </p>
         </div>
@@ -46,6 +39,7 @@
 </style>
 <script>
 import Icons from '@/util/icons.js'
+import constants from '@/util/constants.js'
 
 export default {
   name: 'StatsPage',
@@ -66,6 +60,9 @@ export default {
     },
     icons: function() {
       return Icons;
+    },
+    constants() {
+      return constants;
     }
   }
 }

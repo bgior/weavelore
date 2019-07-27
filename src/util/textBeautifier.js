@@ -23,9 +23,14 @@ class TextBeautifier {
     return text;
   }
 
+  // Add the 'table' class to tables for bootstrap CSS formatting
+  static styleTables(text) {
+    return text.replace(/<table>/g, '<table class="table">');
+  }
+
   // Apply all transformations
   static beautify(text) {
-    return this.addDieAverages(this.colorize(text));
+    return this.styleTables(this.addDieAverages(this.colorize(text)));
   }
 }
 TextBeautifier.substitutions = [

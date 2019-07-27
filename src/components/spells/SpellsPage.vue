@@ -9,7 +9,7 @@
       </div>
       <SpellView :app="app" v-if="panelIsOpen" :spell="selectedSpell" @clear-spell="clearSpell" :class="`${detailedModeOn ? 'col-12' : 'col-md-6 col-lg-8'} scrollable-panel spell-view`"/>
     </div>
-    <div v-if="updateAvailable" class="update-notice" @click="$router.push('/import?action=updateSRD')">
+    <div v-if="updateAvailable" class="update-notice" @click="$router.push('/welcome?action=updateSRD')">
       <img :src="require('@/assets/images/icons/misc/sync.png')" style="width: 18px"/> Updated content is available. Click here to load.
     </div>
   </div>
@@ -19,6 +19,7 @@
 import SpellList from './SpellList.vue'
 import SpellSearcher from './SpellSearcher.vue'
 import SpellView from './SpellView.vue'
+import constants from '@/util/constants.js'
 
 export default {
   name: 'SpellsPage',
@@ -44,7 +45,7 @@ export default {
     // Determines whether the user's content database contains an outdated version of the SRD database
     updateAvailable: function() {
       return this.app.contentDatabase.data.sources.some(s =>
-        s.name == 'SRD 5.1' && (s.version < this.app.srdVersion || typeof(s.version) != "number")
+        s.name == 'SRD 5.1' && (s.version < constants.srdVersion || typeof(s.version) != "number")
       );
     }
   },
@@ -60,6 +61,9 @@ export default {
     },
     toggleDetailedView: function() {
       this.detailedModeOn = !this.detailedModeOn;
+      if (this.detailedModeOn) {
+        this.clearSpell();
+      }
     },
     loadSpellInURL() {
       if (this.urlSpellName) {
@@ -72,7 +76,7 @@ export default {
   created: function() {
     // Redirect to import page if there is no database loaded
     if (this.app.spells.length == 0) {
-      this.$router.push('/import');
+      this.$router.push('/welcome');
     }
     this.loadSpellInURL();
   },

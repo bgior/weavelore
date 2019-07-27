@@ -1,9 +1,13 @@
 // © Copyright 2019 Bruno Giorello. Released under GNU AGPLv3, see 'LICENSE.md'.
 
+import Validator from '@/util/contentDatabaseValidator.js';
+
 // A ContentDatabase abstracts concerns like persistence and loading related to
 // content data (like spells and rules).
 class ContentDatabase {
+
   constructor(contentJSON) {
+    this.data = getDefaultData();
     this.loadJSON(contentJSON);
   }
   isEmpty() {
@@ -20,17 +24,27 @@ class ContentDatabase {
         spells.push(spell);
       }
     }
-    return spells;
+    return spells.sort((a,b) => a.name > b.name);
   }
   loadJSON(contentJSON) {
     if (!contentJSON) {
       throw "Attempted to load an empty JSON into a content database";
     }
-    if (contentJSON.format != "WLC") {
-      console.log(contentJSON);
-      throw "Attempted to load a JSON with invalid format into a content database (format != WLC)"
+    Validator.validate(contentJSON);
+    for (let newSource of contentJSON.sources) {
+      const existingSource = this.data.sources.find(s => s.name == newSource.name);
+      if (existingSource) {
+        if (existingSource.version > newSource.version) {
+          console.log(`Ignoring ${newSource.name} v${newSource.version} because newer version v${existingSource.version} is loaded.`);
+        } else {
+          // Replace the older source with the updated one
+          this.data.sources.splice(this.data.sources.indexOf(existingSource))
+          this.data.sources.push(newSource);
+        }
+      } else {
+        this.data.sources.push(newSource);
+      }
     }
-    this.data = contentJSON;
     this.saveToStorage();
   }
   loadURL(url, onSuccess, onError = console.error) {
@@ -54,6 +68,14 @@ class ContentDatabase {
     xhttp.open("GET", url, true);
     xhttp.send();
   }
+  deleteSource(source) {
+    this.data.sources.splice(this.data.sources.indexOf(source), 1);
+    this.saveToStorage();
+  }
+  deleteAllSources() {
+    this.data = getDefaultData();
+    this.saveToStorage();
+  }
   saveToStorage() {
     try {
       window.localStorage.content = JSON.stringify(this.data);
@@ -62,23 +84,25 @@ class ContentDatabase {
       throw "Failed to persist content due to the following exception: " + ex.message;
     }
   }
-  deleteFromStorage() {
-    window.localStorage.removeItem("content");
-  }
   static getFromStorageOrDefault() {
     try {
       if (window.localStorage.content) {
         let contentJSON = JSON.parse(window.localStorage.content);
-        if (contentJSON && typeof(contentJSON) == "object") {
+        if (contentJSON.sources) {
           return new ContentDatabase(contentJSON);
         }
       }
     } catch (e) {}
-    return new ContentDatabase({
-      format: "WLC",
-      formatVersion: "0.2.0",
-      sources: []
-    });
+    return new ContentDatabase(getDefaultData());
   }
 }
+
+function getDefaultData() {
+  return {
+    format: "WLC",
+    formatVersion: "0.2.0",
+    sources: []
+  }
+}
+
 export default ContentDatabase;

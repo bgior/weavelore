@@ -15,13 +15,14 @@ import VueRouter from 'vue-router'
 import Navbar from './Navbar.vue'
 import SpellsPage from '../spells/SpellsPage.vue'
 import StatsPage from './StatsPage.vue'
-import ImportPage from './ImportPage.vue'
+import WelcomePage from './WelcomePage.vue'
 import SettingsPage from './SettingsPage.vue'
 import OGLPage from './OGLPage.vue'
 import TipsPage from './TipsPage.vue'
 import AreasPage from './AreasPage.vue'
 import AboutPage from './AboutPage.vue'
 import NewsPage from './NewsPage.vue'
+import ContentPage from './ContentPage.vue'
 import ComingSoon from './ComingSoon.vue'
 import TestPage from './TestPage.vue'
 import NotFound from './NotFound.vue'
@@ -36,13 +37,14 @@ const router = new VueRouter({
     { path: '/spells/:urlSpellName', component: SpellsPage, props: true },
     { path: '/spells', component: SpellsPage },
     { path: '/rules', component: ComingSoon },
-    { path: '/import', component: ImportPage },
+    { path: '/welcome', component: WelcomePage },
     { path: '/stats', component: StatsPage },
     { path: '/settings', component: SettingsPage },
     { path: '/tips', component: TipsPage },
     { path: '/areas', component: AreasPage },
     { path: '/about', component: AboutPage },
     { path: '/news', component: NewsPage },
+    { path: '/content', component: ContentPage },
     { path: '/ogl', component: OGLPage },
     { path: '/test', component: TestPage },
     { path: '*', component: NotFound }
@@ -60,14 +62,10 @@ export default {
     const settingsDatabase = SettingsDatabase.getFromStorageOrDefault();
     return {
       app: {
-        version: '0.23.1',
-        srdVersion: 12,
         contentDatabase,
         settingsDatabase,
         spells: contentDatabase.getSpells(),
         settings: settingsDatabase.getSettings(),
-        classes: ['bard', 'cleric', 'druid', 'paladin', 'ranger', 'sorcerer', 'warlock', 'wizard'],
-        schools: ['abjuration', 'conjuration', 'divination', 'enchantment', 'evocation', 'illusion', 'necromancy', 'transmutation']
       }
   }},
   methods: {
