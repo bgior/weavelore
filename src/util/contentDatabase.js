@@ -6,9 +6,9 @@ import Validator from '@/util/contentDatabaseValidator.js';
 // content data (like spells and rules).
 class ContentDatabase {
 
-  constructor(contentJSON) {
+  constructor(contentJSON, runValidations = true) {
     this.data = getDefaultData();
-    this.loadJSON(contentJSON);
+    this.loadJSON(contentJSON, runValidations);
   }
   isEmpty() {
     return !this.data.sources.some(s => s.spells.length > 0);
@@ -26,11 +26,13 @@ class ContentDatabase {
     }
     return spells.sort((a,b) => a.name > b.name);
   }
-  loadJSON(contentJSON) {
+  loadJSON(contentJSON, runValidations = true) {
     if (!contentJSON) {
       throw "Attempted to load an empty JSON into a content database";
     }
-    Validator.validate(contentJSON);
+    if (runValidations) {
+      Validator.validate(contentJSON);
+    }
     for (let newSource of contentJSON.sources) {
       const existingSource = this.data.sources.find(s => s.name == newSource.name);
       if (existingSource) {
@@ -89,10 +91,13 @@ class ContentDatabase {
       if (window.localStorage.content) {
         let contentJSON = JSON.parse(window.localStorage.content);
         if (contentJSON.sources) {
-          return new ContentDatabase(contentJSON);
+          // Load the previously stored local database without running validations
+          return new ContentDatabase(contentJSON, false);
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      console.error("Couldn't load the local database, using default instead. Reason: " + JSON.stringify(e));
+    }
     return new ContentDatabase(getDefaultData());
   }
 }
