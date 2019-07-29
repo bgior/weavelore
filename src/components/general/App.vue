@@ -25,6 +25,7 @@ import NewsPage from './NewsPage.vue'
 import ContentPage from './ContentPage.vue'
 import ComingSoon from './ComingSoon.vue'
 import TestPage from './TestPage.vue'
+import NewSpell from './NewSpell.vue'
 import NotFound from './NotFound.vue'
 
 import ContentDatabase from '@/util/contentDatabase.js'
@@ -47,6 +48,7 @@ const router = new VueRouter({
     { path: '/content', component: ContentPage },
     { path: '/ogl', component: OGLPage },
     { path: '/test', component: TestPage },
+    { path: '/newspell', component: NewSpell },
     { path: '*', component: NotFound }
   ]
 })
