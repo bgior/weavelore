@@ -40,7 +40,7 @@ class ContentDatabase {
           console.log(`Ignoring ${newSource.name} v${newSource.version} because newer version v${existingSource.version} is loaded.`);
         } else {
           // Replace the older source with the updated one
-          this.data.sources.splice(this.data.sources.indexOf(existingSource))
+          this.data.sources.splice(this.data.sources.indexOf(existingSource), 1);
           this.data.sources.push(newSource);
         }
       } else {
