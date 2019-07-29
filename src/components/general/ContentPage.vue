@@ -157,6 +157,7 @@ export default {
         try {
           this.app.contentDatabase.loadJSON(JSON.parse(lines.join('')));
           this.app.spells = this.app.contentDatabase.getSpells();
+          this.app.alert(null);
         } catch (e) {
           this.showError(e);
         }
@@ -167,7 +168,9 @@ export default {
         this.app.contentDatabase.loadURL(this.urlToImport,
           () => {
             this.app.spells = this.app.contentDatabase.getSpells();
-          }
+            this.app.alert(null);
+          },
+          this.showError
         );
       } catch (e) {
         this.showError(e);
@@ -194,14 +197,14 @@ export default {
       this.app.spells = this.app.contentDatabase.getSpells();
     },
     showError(error) {
-      let message = "Sorry, the file could not be loaded.";
+      let message;
       if (error.name == "ValidationError") {
-        message += "\n" + error.message;
+        message = "The file is not valid. Reason: " + error.message;
       } else {
-        message += "\nOpen the console for details.";
-        console.error(error.message);
+        message = "Sorry, the file could not be loaded. Open the console for details.";
+        console.error(error.message || error);
       }
-      alert(message);
+      this.app.alert(message);
     }
   }
 }

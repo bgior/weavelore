@@ -6,6 +6,7 @@
     <main class="container-fluid">
       <router-view :app="app"></router-view>
     </main>
+    <Alert ref="alert"/>
   </div>
 </template>
 
@@ -26,6 +27,7 @@ import ContentPage from './ContentPage.vue'
 import ComingSoon from './ComingSoon.vue'
 import TestPage from './TestPage.vue'
 import NotFound from './NotFound.vue'
+import Alert from './Alert.vue'
 
 import ContentDatabase from '@/util/contentDatabase.js'
 import SettingsDatabase from '@/util/settingsDatabase.js'
@@ -55,9 +57,10 @@ export default {
   name: 'app',
   router,
   components: {
-    Navbar
+    Navbar,
+    Alert
   },
-  data: () => {
+  data: function() {
     const contentDatabase = ContentDatabase.getFromStorageOrDefault();
     const settingsDatabase = SettingsDatabase.getFromStorageOrDefault();
     return {
@@ -66,11 +69,11 @@ export default {
         settingsDatabase,
         spells: contentDatabase.getSpells(),
         settings: settingsDatabase.getSettings(),
-      }
-  }},
-  methods: {
-
-  }
+        alert: (msg, type, duration) => this.$refs.alert.alert(msg, type, duration)
+      },
+      alertMessage: null,
+      alertType: null
+  }}
 }
 Vue.directive('focus', {
   inserted: function (el) {

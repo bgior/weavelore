@@ -62,7 +62,7 @@ class ContentDatabase {
             onError(e);
           }
         } else {
-          onError("The XHR was not successful");
+          onError(`The XHR was not successful (${this.status})`);
         }
       }
     };

@@ -37,13 +37,17 @@
             () => {
               this.app.spells = this.app.contentDatabase.getSpells();
               this.$router.push("/");
-            }
+            },
+            (err) => this.showError(err)
           );
-        } catch (e) {
-          alert("Sorry, the URL could not be loaded.");
-          console.error(e);
+        } catch (err) {
+          this.showError(err);
         }
       },
+      showError(error) {
+        this.app.alert("Sorry, an error occurred when loading the content. Open the console for details.");
+        console.error(error);
+      }
     },
     created: function() {
       // If action=updateSRD is passed as a query param, automatically load the SRD
