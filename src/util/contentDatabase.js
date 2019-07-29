@@ -13,6 +13,9 @@ class ContentDatabase {
   isEmpty() {
     return !this.data.sources.some(s => s.spells.length > 0);
   }
+  getSources() {
+    return this.data.sources;
+  }
   getSpells() {
     const spells = [];
     for (let source of this.data.sources) {
@@ -48,6 +51,14 @@ class ContentDatabase {
       }
     }
     this.saveToStorage();
+  }
+  addSpell(spell, sourceIndex) {
+    if (!sourceIndex) {
+      return false;
+    }
+    this.data.sources[sourceIndex].spells.push(spell);
+    this.saveToStorage();
+    return true;
   }
   loadURL(url, onSuccess, onError = console.error) {
     const xhttp = new XMLHttpRequest();
