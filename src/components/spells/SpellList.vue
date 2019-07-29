@@ -10,7 +10,7 @@
     </template>
     <template v-else>
       <div v-for="s in app.spells" v-show="visible(s)" :key="s.codename" class="spell col-12" @click="spellClicked($event, s.codename)">
-        <img v-for="c in ['bard', 'cleric', 'druid', 'paladin', 'ranger', 'sorcerer', 'warlock', 'wizard']" :src="icons.classIcon(c)" :class="s.classes.includes(c) ? '' : 'absent'"/>
+        <img v-for="c in classes" :key="c" :src="icons.classIcon(c)" :class="s.classes.includes(c) ? '' : 'absent'"/>
         <img :src="require('@/assets/images/icons/components/verbal.png')" :class="s.verbal ? '' : 'absent'"/>
         <img :src="require('@/assets/images/icons/components/somatic.png')" :class="s.somatic ? '' : 'absent'"/>
         <img :src="require('@/assets/images/icons/components/material.png')" :class="s.material > 0 ? '' : 'absent'"/>
@@ -34,7 +34,9 @@
 </template>
 
 <script>
-import Icons from '@/util/icons.js'
+import Icons from '@/util/icons.js';
+import constants from '@/util/constants.js';
+
 export default {
   name: 'SpellList',
   props: {
@@ -45,12 +47,15 @@ export default {
     detailedModeOn: Boolean
   },
   computed: {
-    icons: function() {
+    icons() {
       return Icons;
+    },
+    classes() {
+      return constants.classes;
     }
   },
   methods: {
-    visible: function(spell) {
+    visible(spell) {
       if (this.query.class || this.query.level || this.query.school || this.query.favorites) {
         // Composite search (with filters)
         return (spell.codename.includes(this.query.text) || (this.query.includeDescription && spell.description.includes(this.query.text))) &&
@@ -63,7 +68,7 @@ export default {
         return this.query.text.length >= this.app.settings.minimumQueryLength && (spell.downcasedName.includes(this.query.text) || (this.query.includeDescription && spell.description.toLowerCase().includes(this.query.text)));
       }
     },
-    spellClicked: function(event, key) {
+    spellClicked(event, key) {
       if (!this.selectedSpell) {
         const div = event.currentTarget;
         setTimeout(() => div.scrollIntoView({behavior: "smooth", block: "center"}), 100);

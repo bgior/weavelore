@@ -24,13 +24,10 @@
 }
 </style>
 <script>
-
 export default {
   name: 'TipsPage',
   props: {
     app: Object
-  },
-  computed: {
   }
 }
 </script>

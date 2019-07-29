@@ -18,20 +18,18 @@
 <script>
   export default {
     name: 'SettingsPage',
-    data: () => {
-      return {
-        dirty: false // Whether the user has made changes to the settings that haven't been persisted yet
-      }
-    },
+    data() { return {
+      dirty: false // Whether the user has made changes to the settings that haven't been persisted yet
+    }},
     props: {
       app: Object
     },
     methods: {
-      setDirty: function(dirty = true) {
+      setDirty(dirty = true) {
         this.dirty = dirty;
       }
     },
-    beforeDestroy: function() {
+    beforeDestroy() {
       // Whenever the user leaves this page, persist the new settings
       if (this.dirty) {
         this.app.settingsDatabase.saveToStorage();

@@ -55,10 +55,10 @@
 </template>
 
 <script>
-import HelpModal from './HelpModal.vue'
-import Diagram from './Diagram.vue'
-import Icons from '@/util/icons.js'
-import TextBeautifier from '@/util/textBeautifier.js'
+import HelpModal from './HelpModal.vue';
+import Diagram from './Diagram.vue';
+import Icons from '@/util/icons.js';
+import TextBeautifier from '@/util/textBeautifier.js';
 
 export default {
   name: 'SpellView',
@@ -66,7 +66,7 @@ export default {
     HelpModal,
     Diagram
   },
-  data: () => { return {
+  data() { return {
     helpTopic: null
   }},
   props: {
@@ -74,7 +74,7 @@ export default {
     spell: Object
   },
   computed: {
-    prettyLevel: function() {
+    prettyLevel() {
       var pretty;
       switch(this.spell.level) {
         case 0:
@@ -94,7 +94,7 @@ export default {
       }
       return pretty;
     },
-    icons: function() {
+    icons() {
       return Icons;
     },
     prettyDescription() {

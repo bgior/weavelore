@@ -49,15 +49,15 @@
   }
 </style>
 <script>
-import CustomSelect from '@/components/general/CustomSelect.vue'
-import Diagram from '../spells/Diagram.vue'
+import CustomSelect from '@/components/general/CustomSelect.vue';
+import Diagram from '../spells/Diagram.vue';
 
 export default {
   name: 'AreasPage',
   props: {
     app: Object
   },
-  data: () => { return {
+  data() { return {
     type: "cone",
     size: 30,
     range: 0,

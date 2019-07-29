@@ -6,7 +6,7 @@
       <img v-if="selectedOption.image" v-show="value != ''" class="cs-field-icon" :src="selectedOption.image"/> {{ selectedOption.text || selectedOption.value }}
     </div>
     <div :class="`cs-options ${ align == 'right' ? 'cs-right' : ''}`" v-show="open">
-      <div v-for="option in options" @click="choose(option.value)" class="cs-option">
+      <div v-for="option in options" :key="option.value" @click="choose(option.value)" class="cs-option">
         <img v-if="selectedOption.image" class="cs-option-icon" :src="option.image"/> {{ option.text || option.value }}
       </div>
     </div>
@@ -71,7 +71,7 @@ export default {
     options: Array,
     align: String
   },
-  data: () => { return {
+  data() { return {
     open: false
   }},
   computed: {

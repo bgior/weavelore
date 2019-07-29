@@ -6,30 +6,32 @@
     <main class="container-fluid">
       <router-view :app="app"></router-view>
     </main>
+    <Alert ref="alert"/>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Navbar from './Navbar.vue'
-import SpellsPage from '../spells/SpellsPage.vue'
-import StatsPage from './StatsPage.vue'
-import WelcomePage from './WelcomePage.vue'
-import SettingsPage from './SettingsPage.vue'
-import OGLPage from './OGLPage.vue'
-import TipsPage from './TipsPage.vue'
-import AreasPage from './AreasPage.vue'
-import AboutPage from './AboutPage.vue'
-import NewsPage from './NewsPage.vue'
-import ContentPage from './ContentPage.vue'
-import ComingSoon from './ComingSoon.vue'
-import TestPage from './TestPage.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Navbar from './Navbar.vue';
+import SpellsPage from '../spells/SpellsPage.vue';
+import StatsPage from './StatsPage.vue';
+import WelcomePage from './WelcomePage.vue';
+import SettingsPage from './SettingsPage.vue';
+import OGLPage from './OGLPage.vue';
+import TipsPage from './TipsPage.vue';
+import AreasPage from './AreasPage.vue';
+import AboutPage from './AboutPage.vue';
+import NewsPage from './NewsPage.vue';
+import ContentPage from './ContentPage.vue';
+import ComingSoon from './ComingSoon.vue';
+import TestPage from './TestPage.vue';
+import NotFound from './NotFound.vue';
+import Alert from './Alert.vue';
 import NewSpell from './NewSpell.vue'
-import NotFound from './NotFound.vue'
 
-import ContentDatabase from '@/util/contentDatabase.js'
-import SettingsDatabase from '@/util/settingsDatabase.js'
+import ContentDatabase from '@/util/contentDatabase.js';
+import SettingsDatabase from '@/util/settingsDatabase.js';
 
 const router = new VueRouter({
   mode: 'history',
@@ -57,9 +59,10 @@ export default {
   name: 'app',
   router,
   components: {
-    Navbar
+    Navbar,
+    Alert
   },
-  data: () => {
+  data() {
     const contentDatabase = ContentDatabase.getFromStorageOrDefault();
     const settingsDatabase = SettingsDatabase.getFromStorageOrDefault();
     return {
@@ -68,14 +71,14 @@ export default {
         settingsDatabase,
         spells: contentDatabase.getSpells(),
         settings: settingsDatabase.getSettings(),
-      }
-  }},
-  methods: {
-
-  }
+        alert: (msg, type, duration) => this.$refs.alert.alert(msg, type, duration)
+      },
+      alertMessage: null,
+      alertType: null
+  }}
 }
 Vue.directive('focus', {
-  inserted: function (el) {
+  inserted(el) {
     el.focus();
   }
 })

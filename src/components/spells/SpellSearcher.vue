@@ -45,28 +45,28 @@ export default {
     query: Object,
     detailedModeOn: Boolean
   },
-  data: () => { return {
+  data() { return {
     rawQueryText: '',
   }},
   computed: {
-    classOptions: function() {
+    classOptions() {
       return [{ value: '', text: 'Any class', image: require('@/assets/images/icons/misc/none.png') }].
       concat(constants.classes.map(c => { return { value: c, text: c, image: Icons.classIcon(c) }}));
     },
-    levelOptions: function() {
+    levelOptions() {
       return [
         { value: '', text: 'Any level' }, { value: '0', text: 'Cantrip' }, { value: '1', text: '1st level' },
         { value: '2', text: '2nd level' }, { value: '3', text: '3rd level' }
       ].concat([4,5,6,7,8,9].map(n => { return { value: n.toString(), text: n + 'th level' }}));
     },
-    schoolOptions: function() {
+    schoolOptions() {
       return [{value: '', text: 'Any school', image: require('@/assets/images/icons/misc/none.png')}].
       concat(constants.schools.map(s => { return { value: s, text: s, image: Icons.schoolIcon({school: s}) }}));
     }
   },
   methods: {
     // Resets the search text field and filters to the default state
-    clearQuery: function() {
+    clearQuery() {
       this.rawQueryText = '';
       this.query.text = '';
       this.query.level = '';
@@ -76,7 +76,7 @@ export default {
     },
   },
   watch: {
-    rawQueryText: function() {
+    rawQueryText() {
       // Binding the text field directly to query.text can make the app stutter a bit because it has to re-render
       // the list with each keydown event. Instead, we use a separate field called rawQueryText that updates
       // query.text at a limited rate (aka debouncing).

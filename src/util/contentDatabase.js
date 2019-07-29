@@ -43,7 +43,7 @@ class ContentDatabase {
           console.log(`Ignoring ${newSource.name} v${newSource.version} because newer version v${existingSource.version} is loaded.`);
         } else {
           // Replace the older source with the updated one
-          this.data.sources.splice(this.data.sources.indexOf(existingSource))
+          this.data.sources.splice(this.data.sources.indexOf(existingSource), 1);
           this.data.sources.push(newSource);
         }
       } else {
@@ -61,25 +61,17 @@ class ContentDatabase {
     return true;
   }
   loadURL(url, onSuccess, onError = console.error) {
-    const xhttp = new XMLHttpRequest();
-    const self = this;
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4) {
-        if (this.status == 200) {
-          try {
-            self.loadJSON(xhttp.response);
-            onSuccess();
-          } catch (e) {
-            onError(e);
-          }
-        } else {
-          onError("The XHR was not successful");
-        }
+    fetch(url).then(res => res.json()).then(json => {
+      try {
+        this.loadJSON(json);
+        onSuccess();
+      } catch (e) {
+        onError(e);
       }
-    };
-    xhttp.responseType = 'json';
-    xhttp.open("GET", url, true);
-    xhttp.send();
+    }).catch(error => {
+      onError(`Failed to fetch URL. See console for details.`);
+      console.error(error);
+    });
   }
   deleteSource(source) {
     this.data.sources.splice(this.data.sources.indexOf(source), 1);

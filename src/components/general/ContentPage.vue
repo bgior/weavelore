@@ -16,7 +16,7 @@
             </strong>
           </span>
         </div>
-        <div v-for="source in sources" class="source mb-3">
+        <div v-for="source in sources" :key="source.name" class="source mb-3">
           <img :src="require('@/assets/images/icons/misc/content.png')" class="source-icon" alt="">
           <div class="source-info pl-2">
             <div class="source-head">
@@ -123,12 +123,12 @@
 </style>
 <script>
 function getLines(file) {
-  return new Promise(function(resolve, reject) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-          resolve(reader.result.split("\n"));
-      }
-      reader.readAsText(file);
+  return new Promise(function(resolve) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      resolve(reader.result.split("\n"));
+    }
+    reader.readAsText(file);
   });
 }
 export default {
@@ -136,7 +136,7 @@ export default {
   props: {
     app: Object
   },
-  data: () => { return {
+  data() { return {
     urlToImport: 'https://'
   }},
   computed: {
@@ -145,29 +145,32 @@ export default {
     }
   },
   methods: {
-    loadSRD: function() {
+    loadSRD() {
       this.urlToImport = "/srd.json";
       this.handleURLSelect();
     },
-    openFileSelector: function() {
+    openFileSelector() {
       this.$refs.uploader.click();
     },
-    handleFileSelect: function(evt) {
+    handleFileSelect(evt) {
       getLines(evt.target.files[0]).then(lines => {
         try {
           this.app.contentDatabase.loadJSON(JSON.parse(lines.join('')));
           this.app.spells = this.app.contentDatabase.getSpells();
+          this.app.alert(null);
         } catch (e) {
           this.showError(e);
         }
       });
     },
-    handleURLSelect: function() {
+    handleURLSelect() {
       try {
         this.app.contentDatabase.loadURL(this.urlToImport,
           () => {
             this.app.spells = this.app.contentDatabase.getSpells();
-          }
+            this.app.alert(null);
+          },
+          this.showError
         );
       } catch (e) {
         this.showError(e);
@@ -183,7 +186,7 @@ export default {
       link.download = name;
       link.click();
     },
-    resetDatabase: function() {
+    resetDatabase() {
       if (confirm("Are you sure?")) {
         this.app.contentDatabase.deleteAllSources();
         this.app.spells = [];
@@ -194,14 +197,14 @@ export default {
       this.app.spells = this.app.contentDatabase.getSpells();
     },
     showError(error) {
-      let message = "Sorry, the file could not be loaded.";
+      let message;
       if (error.name == "ValidationError") {
-        message += "\n" + error.message;
+        message = "The file is not valid. Reason: " + error.message;
       } else {
-        message += "\nOpen the console for details.";
-        console.error(error.message);
+        message = "Sorry, the file could not be loaded. See console for details.";
+        console.error(error.message || error);
       }
-      alert(message);
+      this.app.alert(message);
     }
   }
 }

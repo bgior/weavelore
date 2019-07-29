@@ -15,7 +15,7 @@ export default {
   props: {
     app: Object
   },
-  data: () => { return {
+  data() { return {
 
   }},
   computed: {

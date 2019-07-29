@@ -35,7 +35,7 @@
 </template>
 <script>
 export default {
-  name: 'navbar',
+  name: 'Navbar',
   props: {
     app: Object
   }

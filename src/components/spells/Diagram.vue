@@ -9,7 +9,7 @@
   }
 </style>
 <script>
-import Geometry from '@/util/geometry.js'
+import Geometry from '@/util/geometry.js';
 
 const cellSize = 20; // The size of each cell of the grid, in px
 const margin = 14; // The margin between the grid and the canvas, in px
@@ -32,9 +32,6 @@ export default {
     range: Number, // The range of the spell, in feet
     aoe: Object, // A hash that represents the Area Of Effect of this spell,
   },
-  data: () => { return {
-    // 'caster' and 'target' will be used, but they needn't be reactive so no need to declare them here.
-  }},
   computed: {
     width() { // The width of the canvas, in pixels
       return this.cols * cellSize + margin * 2;
@@ -76,7 +73,7 @@ export default {
       this.drawCaster(ctx);
       this.drawTarget(ctx);
     },
-    drawGrid: function(ctx) {
+    drawGrid(ctx) {
       ctx.lineWidth = 2;
       ctx.strokeStyle = "#333";
       const rowCount = this.rows, colCount = this.cols;
@@ -107,7 +104,7 @@ export default {
         ctx.fillRect(0, 0, maxX, maxY);
       });
     },
-    positionCaster: function() {
+    positionCaster() {
       this.caster = { x: margin + cellSize * 1.5, y: margin + cellSize * this.rows / 2 };
       // If the AOE is big enough to include the caster, we need to make more room to the left of the caster to draw the AOE
       if (this.aoe) {
@@ -124,7 +121,7 @@ export default {
         }
       }
     },
-    positionTarget: function() {
+    positionTarget() {
       this.target = { x: this.caster.x + this.range * pixelsPerFoot, y: this.caster.y }
       if (this.aoe) {
         if (this.aoe.type == 'cone') {
@@ -151,7 +148,7 @@ export default {
         }
       }
     },
-    drawAOE: function(ctx) {
+    drawAOE(ctx) {
       const target = this.target;
       if (this.aoe) {
         ctx.setLineDash([4, 6]); // 5px long, 3px separated
@@ -281,7 +278,7 @@ export default {
       }
     },
     // Calculate the optimal amount of grid rows that should be used to represent this spell
-    getOptimalRowAmount: function() {
+    getOptimalRowAmount() {
       if (this.aoe) {
         switch (this.aoe.type) {
           case "sphere":
@@ -297,7 +294,7 @@ export default {
       return 3;
     },
     // Calculate the optimal amount of grid cols that should be used to represent this spell
-    getOptimalColAmount: function() {
+    getOptimalColAmount() {
       let baseCols = this.range / feetPerCell + 3;
       if (this.aoe) {
         switch (this.aoe.type) {

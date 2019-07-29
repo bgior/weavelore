@@ -8,19 +8,19 @@
       <div class="row">
         <div class="col-12 col-sm-4">
           <p><b>By school</b></p>
-          <p v-for="school in constants.schools">
+          <p v-for="school in constants.schools" :key="school">
             <img class="stats-icon" :src="icons.schoolIcon({school})"/> {{ stats.schools[school] }} {{ school }}
           </p>
         </div>
         <div class="col-12 col-sm-4">
           <p><b>By level</b></p>
-          <p v-for="level in constants.levels">
+          <p v-for="level in constants.levels" :key="level">
             <span class="level">{{ level }}</span>  {{ stats.levels[level] }} spells
           </p>
         </div>
         <div class="col-12 col-sm-4">
           <p><b>By class</b></p>
-          <p v-for="className in constants.classes">
+          <p v-for="className in constants.classes" :key="className">
             <img class="stats-icon" :src="icons.classIcon(className)"/>  {{ stats.classes[className] }} {{ className }} spells
           </p>
         </div>
@@ -38,8 +38,8 @@
   }
 </style>
 <script>
-import Icons from '@/util/icons.js'
-import constants from '@/util/constants.js'
+import Icons from '@/util/icons.js';
+import constants from '@/util/constants.js';
 
 export default {
   name: 'StatsPage',
@@ -47,7 +47,7 @@ export default {
     app: Object
   },
   computed: {
-    stats: function() {
+    stats() {
       var schools = { abjuration: 0, conjuration: 0, divination: 0, enchantment: 0, evocation: 0, illusion: 0, necromancy: 0, transmutation: 0 };
       var levels = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
       var classes = { bard: 0, cleric: 0, druid: 0, paladin: 0, ranger: 0, sorcerer: 0, warlock: 0, wizard: 0 };
@@ -58,7 +58,7 @@ export default {
       }
       return { schools, levels, classes };
     },
-    icons: function() {
+    icons() {
       return Icons;
     },
     constants() {

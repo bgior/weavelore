@@ -78,6 +78,6 @@ class ContentDatabaseValidator {
     }
   }
 }
-const TAG_REGEX = /<\/?[a-zA-Z0-9\-]+(?: [^>]+)?>/g;
-const TAG_SPLIT_REGEX = /<(\/?)([a-zA-Z0-9\-]+)(?: [^>]+)?>/;
+const TAG_REGEX = /<\/?[a-zA-Z0-9-]+(?: [^>]+)?>/g;
+const TAG_SPLIT_REGEX = /<(\/?)([a-zA-Z0-9-]+)(?: [^>]+)?>/;
 export default ContentDatabaseValidator;
