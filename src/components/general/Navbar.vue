@@ -25,6 +25,7 @@
               <b-dropdown-item to="/settings"><img :src="require('@/assets/images/icons/menu/settings.png')"/> Settings</b-dropdown-item>
               <b-dropdown-item to="/ogl"><img :src="require('@/assets/images/icons/menu/ogl.png')"/> OGL</b-dropdown-item>
               <b-dropdown-item to="/about"><img :src="require('@/assets/images/logo/logo64.png')" style="filter: contrast(0) brightness(1.4)"/> About</b-dropdown-item>
+              <b-dropdown-item to="/newspell"> New Spell</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
