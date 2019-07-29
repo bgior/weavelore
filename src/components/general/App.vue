@@ -11,26 +11,26 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Navbar from './Navbar.vue'
-import SpellsPage from '../spells/SpellsPage.vue'
-import StatsPage from './StatsPage.vue'
-import WelcomePage from './WelcomePage.vue'
-import SettingsPage from './SettingsPage.vue'
-import OGLPage from './OGLPage.vue'
-import TipsPage from './TipsPage.vue'
-import AreasPage from './AreasPage.vue'
-import AboutPage from './AboutPage.vue'
-import NewsPage from './NewsPage.vue'
-import ContentPage from './ContentPage.vue'
-import ComingSoon from './ComingSoon.vue'
-import TestPage from './TestPage.vue'
-import NotFound from './NotFound.vue'
-import Alert from './Alert.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Navbar from './Navbar.vue';
+import SpellsPage from '../spells/SpellsPage.vue';
+import StatsPage from './StatsPage.vue';
+import WelcomePage from './WelcomePage.vue';
+import SettingsPage from './SettingsPage.vue';
+import OGLPage from './OGLPage.vue';
+import TipsPage from './TipsPage.vue';
+import AreasPage from './AreasPage.vue';
+import AboutPage from './AboutPage.vue';
+import NewsPage from './NewsPage.vue';
+import ContentPage from './ContentPage.vue';
+import ComingSoon from './ComingSoon.vue';
+import TestPage from './TestPage.vue';
+import NotFound from './NotFound.vue';
+import Alert from './Alert.vue';
 
-import ContentDatabase from '@/util/contentDatabase.js'
-import SettingsDatabase from '@/util/settingsDatabase.js'
+import ContentDatabase from '@/util/contentDatabase.js';
+import SettingsDatabase from '@/util/settingsDatabase.js';
 
 const router = new VueRouter({
   mode: 'history',
@@ -60,7 +60,7 @@ export default {
     Navbar,
     Alert
   },
-  data: function() {
+  data() {
     const contentDatabase = ContentDatabase.getFromStorageOrDefault();
     const settingsDatabase = SettingsDatabase.getFromStorageOrDefault();
     return {
@@ -76,7 +76,7 @@ export default {
   }}
 }
 Vue.directive('focus', {
-  inserted: function (el) {
+  inserted(el) {
     el.focus();
   }
 })

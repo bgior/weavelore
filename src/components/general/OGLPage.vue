@@ -21,14 +21,15 @@ export default {
   props: {
     app: Object
   },
-  data: () => { return {
+  data() { return {
     licenseText: "Loading..."
   }},
-  created: function() {
+  created() {
     fetch('/ogl.txt').then(res => res.text()).then(text => {
       this.licenseText = text.replace(/\n/g, "<br/>");
     }).catch(error => {
       this.licenseText = "Sorry, we could not load the license text.";
+      console.error(error);
     });
   }
 }

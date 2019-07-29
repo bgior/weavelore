@@ -5,7 +5,7 @@
     <div class="col-12 col-md-10 col-xl-8">
       <h1 class="my-4">News <img :src="require('@/assets/images/icons/menu/news.png')"/></h1>
       <div v-if="message">{{ message }}</div>
-      <template v-for="item in news">
+      <div v-for="item in news" :key="item.title">
         <div class="news-item">
           <div class="news-head">
             <h2>{{ item.title }}</h2>
@@ -14,7 +14,7 @@
           <div v-html="item.description"></div>
         </div>
         <hr/>
-      </template>
+      </div>
     </div>
   </div>
 </template>
@@ -35,11 +35,11 @@
 <script>
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export default {
-  name: 'TestPage',
+  name: 'NewsPage',
   props: {
     app: Object
   },
-  data: () => { return {
+  data() { return {
     message: "Loading...",
     news: null
   }},
@@ -55,6 +55,7 @@ export default {
       this.message = null;
     }).catch(error => {
       this.message = "Sorry, we could not load the latest news.";
+      console.error(error);
     });
   }
 }

@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import SpellList from './SpellList.vue'
-import SpellSearcher from './SpellSearcher.vue'
-import SpellView from './SpellView.vue'
-import constants from '@/util/constants.js'
+import SpellList from './SpellList.vue';
+import SpellSearcher from './SpellSearcher.vue';
+import SpellView from './SpellView.vue';
+import constants from '@/util/constants.js';
 
 export default {
   name: 'SpellsPage',
@@ -32,34 +32,34 @@ export default {
     app: Object,
     urlSpellName: String
   },
-  data: function() { return {
+  data() { return {
     query: { text: '', level: "", class: "", school: "", includeDescription: false, favorites: false },
     selectedSpell: null,
     detailedModeOn: false
   }},
   computed: {
     // True if a spell's detailed view is open
-    panelIsOpen: function() {
+    panelIsOpen() {
       return this.selectedSpell != null;
     },
     // Determines whether the user's content database contains an outdated version of the SRD database
-    updateAvailable: function() {
+    updateAvailable() {
       return this.app.contentDatabase.data.sources.some(s =>
         s.name == 'SRD 5.1' && (s.version < constants.srdVersion || typeof(s.version) != "number")
       );
     }
   },
   methods: {
-    openSpell: function(key) {
+    openSpell(key) {
       // Save the currently opened spell in the URL. This has two benefits:
       // - Each spell can be directly accessed by its own URL
       // - Going back in history takes us back to the spell we were before, or to the list if none. This is essential in mobile so that the back button doesn't make us leave the spells page, but return to the list.
       this.$router.push('/spells/' + key);
     },
-    clearSpell: function() {
+    clearSpell() {
       this.$router.push('/spells');
     },
-    toggleDetailedView: function() {
+    toggleDetailedView() {
       this.detailedModeOn = !this.detailedModeOn;
       if (this.detailedModeOn) {
         this.clearSpell();
@@ -73,7 +73,7 @@ export default {
       }
     }
   },
-  created: function() {
+  created() {
     // Redirect to import page if there is no database loaded
     if (this.app.spells.length == 0) {
       this.$router.push('/welcome');

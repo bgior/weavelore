@@ -34,7 +34,7 @@
 <script>
 export default {
   name: 'Alert',
-  data: () => { return {
+  data() { return {
     message: null,
     type: null,
     alertClearTimeout: null
