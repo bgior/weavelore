@@ -201,7 +201,7 @@ export default {
       if (error.name == "ValidationError") {
         message = "The file is not valid. Reason: " + error.message;
       } else {
-        message = "Sorry, the file could not be loaded. Open the console for details.";
+        message = "Sorry, the file could not be loaded. See console for details.";
         console.error(error.message || error);
       }
       this.app.alert(message);

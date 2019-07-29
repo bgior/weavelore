@@ -50,25 +50,17 @@ class ContentDatabase {
     this.saveToStorage();
   }
   loadURL(url, onSuccess, onError = console.error) {
-    const xhttp = new XMLHttpRequest();
-    const self = this;
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4) {
-        if (this.status == 200) {
-          try {
-            self.loadJSON(xhttp.response);
-            onSuccess();
-          } catch (e) {
-            onError(e);
-          }
-        } else {
-          onError(`The XHR was not successful (${this.status})`);
-        }
+    fetch(url).then(res => res.json()).then(json => {
+      try {
+        this.loadJSON(json);
+        onSuccess();
+      } catch (e) {
+        onError(e);
       }
-    };
-    xhttp.responseType = 'json';
-    xhttp.open("GET", url, true);
-    xhttp.send();
+    }).catch(error => {
+      onError(`Failed to fetch URL. See console for details.`);
+      console.error(error);
+    });
   }
   deleteSource(source) {
     this.data.sources.splice(this.data.sources.indexOf(source), 1);
