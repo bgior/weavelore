@@ -21,7 +21,7 @@
               <b-dropdown-item to="/stats"><img :src="require('@/assets/images/icons/menu/stats.png')"/> Stats</b-dropdown-item>
               <b-dropdown-item to="/areas"><img :src="require('@/assets/images/icons/menu/areas.png')"/> Areas</b-dropdown-item>
               <b-dropdown-item to="/tips"><img :src="require('@/assets/images/icons/menu/tips.png')"/> Tips</b-dropdown-item>
-              <b-dropdown-item to="/news"><img :src="require('@/assets/images/icons/menu/news.png')"/> News <span class="new-tag">NEW</span></b-dropdown-item>
+              <b-dropdown-item to="/news"><img :src="require('@/assets/images/icons/menu/news.png')"/> News</b-dropdown-item>
               <b-dropdown-item to="/settings"><img :src="require('@/assets/images/icons/menu/settings.png')"/> Settings</b-dropdown-item>
               <b-dropdown-item to="/ogl"><img :src="require('@/assets/images/icons/menu/ogl.png')"/> OGL</b-dropdown-item>
               <b-dropdown-item to="/about"><img :src="require('@/assets/images/logo/logo64.png')" style="filter: contrast(0) brightness(1.4)"/> About</b-dropdown-item>
