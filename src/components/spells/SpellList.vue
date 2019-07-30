@@ -95,6 +95,7 @@ export default {
     cursor: pointer;
     overflow-y: hidden;
     height: 34px;
+    line-height: 20px;
   }
   .spell:hover, .spell.selected {
     background-color: #272727;

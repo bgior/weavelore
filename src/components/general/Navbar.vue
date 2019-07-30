@@ -68,12 +68,14 @@ export default {
     transition: color 0.4s;
     padding: 10px 20px 10px 0px; /* Make link easier to click on mobile */
   }
-  .navbar-brand:hover a {
-    color: #eee !important;
-  }
-  .navbar-brand:hover img {
-    transform: scale(1.12);
-    filter: contrast(1) brightness(1.0);
+  @media (pointer: fine) {
+    .navbar-brand:hover a {
+      color: #eee !important;
+    }
+    .navbar-brand:hover img {
+      transform: scale(1.12);
+      filter: contrast(1) brightness(1.0);
+    }
   }
   .nav-link img {
     height: 26px;
