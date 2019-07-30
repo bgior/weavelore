@@ -124,31 +124,37 @@ export default {
     positionTarget() {
       this.target = { x: this.caster.x + this.range * pixelsPerFoot, y: this.caster.y }
       if (this.aoe) {
-        if (this.aoe.type == 'cone') {
-          const angleInDegrees = this.aoe.angle / (Math.PI / 180);
-          // Target position within the cell depends on the direction of the cone
-          if (angleInDegrees < 45 || angleInDegrees >= 315) {
+        switch(this.aoe.type) {
+          case "cone":
+            const angleInDegrees = this.aoe.angle / (Math.PI / 180);
+            // Target position within the cell depends on the direction of the cone
+            if (angleInDegrees < 45 || angleInDegrees >= 315) {
+              this.target.x += cellSize / 2;
+              this.target.y += Math.tan(this.aoe.angle) * cellSize / 2;
+            } else if (angleInDegrees >= 45 && angleInDegrees < 135) {
+              this.target.x -= Math.tan(this.aoe.angle - Math.PI / 2) * cellSize / 2;
+              this.target.y += cellSize / 2;
+            } else if (angleInDegrees >= 135 && angleInDegrees < 225) {
+              this.target.x -= cellSize / 2;
+              this.target.y -= Math.tan(this.aoe.angle) * cellSize / 2;
+            } else { // 225 to 315
+              this.target.x -= Math.tan(3 * Math.PI / 2 - this.aoe.angle) * cellSize / 2;
+              this.target.y -= cellSize / 2;
+            }
+            break;
+          case "cube":
             this.target.x += cellSize / 2;
-            this.target.y += Math.tan(this.aoe.angle) * cellSize / 2;
-          } else if (angleInDegrees >= 45 && angleInDegrees < 135) {
-            this.target.x -= Math.tan(this.aoe.angle - Math.PI / 2) * cellSize / 2;
-            this.target.y += cellSize / 2;
-          } else if (angleInDegrees >= 135 && angleInDegrees < 225) {
-            this.target.x -= cellSize / 2;
-            this.target.y -= Math.tan(this.aoe.angle) * cellSize / 2;
-          } else { // 225 to 315
-            this.target.x -= Math.tan(3 * Math.PI / 2 - this.aoe.angle) * cellSize / 2;
-            this.target.y -= cellSize / 2;
-          }
-        } else if (this.aoe.type == 'cube') {
-          this.target.x += cellSize / 2;
-          if (this.aoe.edge % 10 == 0) {
-            this.target.y += cellSize / 2;
-          }
-        } else {
-          // Target should be a grid intersection point instead of the center of a cell
-          this.target.x += cellSize / 2;
-          this.target.y += cellSize / 2;
+            if (this.aoe.edge % 10 == 0) {
+              this.target.y += cellSize / 2;
+            }
+            break;
+          case "sphere":
+            // Target should be a grid intersection point instead of the center of a cell, unless it's range 0 (centered on caster)
+            if (this.range > 0) {
+              this.target.x += cellSize / 2;
+              this.target.y += cellSize / 2;
+            }
+            break;
         }
       }
     },
@@ -165,12 +171,14 @@ export default {
               ctx.arc(target.x, target.y, radiusInPixels, 0, 2 * Math.PI);
               ctx.stroke();
               ctx.fillStyle = "#ccc";
-              ctx.fillText(this.aoe.radius + "-feet radius", target.x - 38, target.y - radiusInPixels - 4); // 38 and 4 are values to roughly center the text
+              const textOffsetY = this.range == 0 ? 13 : 4; // Place the text right above the sphere
+              ctx.fillText(this.aoe.radius + "-feet radius", target.x - 38, target.y - radiusInPixels - textOffsetY); // 38 and 4 are values to roughly center the text
               // Highligh individual squares
               ctx.setLineDash([]);
               ctx.strokeStyle = "#913a3a";
-              for (let x = target.x - radiusInPixels; x < target.x + radiusInPixels; x += pixelsPerCell) {
-                for (let y = target.y - radiusInPixels; y < target.y + radiusInPixels; y += pixelsPerCell) {
+              const offset = this.range == 0 ? cellSize / 2 : 0; // The range 0 case is special because it makes the sphere be centered on the center of a cell instead of an intersection
+              for (let x = target.x - radiusInPixels - offset; x < target.x + radiusInPixels; x += pixelsPerCell) {
+                for (let y = target.y - radiusInPixels - offset; y < target.y + radiusInPixels; y += pixelsPerCell) {
                   // Highlight a cell only if its center point is within the circle (distanceToCenter < radius)
                   if (Math.sqrt(Math.pow(target.x - x - cellSize / 2, 2) + Math.pow(target.y - y - cellSize / 2, 2)) <= radiusInPixels) {
                     ctx.beginPath();
@@ -305,10 +313,10 @@ export default {
           case "sphere":
             return this.aoe.radius <= maxAOERadius ?
               Math.max(Math.ceil(this.aoe.radius / feetPerCell - 1) + baseCols,
-              this.aoe.radius * 2 / feetPerCell + 2
+              this.aoe.radius * 2 / feetPerCell + 1
             ) : baseCols;
           case "cube": {
-            let cols = this.aoe.edge <= maxAOERadius ?
+            let cols = this.aoe.edge / 2 <= maxAOERadius ?
                 Math.ceil(this.aoe.edge / feetPerCell) + baseCols
               : baseCols;
             if (this.aoe.edge < 15) { // Prevent text from escaping the diagram if the cube is small

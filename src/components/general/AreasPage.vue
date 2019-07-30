@@ -33,7 +33,7 @@
           <li><b>Circle:</b> The cell's center point is within the circle.</li>
           <li><b>Cone:</b> The triangle intersects the circle inscribed in the cell.</li>
         </ul>
-        <li>AOEs are always centered in a grid intersection point, except in the case of cubes whose size is not multiple of 10.</li>
+        <li>AOEs are always centered in a grid intersection point, except in the case of cubes whose size is not multiple of 10, and spheres with range 0.</li>
       </ul>
       <div slot="modal-footer" class="w-100">
         <b-button variant="primary" size="sm" class="float-right" @click="$bvModal.hide('areasHelp')">Close</b-button>
