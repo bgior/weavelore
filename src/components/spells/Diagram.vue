@@ -113,7 +113,7 @@ export default {
             this.caster.x += Math.max((this.range - this.aoe.radius + feetPerCell) * -pixelsPerFoot, 0);
             break;
           case "cube":
-            this.caster.x += Math.max((this.range - Math.ceil(Math.ceil((this.aoe.edge / 2) - feetPerCell) / feetPerCell) * feetPerCell) * -pixelsPerFoot, 0);
+            // The cube never includes the caster (technically it could, but on the diagram we always show the point of origin on the left side of the cube)
             break;
           case "cone":
             this.caster.x += Math.max((this.range - Math.ceil((this.aoe.length * coneSideLengthMultiplier * 0.95) / feetPerCell) * feetPerCell) * -pixelsPerFoot, 0); // 0.95 fixes off-center caster
@@ -140,8 +140,12 @@ export default {
             this.target.x -= Math.tan(3 * Math.PI / 2 - this.aoe.angle) * cellSize / 2;
             this.target.y -= cellSize / 2;
           }
-
-        } else if (!(this.aoe.type == 'cube' && this.aoe.edge % 10 != 0)) {
+        } else if (this.aoe.type == 'cube') {
+          this.target.x += cellSize / 2;
+          if (this.aoe.edge % 10 == 0) {
+            this.target.y += cellSize / 2;
+          }
+        } else {
           // Target should be a grid intersection point instead of the center of a cell
           this.target.x += cellSize / 2;
           this.target.y += cellSize / 2;
@@ -183,13 +187,13 @@ export default {
             if (halfEdge <= maxAOERadius) {
               ctx.beginPath();
               ctx.strokeStyle = "#913a3a";
-              ctx.rect(target.x - halfEdge * pixelsPerFoot, target.y - halfEdge * pixelsPerFoot, this.aoe.edge * pixelsPerFoot, this.aoe.edge * pixelsPerFoot);
+              ctx.rect(target.x, target.y - halfEdge * pixelsPerFoot, this.aoe.edge * pixelsPerFoot, this.aoe.edge * pixelsPerFoot);
               ctx.stroke();
               ctx.fillStyle = "#ccc";
-              ctx.fillText(this.aoe.edge + "-feet cube", target.x - 38, target.y - halfEdge * pixelsPerFoot - 4);
+              ctx.fillText(this.aoe.edge + "-feet cube", target.x  + halfEdge * pixelsPerFoot - 38, target.y - halfEdge * pixelsPerFoot - 4);
               // Highligh individual squares
               ctx.setLineDash([]);
-              for (let x = target.x - halfEdge * pixelsPerFoot; x < target.x + halfEdge * pixelsPerFoot; x += pixelsPerCell) {
+              for (let x = target.x; x < target.x + this.aoe.edge * pixelsPerFoot; x += pixelsPerCell) {
                 for (let y = target.y - halfEdge * pixelsPerFoot; y < target.y + halfEdge * pixelsPerFoot; y += pixelsPerCell) {
                   ctx.beginPath();
                   ctx.rect(x, y, cellSize, cellSize);
@@ -284,7 +288,7 @@ export default {
           case "sphere":
             return this.aoe.radius <= maxAOERadius ? 3 + Math.max(Math.ceil((this.aoe.radius - feetPerCell) / feetPerCell) * 2, 0) : 3;
           case "cube":
-            return this.aoe.edge / 2 <= maxAOERadius ? 3 + Math.max(Math.ceil((this.aoe.edge / 2 - feetPerCell) / feetPerCell) * 2, 0) : 3;
+            return this.aoe.edge / 2 <= maxAOERadius ? 3 + Math.max(Math.ceil((this.aoe.edge / 2) / feetPerCell) * 2, 0) : 3;
           case "cone":
             return this.aoe.length <= maxAOERadius ? 3 + Math.max(Math.ceil((this.aoe.length * coneSideLengthMultiplier - feetPerCell) / feetPerCell) * 2, 0) : 3;
           default:
@@ -304,12 +308,9 @@ export default {
               this.aoe.radius * 2 / feetPerCell + 2
             ) : baseCols;
           case "cube": {
-            let cols = this.aoe.edge / 2 <= maxAOERadius ?
-              Math.max(
-                Math.ceil((this.aoe.edge / 2) / feetPerCell - 1) + baseCols,
-                this.aoe.edge / feetPerCell + 2
-              ):
-              baseCols;
+            let cols = this.aoe.edge <= maxAOERadius ?
+                Math.ceil(this.aoe.edge / feetPerCell) + baseCols
+              : baseCols;
             if (this.aoe.edge < 15) { // Prevent text from escaping the diagram if the cube is small
               cols += 1;
             }
