@@ -3,7 +3,7 @@
 <template>
   <div class="row text-left justify-content-center">
     <div class="col-12 col-md-10 col-xl-8">
-      <h1 class="my-4">My content</h1>
+      <h1 class="my-4">My content<img :src="require('@/assets/images/icons/menu/content.png')"/></h1>
       <div class="my-4">
         <div class="sources-intro w-100">
           <span>
