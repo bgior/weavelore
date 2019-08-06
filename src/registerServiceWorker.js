@@ -21,7 +21,10 @@ if (process.env.NODE_ENV === 'production') {
     updatefound () {
       console.log('New content is downloading.');
     },
-    updated () {
+    updated (registration) {
+      if (window.vueApp) {
+        window.vueApp.notifyUpdate();
+      }
       console.log('New content is awaiting activation.');
     },
     offline () {

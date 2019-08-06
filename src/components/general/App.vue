@@ -7,6 +7,7 @@
       <router-view :app="app"></router-view>
     </main>
     <Alert ref="alert"/>
+    <UpdateNotice v-if="app.appUpdateAvailable && this.$route.path != '/updates'"/>
   </div>
 </template>
 
@@ -23,15 +24,18 @@ import TipsPage from './TipsPage.vue';
 import AreasPage from './AreasPage.vue';
 import AboutPage from './AboutPage.vue';
 import NewsPage from './NewsPage.vue';
+import UpdatesPage from './UpdatesPage.vue';
 import ContentPage from './ContentPage.vue';
 import ComingSoon from './ComingSoon.vue';
 import TestPage from './TestPage.vue';
 import NotFound from './NotFound.vue';
 import Alert from './Alert.vue';
+import UpdateNotice from './UpdateNotice.vue';
 
 import ContentDatabase from '@/util/contentDatabase.js';
 import SettingsDatabase from '@/util/settingsDatabase.js';
 
+const timeBetweenAppUpdateChecksInMs = 1000 * 60 * 60 * 1; // 1 hour
 const router = new VueRouter({
   mode: 'history',
   routes: [
@@ -48,6 +52,7 @@ const router = new VueRouter({
     { path: '/news', component: NewsPage },
     { path: '/content', component: ContentPage },
     { path: '/ogl', component: OGLPage },
+    { path: '/updates', component: UpdatesPage },
     { path: '/test', component: TestPage },
     { path: '*', component: NotFound }
   ]
@@ -58,7 +63,8 @@ export default {
   router,
   components: {
     Navbar,
-    Alert
+    Alert,
+    UpdateNotice
   },
   data() {
     const contentDatabase = ContentDatabase.getFromStorageOrDefault();
@@ -69,11 +75,39 @@ export default {
         settingsDatabase,
         spells: contentDatabase.getSpells(),
         settings: settingsDatabase.getSettings(),
-        alert: (msg, type, duration) => this.$refs.alert.alert(msg, type, duration)
+        alert: (msg, type, duration) => this.$refs.alert.alert(msg, type, duration),
+        appUpdateAvailable: false // Whether an updated version of the app is awaiting activation
       },
       alertMessage: null,
-      alertType: null
-  }}
+      alertType: null,
+      lastAppUpdateCheck: new Date()
+  }},
+  methods: {
+    // Let the app know that there's a new app version available
+    notifyUpdate(registration) {
+      this.app.appUpdateAvailable = true;
+    }
+  },
+  created() {
+    // Share the Vue app reference here so that the Service Worker can call notifyUpdate()
+    window.vueApp = this;
+  },
+  watch: {
+    '$route': function() {
+      /* Normally the browser would check for ServiceWorker updates every time the user
+      navigates to a different page. But since this is a SPA, it only checks on application
+      startup, so on the PWA it could take days to update. To fix that, we manually check
+      every time the route changes. Limited to once every 1 hour since that's good enough. */
+      if (new Date() - this.lastAppUpdateCheck > timeBetweenAppUpdateChecksInMs) {
+        this.lastAppUpdateCheck = new Date();
+        navigator.serviceWorker.getRegistration().then(reg => {
+          if (reg) {
+            reg.update();
+          }
+        });
+      }
+    }
+  }
 }
 Vue.directive('focus', {
   inserted(el) {

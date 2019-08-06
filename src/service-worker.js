@@ -19,3 +19,10 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 // Make all navigation requests be directed to index.html, since it's a SPA
 workbox.routing.registerNavigationRoute('/index.html');
+
+// An immediate update of the app can be triggered by sending this message to the new worker waiting
+addEventListener('message', messageEvent => {
+  if (messageEvent.data === 'skipWaiting') {
+    return skipWaiting();
+  }
+});
