@@ -177,7 +177,7 @@ export default {
       }
     },
     exportDatabase() {
-      this.download('WeaveLoreExport.json', JSON.stringify(this.app.contentDatabase.data));
+      this.download('WeaveLoreExport.json', this.app.contentDatabase.export());
     },
     download(name, text) {
       const link = this.$refs.downloadLink;
