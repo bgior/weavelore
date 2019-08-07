@@ -65,7 +65,9 @@ class ContentDatabaseValidator {
     for (const tagName of constants.allowedTags) {
       balances[tagName] = 0;
     }
-    for (const tag of str.matchAll(TAG_REGEX)) {
+
+    let tag;
+    while((tag = TAG_REGEX.exec(str)) !== null) {
       const match = tag[0].match(TAG_SPLIT_REGEX);
       const closing = match[1] == '/';
       const type = match[2];
@@ -73,6 +75,7 @@ class ContentDatabaseValidator {
       balances[type] += closing ? -1 : 1;
       this.assert(balances[type] >= 0, `HTML closing tag unmatched: "${type}".`);
     }
+
     for (let tag in balances) {
       this.assert(balances[tag] == 0, `HTML opening tag unmatched: "${tag}".`);
     }
