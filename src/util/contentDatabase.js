@@ -10,9 +10,11 @@ class ContentDatabase {
     this.data = getDefaultData();
     this.loadJSON(contentJSON, runValidations);
   }
+  // Returns true if the database has at least one spell
   isEmpty() {
     return !this.data.sources.some(s => s.spells.length > 0);
   }
+  // Returns an array of all spells contained, sorted alphabetically
   getSpells() {
     const spells = [];
     for (let source of this.data.sources) {
@@ -24,6 +26,7 @@ class ContentDatabase {
       return a.name < b.name ? -1 : (a.name > b.name ? 1 : 0);
     });
   }
+  // Imports a JSON object into the database and persists it
   loadJSON(contentJSON, runValidations = true) {
     if (!contentJSON) {
       throw "Attempted to load an empty JSON into a content database";
@@ -31,6 +34,9 @@ class ContentDatabase {
     if (runValidations) {
       Validator.validate(contentJSON);
     }
+    // Merge the sources in the JSON file with those already present. An existing
+    // source is replaced with one in the JSON if the new source has a higher or
+    // equal version number.
     for (let newSource of contentJSON.sources) {
       const existingSource = this.data.sources.find(s => s.name == newSource.name);
       if (existingSource) {
@@ -47,6 +53,7 @@ class ContentDatabase {
     }
     this.saveToStorage();
   }
+  // Fetch a JSON from a URL and then load it
   loadURL(url, onSuccess, onError = console.error) {
     fetch(url).then(res => res.json()).then(json => {
       try {
@@ -60,6 +67,7 @@ class ContentDatabase {
       console.error(error);
     });
   }
+  // Add a new source to the database
   addSource(source) {
     // Add calculated fields to each spell (redundant info for performance)
     for (let spell of source.spells) {
@@ -69,14 +77,17 @@ class ContentDatabase {
     }
     this.data.sources.push(source);
   }
+  // Delete a source from the database
   deleteSource(source) {
     this.data.sources.splice(this.data.sources.indexOf(source), 1);
     this.saveToStorage();
   }
+  // Delete all sources from the database
   deleteAllSources() {
     this.data = getDefaultData();
     this.saveToStorage();
   }
+  // Persist this database in the browser's LocalStorage
   saveToStorage() {
     try {
       window.localStorage.content = JSON.stringify(this.data);
@@ -100,6 +111,7 @@ class ContentDatabase {
     }
     return JSON.stringify(clonedData);
   }
+  // Get the ContentDatabase persisted in LocalStorage, or if absent/invalid, a default blank one
   static getFromStorageOrDefault() {
     try {
       if (window.localStorage.content) {
@@ -114,11 +126,12 @@ class ContentDatabase {
     }
     return this.getDefault();
   }
+  // Get a default blank database with no sources
   static getDefault() {
     return new ContentDatabase(getDefaultData());
   }
 }
-
+// Get a JSON representing a blank database
 function getDefaultData() {
   return {
     format: "WLC",
