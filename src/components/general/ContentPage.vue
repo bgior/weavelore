@@ -44,7 +44,7 @@
             <img :src="require('@/assets/images/icons/misc/importFile.png')"/>
             Import file
           </button>
-          <input ref="uploader" type="file" @change="handleFileSelect" accept=".json" style="display:none"/>
+          <input ref="uploader" type="file" @change="handleFileSelect" accept=".json" style="display:none" multiple/>
         </div>
         <div class="col-12 col-md-6 col-xl-4">
           <button class="btn btn-primary w-100" v-b-modal.urlloader>
@@ -153,15 +153,17 @@ export default {
       this.$refs.uploader.click();
     },
     handleFileSelect(evt) {
-      getLines(evt.target.files[0]).then(lines => {
-        try {
-          this.app.contentDatabase.loadJSON(JSON.parse(lines.join('')));
-          this.app.spells = this.app.contentDatabase.getSpells();
-          this.app.alert(null);
-        } catch (e) {
-          this.showError(e);
-        }
-      });
+      for (let file of evt.target.files) {
+        getLines(file).then(lines => {
+          try {
+            this.app.contentDatabase.loadJSON(JSON.parse(lines.join('')));
+            this.app.spells = this.app.contentDatabase.getSpells();
+            this.app.alert(null);
+          } catch (e) {
+            this.showError(e);
+          }
+        });
+      }
     },
     handleURLSelect() {
       try {
