@@ -108,8 +108,14 @@ export default {
     },
     // Returns an integer corresponding to the spell's range in feet, or 0 if it's Self/Touch/unrecognized
     numericRange() {
-      const match = this.spell.range.match(/(\d+) feet/);
-      return match ? parseInt(match[1]) : 0;
+      if (this.aoe && this.aoe.range) {
+        // If the AOE has a manually overriden range, use that instead
+        return this.aoe.range;
+      } else {
+        // Parse the number of feet from the string
+        const match = this.spell.range.match(/(\d+) feet/);
+        return match ? parseInt(match[1]) : 0;
+      }
     }
   },
   methods: {

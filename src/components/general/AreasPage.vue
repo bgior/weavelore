@@ -13,7 +13,7 @@
           Range: <b>{{ range }}</b> feet
           <input type="range" v-model.number="range" step="5" min="0" max="300"/>
         </div>
-        <div :class="`${type == 'cone' ? 'col-6' : 'col-12'} col-md-3`" v-show="type != ''">
+        <div class="col-6 col-md-3" v-show="type != ''">
           Size: <b>{{ size }}</b> feet
           <input type="range" v-model.number="size" step="5" min="5" max="120"/>
         </div>
@@ -21,10 +21,14 @@
           Direction: {{ angleDegrees }}º
           <input type="range" v-model.number="angleDegrees" min="0" max="360"/>
         </div>
+        <div class="col-6 col-md-3" v-show="type == 'sphere'">
+          Center:
+          <CustomSelect v-model="center" :options="centerOptions"/>
+        </div>
       </div>
     </div>
     <div class="col-12" style="text-align: center">
-      <Diagram :range="range" :aoe="type == '' ? null : { type: type, radius: size, edge: size, length: size, angle: angleRadians }"/>
+      <Diagram :range="range" :aoe="type == '' ? null : { type: type, radius: size, edge: size, length: size, angle: angleRadians, center: center }"/>
     </div>
     <b-modal id="areasHelp" title="Notes">
       <ul>
@@ -61,6 +65,7 @@ export default {
     type: "cone",
     size: 30,
     range: 0,
+    center: '',
     angleRadians: 0,
     angleDegrees: 0
   }},
@@ -69,6 +74,13 @@ export default {
       return ['sphere', 'cube', 'cone'].map(a => { return { value: a, image: require(`@/assets/images/icons/ranges/${a}.png`) }}).concat(
         [{ value: '', text: 'None', image: require('@/assets/images/icons/misc/none.png') }]
       );
+    },
+    centerOptions() {
+      return [
+        { value: '', text: "automatic", image: require('@/assets/images/icons/misc/none.png') },
+        { value: 'intersection', image: require('@/assets/images/icons/misc/cntInter.png') },
+        { value: 'cell', image: require('@/assets/images/icons/misc/cntCell.png') }
+      ];
     }
   },
   watch: {

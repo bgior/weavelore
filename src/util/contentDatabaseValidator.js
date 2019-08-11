@@ -38,6 +38,15 @@ class ContentDatabaseValidator {
         this.assertType(spell, 'description', 'string');
         this.validateHTML(spell.description);
         this.assertType(spell, 'aoe', 'object', false);
+        if (spell.aoe) {
+          const aoe = spell.aoe;
+          this.assert(['sphere', 'cone', 'cube'].includes(aoe.type), `Invalid AOE type: ${aoe.type}`);
+          this.assertType(aoe, 'range', 'number', false);
+          if (aoe.center) {
+            this.assert(['cell', 'intersection'].includes(this.aoe.center), `The AOE center "${this.aoe.center}" is not valid.`);
+            this.assert(spell.aoe.type == 'sphere', `The "center" field can only be used for spheres, not ${aoe.type}s.`);
+          }
+        }
         this.assertType(spell, 'atHigherLevel', 'string', false);
         this.validateHTML(spell.atHigherLevel);
       }

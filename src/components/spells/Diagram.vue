@@ -30,7 +30,7 @@ export default {
   props: {
     app: Object,
     range: Number, // The range of the spell, in feet
-    aoe: Object, // A hash that represents the Area Of Effect of this spell,
+    aoe: Object // A hash that represents the Area Of Effect of this spell,
   },
   computed: {
     width() { // The width of the canvas, in pixels
@@ -47,6 +47,14 @@ export default {
     },
     enabled() { // Whether this diagram should be drawn, or adds no value to the given spell and should be hidden
       return this.range <= maxRange && (this.range >= minRange || this.aoe);
+    },
+    // [Sphere AOEs only] Determine whether the sphere's center should be a grid intersection point or a cell
+    isCenteredInIntersection() {
+      if (this.aoe.center) { // if the source explicitly declares where the center should be, use that
+        return this.aoe.center == 'intersection';
+      } else { // If not, automatic behavior is to center the sphere in an intersection unless it's range 0
+        return this.range > 0;
+      }
     }
   },
   mounted() { // When the Diagram is rendered for the first time, draw the canvas
@@ -150,7 +158,8 @@ export default {
             break;
           case "sphere":
             // Target should be a grid intersection point instead of the center of a cell, unless it's range 0 (centered on caster)
-            if (this.range > 0) {
+            // or the data source explicitly demands that it's centered on a cell.
+            if (this.isCenteredInIntersection) {
               this.target.x += cellSize / 2;
               this.target.y += cellSize / 2;
             }
@@ -171,12 +180,12 @@ export default {
               ctx.arc(target.x, target.y, radiusInPixels, 0, 2 * Math.PI);
               ctx.stroke();
               ctx.fillStyle = "#ccc";
-              const textOffsetY = this.range == 0 ? 13 : 4; // Place the text right above the sphere
+              const textOffsetY = this.isCenteredInIntersection ? 4 : 13; // Place the text right above the sphere
               ctx.fillText(this.aoe.radius + "-feet radius", target.x - 38, target.y - radiusInPixels - textOffsetY); // 38 and 4 are values to roughly center the text
               // Highligh individual squares
               ctx.setLineDash([]);
               ctx.strokeStyle = "#913a3a";
-              const offset = this.range == 0 ? cellSize / 2 : 0; // The range 0 case is special because it makes the sphere be centered on the center of a cell instead of an intersection
+              const offset = this.isCenteredInIntersection ? 0 : cellSize / 2; // If the sphere is centered on an intersection, add an offset
               for (let x = target.x - radiusInPixels - offset; x < target.x + radiusInPixels; x += pixelsPerCell) {
                 for (let y = target.y - radiusInPixels - offset; y < target.y + radiusInPixels; y += pixelsPerCell) {
                   // Highlight a cell only if its center point is within the circle (distanceToCenter < radius)
