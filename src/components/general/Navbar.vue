@@ -17,7 +17,7 @@
             <b-nav-item to="/spells"><img :src="require('@/assets/images/icons/menu/spells.png')"/> Spells</b-nav-item>
             <b-nav-item to="/rules"><img :src="require('@/assets/images/icons/menu/rules.png')"/> Rules</b-nav-item>
             <b-nav-item-dropdown :html="`<img src='${require('@/assets/images/icons/menu/settings.png')}'/> More`">
-              <b-dropdown-item to="/content"><img :src="require('@/assets/images/icons/menu/content.png')"/> Content <span class="new-tag">NEW</span></b-dropdown-item>
+              <b-dropdown-item to="/content"><img :src="require('@/assets/images/icons/menu/content.png')"/> Content</b-dropdown-item>
               <b-dropdown-item to="/stats"><img :src="require('@/assets/images/icons/menu/stats.png')"/> Stats</b-dropdown-item>
               <b-dropdown-item to="/areas"><img :src="require('@/assets/images/icons/menu/areas.png')"/> Areas</b-dropdown-item>
               <b-dropdown-item to="/tips"><img :src="require('@/assets/images/icons/menu/tips.png')"/> Tips</b-dropdown-item>
