@@ -7,6 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "inspect": "vue-cli-service inspect",
+    "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.7.0",
+    "@vue/cli-plugin-e2e-cypress": "^3.10.0",
     "@vue/cli-plugin-eslint": "^3.7.0",
     "@vue/cli-plugin-pwa": "^3.8.0",
     "@vue/cli-plugin-unit-jest": "^3.10.0",

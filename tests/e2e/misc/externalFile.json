@@ -1,0 +1,35 @@
+{
+  "format": "WLC",
+  "formatVersion": "0.2.0",
+  "sources": [
+    {
+      "name": "Test Source",
+      "description": "This is a sample file to test URL loading. It's here on the repo just for reference, the test actually uses a copy hosted online.",
+      "version": 99,
+      "spells": [
+        {
+          "name": "Bee Tornado",
+          "classes": [
+            "warlock"
+          ],
+          "school": "conjuration",
+          "level": 3,
+          "range": "60 feet",
+          "duration": "Up to 1 minute",
+          "casting": "1 action",
+          "verbal": true,
+          "somatic": true,
+          "material": 0,
+          "concentration": true,
+          "ritual": false,
+          "description": "<p>Creates a tornado. Made of bees.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 15
+          }
+        }
+      ],
+      "rules": []
+    }
+  ]
+}
