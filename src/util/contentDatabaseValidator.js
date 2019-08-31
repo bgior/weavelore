@@ -18,6 +18,7 @@ class ContentDatabaseValidator {
       this.assertType(source, 'spells', 'object');
       this.assertType(source, 'rules', 'object');
       this.validateSpells(source.spells);
+      this.validateRules(source.rules);
     }
   }
   // Validate an array of spells
@@ -63,8 +64,8 @@ class ContentDatabaseValidator {
       this.assertType(rule, 'name', 'string');
       this.assertType(rule, 'category', 'string');
       this.assertType(rule, 'description', 'string');
-      if (spell.tags) {
-        const tags = spell.tags;
+      if (rule.tags) {
+        const tags = rule.tags;
         this.assertType(rule, 'tags', 'object');
         for (let tag of tags) {
           this.assert(typeof(tag) == 'string', `Expected tag list to contain only strings but got a ${typeof(tag)}.`);
