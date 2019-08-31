@@ -6,7 +6,7 @@
 header a:hover {
   text-decoration: none;
 }
-main a {
+main a, .modal-dialog a {
   color: #a3c9fb;
 }
 main a:hover {
@@ -32,6 +32,7 @@ h2 {
 }
 .table td {
   border-top: 1px solid #363636;
+  padding: 10px 3px;
 }
 .table thead th {
   border: 0;
@@ -242,4 +243,15 @@ hr {
 }
 ul {
   padding-left: 30px;
+}
+.clickable {
+  cursor: pointer;
+}
+.dynamic-link {
+  text-decoration: underline dashed #444;
+  cursor: pointer;
+  transition: text-decoration-color 0.5s;
+}
+.dynamic-link:hover {
+  text-decoration-color: #999;
 }

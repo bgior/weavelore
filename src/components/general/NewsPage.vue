@@ -11,7 +11,7 @@
             <h2>{{ item.title }}</h2>
             <span>{{ prettyDate(item.date) }}</span>
           </div>
-          <div v-html="item.description"></div>
+          <div v-html="prettyDescription(item.description)" @click="handleDescriptionClick"></div>
         </div>
         <hr/>
       </div>
@@ -33,6 +33,7 @@
 }
 </style>
 <script>
+import TextBeautifier from '@/util/textBeautifier.js';
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export default {
   name: 'NewsPage',
@@ -47,6 +48,14 @@ export default {
     prettyDate(dateString) {
       const date = new Date(dateString);
       return date ? `${months[date.getUTCMonth()]} ${date.getUTCDate()}` : '';
+    },
+    prettyDescription(description){
+      return TextBeautifier.beautify(description);
+    },
+    handleDescriptionClick(evt) {
+      if (evt.target.className == 'dynamic-link') {
+        this.$router.push('/rules/' + evt.target.innerText.replace(/ /g, "-"));
+      }
     }
   },
   created() {

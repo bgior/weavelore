@@ -12,7 +12,7 @@
           <span class="no-shrink pb-3 pr-3">
             <strong class="source-amounts">
               <img :src="require('@/assets/images/icons/menu/spells.png')" style="filter: brightness(2.3)" title="Amount of spells in this source" alt="Spells"> {{ app.spells.length }}
-              <img :src="require('@/assets/images/icons/menu/rules.png')" class="ml-3" style="filter: brightness(2.0)" title="Amount of rules in this source" alt="Rules"> {{ 0 }}
+              <img :src="require('@/assets/images/icons/menu/rules.png')" class="ml-3" style="filter: brightness(2.0)" title="Amount of rules in this source" alt="Rules"> {{ app.rules.length }}
             </strong>
           </span>
         </div>
@@ -157,7 +157,7 @@ export default {
         getLines(file).then(lines => {
           try {
             this.app.contentDatabase.loadJSON(JSON.parse(lines.join('')));
-            this.app.spells = this.app.contentDatabase.getSpells();
+            this.app.reloadDatabase();
             this.app.alert(null);
           } catch (e) {
             this.showError(e);
@@ -169,7 +169,7 @@ export default {
       try {
         this.app.contentDatabase.loadURL(this.urlToImport,
           () => {
-            this.app.spells = this.app.contentDatabase.getSpells();
+            this.app.reloadDatabase();
             this.app.alert(null);
           },
           this.showError
@@ -191,12 +191,12 @@ export default {
     resetDatabase() {
       if (confirm("Are you sure?")) {
         this.app.contentDatabase.deleteAllSources();
-        this.app.spells = [];
+        this.app.reloadDatabase();
       }
     },
     deleteSource(source) {
       this.app.contentDatabase.deleteSource(source);
-      this.app.spells = this.app.contentDatabase.getSpells();
+      this.app.reloadDatabase();
     },
     showError(error) {
       let message;

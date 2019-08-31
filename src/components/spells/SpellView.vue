@@ -3,7 +3,7 @@
 <template>
   <div class="spell-details">
     <div class="spell-head">
-      <img :src="icons.schoolIcon(spell)" class="spell-school" @click="helpFor('schools')" title="School (click for more)"/>
+      <img :src="icons.schoolIcon(spell)" class="spell-school clickable" @click="helpFor('schools')" title="School"/>
       <div class="spell-title">
         <div class="spell-name">{{ spell.name }}</div>
         <div class="spell-type">{{ prettyLevel }} {{ spell.school }}</div>
@@ -20,29 +20,39 @@
     </div>
     <div class="row spell-features">
       <div class="col-6 col-lg-4 col-xl-3">
-        <img :src="icons.rangeIcon(spell)" title="Range"/> {{ spell.range }}<br/>
+        <router-link to="/rules/range" title="Range">
+          <img :src="icons.rangeIcon(spell)"/> {{ spell.range }}
+        </router-link><br/>
         <img :src="icons.durationIcon(spell)" title="Duration"/> {{ spell.duration }}<br/>
         <template v-if="spell.concentration"><img :src="require('@/assets/images/icons/spell_features/concentration.png')" title="Spell requires concentration"/> Concentration<br/></template>
-        <img :src="icons.castingIcon(spell)" title="Casting time"/> {{ spell.casting }}<br/>
+        <router-link to="/rules/casting-time" title="Casting time">
+          <img :src="icons.castingIcon(spell)"/> {{ spell.casting }}
+        </router-link><br/>
         <template v-if="spell.ritual" title="Spell can be cast as ritual"><img :src="require('@/assets/images/icons/spell_features/ritual.png')"/> Ritual</template>
       </div>
       <div class="col-6 col-lg-4 col-xl-3">
-        <div @click="helpFor('classes')" title="Classes (click for more)">
-          <img v-for="icon in icons.classIcons(spell)" :src="`${icon}`" :key="icon"/>
+        <div @click="helpFor('classes')" title="Classes">
+          <img v-for="icon in icons.classIcons(spell)" :src="`${icon}`" :key="icon" class="clickable"/>
         </div>
-        <div @click="helpFor('components')" title="Components (click for more)">
-          <img v-for="icon in icons.componentIcons(spell)" :src="icon" :key="icon">
+        <div @click="helpFor('components')" title="Components">
+          <img v-for="icon in icons.componentIcons(spell)" :src="icon" :key="icon" class="clickable">
         </div>
-        <template v-if="spell.atHigherLevel"><img :src="require('@/assets/images/icons/spell_features/scalable.png')" title="Spell improves when cast with higher level slot"/> Scalable</template>
+        <template v-if="spell.atHigherLevel">
+          <router-link to="/rules/casting-a-spell-at-a-higher-level" title="Spell improves when cast with higher level slot">
+            <img :src="require('@/assets/images/icons/spell_features/scalable.png')"/> Scalable
+          </router-link>
+        </template>
       </div>
       <div class="d-none d-lg-block col-lg-4 col-xl-6">
         <div title="Which book/source this spell originates from">
-          <img :src="require('@/assets/images/icons/spell_features/source.png')"/> {{ spell.source }}
+          <router-link to="/content">
+            <img :src="require('@/assets/images/icons/spell_features/source.png')"/> {{ spell.source }}
+          </router-link>
         </div>
         <div v-if="spell.material > 0" title="Materials" v-html="spell.materials"></div>
       </div>
     </div>
-    <div class="spell-description" v-html="prettyDescription"></div>
+    <div class="spell-description" v-html="prettyDescription" @click="handleDescriptionClick"></div>
     <div v-if="spell.atHigherLevel" v-html="prettyHigherLevel" class="spell-higher">
     </div>
     <Diagram :range="numericRange" :aoe="spell.aoe" title="Range visualization"/>
@@ -134,7 +144,24 @@ export default {
       }
       this.$forceUpdate(); // OPTIMIZE: Vue does not react to changes within the Set, so this was required. Look for a more elegant way?
       this.app.settingsDatabase.saveToStorage();
+    },
+    handleDescriptionClick(evt) {
+      if (evt.target.className == 'dynamic-link') {
+        this.$router.push('/rules/' + evt.target.innerText.replace(/ /g, "-"));
+      }
     }
+  },
+  watch: {
+    // spell() {
+    //   // Make the dynamically generated links in the description work (OPTIMIZE: is there a more Vueish way to do this?)
+    //   console.log(document.getElementsByClassName("dynamic-link"));
+    //   for (let dynamicLink of document.getElementsByClassName("dynamic-link")) {
+    //     console.log(1);
+    //     dynamicLink.addEventListener('click', evt => {
+    //       this.$router.push('/rules/' + evt.currentTarget.innerText);
+    //     });
+    //   }
+    // }
   }
 }
 </script>
@@ -187,6 +214,9 @@ export default {
 }
 .spell-features img, .mobile-foot img {
   height: 26px;
+}
+.spell-features a {
+  color: white;
 }
 .spell-description {
   text-align: justify;

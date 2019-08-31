@@ -107,7 +107,6 @@ export default {
   }
   .spell img {
     height: 26px;
-    /*transition: transform 0.5s, filter 0.5s;*/
   }
   .level {
     font-size: 20px;
@@ -116,9 +115,6 @@ export default {
     text-align: center;
     font-weight: bold;
     color: #5a5a5a;
-  }
-  .scalable {
-
   }
   .absent {
     opacity: 0.1;

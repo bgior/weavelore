@@ -12,6 +12,7 @@ describe('ContentDatabase', () => {
     expect(db.data.sources.length).toBe(0);
     db.loadJSON(getSRD());
     expect(db.data.sources[0].name).toBe('SRD 5.1');
+    // Validate spells
     const spells = db.getSpells();
     expect(spells.length).toBe(319);
     const spell = spells[0];
@@ -26,7 +27,7 @@ describe('ContentDatabase', () => {
     expect(spell.verbal).toBe(true);
     expect(spell.somatic).toBe(true);
     expect(spell.material).toBe(1);
-    expect(spell.materials).toBe("Powdered rhubarb leaf and an adder’s stomach");
+    expect(spell.materials).toBe("Powdered rhubarb leaf and an adder's stomach");
     expect(spell.concentration).toBe(false);
     expect(spell.ritual).toBe(false);
     expect(spell.description).toBe("<p>A shimmering green arrow streaks toward a target within range and bursts in a spray of acid. Make a ranged spell attack against the target. On a hit, the target takes 4d4 acid damage immediately and 2d4 acid damage at the end of its next turn. On a miss, the arrow splashes the target with acid for half as much of the initial damage and no damage at the end of its next turn.</p>");
@@ -34,6 +35,14 @@ describe('ContentDatabase', () => {
     expect(spell.downcasedName).toBe("acid arrow");
     expect(spell.codename).toBe("acid-arrow");
     expect(spell.source).toBe("SRD 5.1");
+    // Validate rules
+    const rules = db.getRules();
+    expect(rules.length).toBe(39);
+    const rule = rules[0];
+    expect(rule.name).toBe("Areas of Effect");
+    expect(rule.category).toBe("Spellcasting");
+    expect(rule.description).toBe("<p>Spells such as <i>burning hands</i> and <i>cone of cold</i> cover an area, allowing them to affect multiple creatures at once.</p><p>A spell's description specifies its area of effect, which typically has one of five different shapes: cone, cube, cylinder, line, or sphere. Every area of effect has a <b>point of origin</b>, a location from which the spell's energy erupts. The rules for each shape specify how you position its point of origin. Typically, a point of origin is a point in space, but some spells have an area whose origin is a creature or an object.</p><p>A spell's effect expands in straight lines from the point of origin. If no unblocked straight line extends from the point of origin to a location within the area of effect, that location isn't included in the spell's area. To block one of these imaginary lines, an obstruction must provide total cover.</p><h2>Cone</h2><p>A cone extends in a direction you choose from its point of origin. A cone's width at a given point along its length is equal to that point's distance from the point of origin. A cone's area of effect specifies its maximum length.</p><p>A cone's point of origin is not included in the cone's area of effect, unless you decide otherwise.</p><h2>Cube</h2>You select a cube's point of origin, which lies anywhere on a face of the cubic effect. The cube's size is expressed as the length of each side.</p><p>A cube's point of origin is not included in the cube's area of effect, unless you decide otherwise.</p><h2>Cylinder</h2><p>A cylinder's point of origin is the center of a circle of a particular radius, as given in the spell description. The circle must either be on the ground or at the height of the spell effect. The energy in a cylinder expands in straight lines from the point of origin to the perimeter of the circle, forming the base of the cylinder. The spell's effect then shoots up from the base or down from the top, to a distance equal to the height of the cylinder.</p><p>A cylinder's point of origin is included in the cylinder's area of effect.</p><h2>Line</h2><p>A line extends from its point of origin in a straight path up to its length and covers an area defined by its width.</p><p>A line's point of origin is not included in the line's area of effect, unless you decide otherwise.</p><h2>Sphere</h2><p>You select a sphere's point of origin, and the sphere extends outward from that point.</p><p>The sphere's size is expressed as a radius in feet that extends from the point. A sphere's point of origin is included in the sphere's area of effect.</p>");
+    expect(rule.tags.join()).toBe(["cone", "cube", "cylinder", "line", "sphere"].join());
   });
 
   it('merges sources correctly', () => {

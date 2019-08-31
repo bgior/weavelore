@@ -3,11 +3,11 @@
 <template>
   <div>
     <SpellSearcher :app="app" :class="panelIsOpen ? 'd-none d-md-flex' : ''" :query="query" :detailedModeOn="detailedModeOn" @toggleDetailedView="toggleDetailedView"/>
-    <div class="row results">
-      <div :class="detailedModeOn ? (panelIsOpen ? 'd-none' : 'd-block col-12') : (panelIsOpen ? 'col-md-6 col-lg-4 d-none d-md-block' : 'col-12')">
+    <div class="row">
+      <div :class="detailedModeOn ? (panelIsOpen ? 'd-none' : 'd-block col-12') : (panelIsOpen ? 'col-md-6 col-lg-4 col-xl-3 d-none d-md-block' : 'col-12')">
         <SpellList :app="app" :query="query" :panelIsOpen="panelIsOpen" :selectedSpell="selectedSpell" :detailedModeOn="detailedModeOn" @spell-clicked="openSpell" class="scrollable-panel spell-list"/>
       </div>
-      <SpellView :app="app" v-if="panelIsOpen" :spell="selectedSpell" @clear-spell="clearSpell" :class="`${detailedModeOn ? 'col-12' : 'col-md-6 col-lg-8'} scrollable-panel spell-view`"/>
+      <SpellView :app="app" v-if="panelIsOpen" :spell="selectedSpell" @clear-spell="clearSpell" :class="`${detailedModeOn ? 'col-12' : 'col-md-6 col-lg-8 col-xl-9'} scrollable-panel spell-view`"/>
     </div>
     <div v-if="updateAvailable" class="update-notice" @click="$router.push('/welcome?action=updateSRD')">
       <img :src="require('@/assets/images/icons/misc/sync.png')" style="width: 18px"/> Updated content is available. Click here to load.

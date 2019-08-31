@@ -25,7 +25,7 @@
         try {
           this.app.contentDatabase.loadURL('/srd.json',
             () => {
-              this.app.spells = this.app.contentDatabase.getSpells();
+              this.app.reloadDatabase();
               this.$router.push("/");
             },
             (err) => this.showError(err)

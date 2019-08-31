@@ -1,5 +1,9 @@
 [
   {
+    "date": "2019-08-31",
+    "title": "Introducing Rules",
+    "description": "<p>Can you remember all the effects of the \"paralyzed\" condition? How about what it means for an area to be \"heavily obscured\"? From now on you won't have to worry about that, as WeaveLore brings all the most common spell-related rules of D&D into the app. Check them out on the new Rules page, or try clicking on any underlined word!</p><p>More rules will be added in future versions, suggestions are welcome.</p>"
+  },{
     "date": "2019-07-27",
     "title": "Custom content support",
     "description": "<p>The app now has improved support for custom content!</p><ul><li>You can load content from multiple sources, manage sources individually, and back up your database from the new Content page.</li><li>Detailed documentation is now available for content creators. Check out the <a href='https://github.com/bgior/weavelore/wiki/Content-FAQ' target='_blank'>Content FAQ</a> to get started.</li></ul>"

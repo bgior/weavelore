@@ -26,7 +26,7 @@ import AboutPage from './AboutPage.vue';
 import NewsPage from './NewsPage.vue';
 import UpdatesPage from './UpdatesPage.vue';
 import ContentPage from './ContentPage.vue';
-import ComingSoon from './ComingSoon.vue';
+import RulesPage from '../rules/RulesPage.vue';
 import TestPage from './TestPage.vue';
 import NotFound from './NotFound.vue';
 import Alert from './Alert.vue';
@@ -42,7 +42,8 @@ const router = new VueRouter({
     { path: '/', component: SpellsPage },
     { path: '/spells/:urlSpellName', component: SpellsPage, props: true },
     { path: '/spells', component: SpellsPage },
-    { path: '/rules', component: ComingSoon },
+    { path: '/rules/:urlRuleName', component: RulesPage, props: true },
+    { path: '/rules', component: RulesPage },
     { path: '/welcome', component: WelcomePage },
     { path: '/stats', component: StatsPage },
     { path: '/settings', component: SettingsPage },
@@ -73,10 +74,15 @@ export default {
       app: {
         contentDatabase,
         settingsDatabase,
-        spells: contentDatabase.getSpells(),
+        spells: [],
+        rules: [],
         settings: settingsDatabase.getSettings(),
+        appUpdateAvailable: false, // Whether an updated version of the app is awaiting activation
         alert: (msg, type, duration) => this.$refs.alert.alert(msg, type, duration),
-        appUpdateAvailable: false // Whether an updated version of the app is awaiting activation
+        reloadDatabase: function() { // Fetch the data from the contentDatabase again
+          this.spells = this.contentDatabase.getSpells();
+          this.rules = this.contentDatabase.getRules();
+        }
       },
       alertMessage: null,
       alertType: null,
@@ -91,6 +97,7 @@ export default {
   created() {
     // Share the Vue app reference here so that the Service Worker can call notifyUpdate()
     window.vueApp = this;
+    this.app.reloadDatabase();
   },
   watch: {
     '$route': function() {
