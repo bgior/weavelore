@@ -4,7 +4,7 @@
     <RuleSearcher :app="app" :class="panelIsOpen ? 'd-none d-md-flex' : ''" :query="query"/>
     <div class="row">
       <div :class="panelIsOpen ? 'col-md-6 col-lg-4 col-xl-3 d-none d-md-block' : 'col-12'">
-        <RuleList :app="app" :query="query" :panelIsOpen="panelIsOpen" :selectedRule="selectedRule"  @rule-clicked="openRule" class="rules-scrollable-panel rule-list"/>
+        <RuleList :app="app" :query="query" :panelIsOpen="panelIsOpen" :selectedRule="selectedRule" @rule-clicked="openRule"/>
       </div>
       <RuleView :app="app" v-if="panelIsOpen" :rule="selectedRule" @clear-rule="clearRule" class="col-md-6 col-lg-8 col-xl-9 scrollable-panel rule-view"/>
     </div>
@@ -85,10 +85,8 @@ export default {
 </script>
 
 <style>
-  .rules-scrollable-panel {
+  .rules, .rule-view {
     max-height: calc(100vh - 90px);
-    overflow-y: scroll;
-    scrollbar-color: #282828 #1b1b1b;
   }
   @media(max-width: 768px) {
     .rule-view {

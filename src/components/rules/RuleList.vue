@@ -1,13 +1,17 @@
 <!-- © Copyright 2019 Bruno Giorello. Released under GNU AGPLv3, see 'LICENSE.md'. -->
 
 <template>
-  <div class="row rules" v-if="query.text != null">
-    <div v-for="r in app.rules" v-show="visible(r)" :key="r.codename" :class="`rule col-12 ${panelIsOpen ? (r.codename == selectedRule.codename ? 'selected' : '') : 'col-md-6 col-lg-4 col-xl-3'}`" @click="ruleClicked($event, r.codename)">
-      <img :src="require(`@/assets/images/icons/rules/${r.icon}.png`)">
-      {{ r.name }}
+  <div>
+    <div class="row rules scrollable-panel" v-show="anyResultsFound">
+      <div v-for="r in app.rules" v-show="visible(r)" :key="r.codename" :class="`rule col-12 ${panelIsOpen ? (r.codename == selectedRule.codename ? 'selected' : '') : 'col-md-6 col-lg-4 col-xl-3'}`" @click="ruleClicked($event, r.codename)">
+        <img :src="require(`@/assets/images/icons/rules/${r.icon}.png`)">
+        {{ r.name }}
+      </div>
+    </div>
+    <div v-show="queryPresent && !anyResultsFound" class="list-message">
+      No rules found
     </div>
   </div>
-  <div v-else></div>
 </template>
 
 <script>
@@ -28,6 +32,14 @@ export default {
     },
     classes() {
       return constants.classes;
+    },
+    // Returns whether the query matches at least one rule
+    anyResultsFound() {
+      return this.app.rules.some(rule => this.visible(rule));
+    },
+    // Returns whether the user has entered any valid query
+    queryPresent() {
+      return this.query.text.length >= this.app.settings.minimumQueryLength || this.query.class || this.query.level || this.query.school;
     }
   },
   methods: {
@@ -74,5 +86,8 @@ export default {
   .rule:hover img, .rule.selected img {
     transform: scale(1.05);
     filter: brightness(1.0);
+  }
+  @media(max-width: 767px) {
+    .rules { font-size: 18px; }
   }
 </style>

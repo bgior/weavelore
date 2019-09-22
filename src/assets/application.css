@@ -38,6 +38,10 @@ h2 {
   border: 0;
 }
 /* Scrollbars */
+.scrollable-panel {
+  overflow-y: auto;
+  scrollbar-color: #282828 #1b1b1b;
+}
 ::-webkit-scrollbar {
   height: 12px;
   width: 12px;
@@ -254,4 +258,10 @@ ul {
 }
 .dynamic-link:hover {
   text-decoration-color: #999;
+}
+.list-message {
+  color: #555;
+  text-align: center;
+  font-size: 18px;
+  padding-top: 40px;
 }

@@ -1,36 +1,40 @@
 <!-- © Copyright 2019 Bruno Giorello. Released under GNU AGPLv3, see 'LICENSE.md'. -->
 
 <template>
-  <div class="row spells" v-if="query.text != null || query.class || query.level || query.school">
-    <template v-if="!detailedModeOn">
-      <div v-for="s in app.spells" v-show="visible(s)" :key="s.codename" :class="`spell col-12 ${panelIsOpen ? (s.codename == selectedSpell.codename ? 'selected' : '') : 'col-md-6 col-lg-4 col-xl-3'}`" @click="spellClicked($event, s.codename)">
-        <span class="level">{{ s.level }}</span>
-        <img :src="icons.schoolIcon(s)" class="school"/> {{ s.name }}
-      </div>
-    </template>
-    <template v-else>
-      <div v-for="s in app.spells" v-show="visible(s)" :key="s.codename" class="spell col-12" @click="spellClicked($event, s.codename)">
-        <img v-for="c in classes" :key="c" :src="icons.classIcon(c)" :class="s.classes.includes(c) ? '' : 'absent'"/>
-        <img :src="require('@/assets/images/icons/components/verbal.png')" :class="s.verbal ? '' : 'absent'"/>
-        <img :src="require('@/assets/images/icons/components/somatic.png')" :class="s.somatic ? '' : 'absent'"/>
-        <img :src="require('@/assets/images/icons/components/material.png')" :class="s.material > 0 ? '' : 'absent'"/>
-        <img :src="require('@/assets/images/icons/components/expensive2.png')" :class="s.material == 2 ? '' : 'absent'"/>
-        <img :src="require('@/assets/images/icons/components/expensive3.png')" :class="s.material == 3 ? '' : 'absent'"/>
-        <img :src="icons.aoeIcon(s)" :class="s.aoe ? '' : 'absent'"/>
-        <img :src="icons.rangeIcon(s)"/>
-        <img :src="icons.durationIcon(s)"/>
-        <img :src="require('@/assets/images/icons/spell_features/concentration.png')" :class="s.concentration ? '' : 'absent'"/>
-        <img :src="icons.castingIcon(s)"/>
-        <img :src="require('@/assets/images/icons/spell_features/ritual.png')" :class="s.ritual ? '' : 'absent'"/>
-        <img :src="require('@/assets/images/icons/spell_features/scalable.png')" :class="s.atHigherLevel ? '' : 'absent'"/>
-        <img :src="require('@/assets/images/icons/misc/favorite.png')" :class="app.settings.favorites.has(s.codename) ? '' : 'absent'"/>
-        <span class="level">{{ s.level }}</span>
-        <img :src="icons.schoolIcon(s)" class="school"/>
-        {{ s.name }}
-      </div>
-    </template>
+  <div>
+    <div class="row spells scrollable-panel" v-show="anyResultsFound">
+      <template v-if="!detailedModeOn">
+        <div v-for="s in app.spells" v-show="visible(s)" :key="s.codename" :class="`spell col-12 ${panelIsOpen ? (s.codename == selectedSpell.codename ? 'selected' : '') : 'col-md-6 col-lg-4 col-xl-3'}`" @click="spellClicked($event, s.codename)">
+          <span class="level">{{ s.level }}</span>
+          <img :src="icons.schoolIcon(s)" class="school"/> {{ s.name }}
+        </div>
+      </template>
+      <template v-else>
+        <div v-for="s in app.spells" v-show="visible(s)" :key="s.codename" class="spell col-12" @click="spellClicked($event, s.codename)">
+          <img v-for="c in classes" :key="c" :src="icons.classIcon(c)" :class="s.classes.includes(c) ? '' : 'absent'"/>
+          <img :src="require('@/assets/images/icons/components/verbal.png')" :class="s.verbal ? '' : 'absent'"/>
+          <img :src="require('@/assets/images/icons/components/somatic.png')" :class="s.somatic ? '' : 'absent'"/>
+          <img :src="require('@/assets/images/icons/components/material.png')" :class="s.material > 0 ? '' : 'absent'"/>
+          <img :src="require('@/assets/images/icons/components/expensive2.png')" :class="s.material == 2 ? '' : 'absent'"/>
+          <img :src="require('@/assets/images/icons/components/expensive3.png')" :class="s.material == 3 ? '' : 'absent'"/>
+          <img :src="icons.aoeIcon(s)" :class="s.aoe ? '' : 'absent'"/>
+          <img :src="icons.rangeIcon(s)"/>
+          <img :src="icons.durationIcon(s)"/>
+          <img :src="require('@/assets/images/icons/spell_features/concentration.png')" :class="s.concentration ? '' : 'absent'"/>
+          <img :src="icons.castingIcon(s)"/>
+          <img :src="require('@/assets/images/icons/spell_features/ritual.png')" :class="s.ritual ? '' : 'absent'"/>
+          <img :src="require('@/assets/images/icons/spell_features/scalable.png')" :class="s.atHigherLevel ? '' : 'absent'"/>
+          <img :src="require('@/assets/images/icons/misc/favorite.png')" :class="app.settings.favorites.has(s.codename) ? '' : 'absent'"/>
+          <span class="level">{{ s.level }}</span>
+          <img :src="icons.schoolIcon(s)" class="school"/>
+          {{ s.name }}
+        </div>
+      </template>
+    </div>
+    <div v-show="queryPresent && !anyResultsFound" class="list-message">
+      No spells found
+    </div>
   </div>
-  <div v-else></div>
 </template>
 
 <script>
@@ -52,6 +56,14 @@ export default {
     },
     classes() {
       return constants.classes;
+    },
+    // Returns whether the query matches at least one spell
+    anyResultsFound() {
+      return this.app.spells.some(spell => this.visible(spell));
+    },
+    // Returns whether the user has entered any valid query
+    queryPresent() {
+      return this.query.text.length >= this.app.settings.minimumQueryLength || this.query.class || this.query.level || this.query.school;
     }
   },
   methods: {
@@ -120,6 +132,6 @@ export default {
     opacity: 0.1;
   }
   @media(max-width: 767px) {
-    .spells { font-size: 20px; }
+    .spells { font-size: 18px; }
   }
 </style>

@@ -5,9 +5,9 @@
     <SpellSearcher :app="app" :class="panelIsOpen ? 'd-none d-md-flex' : ''" :query="query" :detailedModeOn="detailedModeOn" @toggleDetailedView="toggleDetailedView"/>
     <div class="row">
       <div :class="detailedModeOn ? (panelIsOpen ? 'd-none' : 'd-block col-12') : (panelIsOpen ? 'col-md-6 col-lg-4 col-xl-3 d-none d-md-block' : 'col-12')">
-        <SpellList :app="app" :query="query" :panelIsOpen="panelIsOpen" :selectedSpell="selectedSpell" :detailedModeOn="detailedModeOn" @spell-clicked="openSpell" class="scrollable-panel spell-list"/>
+        <SpellList :app="app" :query="query" :panelIsOpen="panelIsOpen" :selectedSpell="selectedSpell" :detailedModeOn="detailedModeOn" @spell-clicked="openSpell"/>
       </div>
-      <SpellView :app="app" v-if="panelIsOpen" :spell="selectedSpell" @clear-spell="clearSpell" :class="`${detailedModeOn ? 'col-12' : 'col-md-6 col-lg-8 col-xl-9'} scrollable-panel spell-view`"/>
+      <SpellView :app="app" v-if="panelIsOpen" :spell="selectedSpell" @clear-spell="clearSpell" :class="`${detailedModeOn ? 'col-12' : 'col-md-6 col-lg-8 col-xl-9'} scrollable-panel`"/>
     </div>
     <div v-if="updateAvailable" class="update-notice" @click="$router.push('/welcome?action=updateSRD')">
       <img :src="require('@/assets/images/icons/misc/sync.png')" style="width: 18px"/> Updated content is available. Click here to load.
@@ -89,19 +89,25 @@ export default {
 </script>
 
 <style>
-  .scrollable-panel {
+  .spells, .spell-details {
     max-height: calc(100vh - 90px);
-    overflow-y: scroll;
-    scrollbar-color: #282828 #1b1b1b;
   }
-  @media(max-width: 768px) {
+  @media(max-width: 767px) {
     /* On mobile, the spell list is further down because the search filters take up two rows instead of one */
-    .spell-list {
+    .spells {
       max-height: calc(100vh - 130px);
     }
     /* On mobile, the spell view takes up the whole screen (except navbar), without having the search bar above */
-    .spell-view {
+    .spell-details {
       max-height: calc(100vh - 50px);
+    }
+  }
+  @media(min-width: 768px) and (max-width: 991px) {
+    .spells {
+      max-height: calc(100vh - 130px);
+    }
+    .spell-details {
+      max-height: calc(100vh - 130px);
     }
   }
   .update-notice {
