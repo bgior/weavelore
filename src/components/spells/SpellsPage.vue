@@ -9,9 +9,6 @@
       </div>
       <SpellView :app="app" v-if="panelIsOpen" :spell="selectedSpell" @clear-spell="clearSpell" :class="`${detailedModeOn ? 'col-12' : 'col-md-6 col-lg-8 col-xl-9'} scrollable-panel`"/>
     </div>
-    <div v-if="updateAvailable" class="update-notice" @click="$router.push('/welcome?action=updateSRD')">
-      <img :src="require('@/assets/images/icons/misc/sync.png')" style="width: 18px"/> Updated content is available. Click here to load.
-    </div>
   </div>
 </template>
 
@@ -41,12 +38,6 @@ export default {
     // True if a spell's detailed view is open
     panelIsOpen() {
       return this.selectedSpell != null;
-    },
-    // Determines whether the user's content database contains an outdated version of the SRD database
-    updateAvailable() {
-      return this.app.contentDatabase.data.sources.some(s =>
-        s.name == 'SRD 5.1' && (s.version < constants.srdVersion || typeof(s.version) != "number")
-      );
     }
   },
   methods: {
@@ -71,6 +62,17 @@ export default {
       } else {
         this.selectedSpell = null;
       }
+    },
+    // Load the latest version of the SRD into the content database
+    updateSRD() {
+      try {
+        this.app.contentDatabase.loadURL('/srd.json',
+          () => this.app.reloadDatabase(),
+          err => this.showError(err)
+        );
+      } catch (err) {
+        this.showError(err);
+      }
     }
   },
   created() {
@@ -78,7 +80,12 @@ export default {
     if (this.app.spells.length == 0) {
       this.$router.push('/welcome');
     }
+    // If the URL contains a spell, display it
     this.loadSpellInURL();
+    // If an updated version of the SRD content is available, load it immediately
+    if (this.app.contentDatabase.data.sources.some(s => s.name == 'SRD 5.1' && s.version < constants.srdVersion)) {
+      this.updateSRD();
+    }
   },
   watch: {
     '$route': function() {
@@ -109,16 +116,5 @@ export default {
     .spell-details {
       max-height: calc(100vh - 130px);
     }
-  }
-  .update-notice {
-    position: fixed;
-    bottom: 0;
-    background-color: #264c66;
-    width: 100%;
-    margin-left: -15px;
-    padding: 5px;
-    border-top: 3px solid #3877a2;
-    text-align: center;
-    cursor: pointer;
   }
 </style>

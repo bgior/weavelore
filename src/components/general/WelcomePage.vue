@@ -38,13 +38,6 @@
         this.app.alert("Sorry, an error occurred when loading the content. Open the console for details.");
         console.error(error);
       }
-    },
-    created() {
-      // If action=updateSRD is passed as a query param, automatically load the SRD
-      if (new URLSearchParams(window.location.search).get('action') == 'updateSRD') {
-        this.loadSRD();
-        this.$forceUpdate();
-      }
     }
   }
 </script>
