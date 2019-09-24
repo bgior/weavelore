@@ -30,7 +30,7 @@ export default {
     urlSpellName: String
   },
   data() { return {
-    query: { text: '', level: "", class: "", school: "", includeDescription: false, favorites: false },
+    query: { text: '', level: "", class: "", school: "", sourceName: "", includeDescription: false, favorites: false },
     selectedSpell: null,
     detailedModeOn: false
   }},

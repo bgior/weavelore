@@ -46,7 +46,7 @@
       <div class="d-none d-lg-block col-lg-4 col-xl-6">
         <div title="Which book/source this spell originates from">
           <router-link to="/content">
-            <img :src="require('@/assets/images/icons/spell_features/source.png')"/> {{ spell.source }}
+            <img :src="require('@/assets/images/icons/spell_features/source.png')"/> {{ spell.location || spell.sourceName }}
           </router-link>
         </div>
         <div v-if="spell.material > 0" title="Materials" v-html="spell.materials"></div>

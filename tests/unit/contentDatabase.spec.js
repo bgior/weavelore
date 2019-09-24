@@ -34,7 +34,7 @@ describe('ContentDatabase', () => {
     expect(spell.atHigherLevel).toBe("<p>When you cast this spell using a spell slot of 3rd level or higher, the damage (both initial and later) increases by 1d4 for each slot level above 2nd.</p>");
     expect(spell.downcasedName).toBe("acid arrow");
     expect(spell.codename).toBe("acid-arrow");
-    expect(spell.source).toBe("SRD 5.1");
+    expect(spell.sourceName).toBe("SRD 5.1");
     // Validate rules
     const rules = db.getRules();
     expect(rules.length).toBe(39);

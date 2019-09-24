@@ -2,7 +2,7 @@
 
 <template>
   <div class="row no-gutters">
-    <div class="col-12 col-lg-6 query-area pr-2">
+    <div class="col-12 col-lg-5 col-xl-6 query-area pr-2">
       <input type="text" class="form-control query" v-focus v-model="rawQueryText" ref="queryField" placeholder="Search..."/>
       <div class="search-actions">
         <span @click="clearQuery">
@@ -16,16 +16,19 @@
         </span>
       </div>
     </div>
-    <div class="col-12 col-lg-6 filters">
+    <div class="col-12 col-lg-7 col-xl-6 filters">
       <div class="row no-gutters">
-        <div class="col-4 filter">
+        <div class="d-block col-4 col-lg-3 filter">
           <CustomSelect v-model="query.class" :options="classOptions"/>
         </div>
-        <div class="col-4 filter">
+        <div class="d-block col-4 col-lg-3 filter">
           <CustomSelect v-model="query.level" :options="levelOptions"/>
         </div>
-        <div class="col-4 filter">
-          <CustomSelect v-model="query.school" :options="schoolOptions" align="right"/>
+        <div class="d-block col-4 col-lg-3 filter">
+          <CustomSelect v-model="query.school" :options="schoolOptions"/>
+        </div>
+        <div class="d-none d-lg-block col-3 filter">
+          <CustomSelect v-model="query.sourceName" :options="sourceOptions" align="right"/>
         </div>
       </div>
     </div>
@@ -62,6 +65,10 @@ export default {
     schoolOptions() {
       return [{value: '', text: 'Any school', image: require('@/assets/images/icons/misc/none.png')}].
       concat(constants.schools.map(s => { return { value: s, text: s, image: Icons.schoolIcon({school: s}) }}));
+    },
+    sourceOptions() {
+      return [{value: '', text: 'Any source', image: require('@/assets/images/icons/misc/none.png')}].
+      concat(this.app.contentDatabase.data.sources.map(s => { return { value: s.name, image: require('@/assets/images/icons/spell_features/source.png') } }));
     }
   },
   methods: {
@@ -72,6 +79,7 @@ export default {
       this.query.level = '';
       this.query.class = '';
       this.query.school = '';
+      this.query.sourceName = '';
       this.$refs.queryField.focus();
     },
   },

@@ -63,17 +63,18 @@ export default {
     },
     // Returns whether the user has entered any valid query
     queryPresent() {
-      return this.query.text.length >= this.app.settings.minimumQueryLength || this.query.class || this.query.level || this.query.school;
+      return this.query.text.length >= this.app.settings.minimumQueryLength || this.query.class || this.query.level || this.query.school || this.query.sourceName;
     }
   },
   methods: {
     visible(spell) {
-      if (this.query.class || this.query.level || this.query.school || this.query.favorites) {
+      if (this.query.class || this.query.level || this.query.school || this.query.sourceName || this.query.favorites) {
         // Composite search (with filters)
         return (spell.codename.includes(this.query.text) || (this.query.includeDescription && spell.description.includes(this.query.text))) &&
           (!this.query.class || spell.classes.includes(this.query.class)) &&
           (!this.query.level || spell.level == this.query.level) &&
           (!this.query.school || spell.school == this.query.school) &&
+          (!this.query.sourceName || spell.sourceName == this.query.sourceName) &&
           (!this.query.favorites || this.app.settings.favorites.has(spell.codename));
       } else {
         // Simple search (no filters)

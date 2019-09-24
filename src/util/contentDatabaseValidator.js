@@ -45,6 +45,7 @@ class ContentDatabaseValidator {
       this.assertType(spell, 'description', 'string');
       this.validateHTML(spell.description);
       this.assertType(spell, 'aoe', 'object', false);
+      this.assertType(spell, 'location', 'string', false);
       if (spell.aoe) {
         const aoe = spell.aoe;
         this.assert(['sphere', 'cone', 'cube'].includes(aoe.type), `Invalid AOE type: ${aoe.type}`);
@@ -56,6 +57,7 @@ class ContentDatabaseValidator {
       }
       this.assertType(spell, 'atHigherLevel', 'string', false);
       this.validateHTML(spell.atHigherLevel);
+      this.assert(!spell.source, 'The "source" attribute has been replaced by "location". Please update your WLC file.');
     }
   }
   // Validate an array of rules
@@ -72,7 +74,7 @@ class ContentDatabaseValidator {
         }
       }
       this.assert(['eye', 'hand', 'stars'].includes(rule.icon), `Invalid rule icon: ${rule.icon}`);
-      this.assertType(rule, 'source', 'string', false);
+      this.assertType(rule, 'location', 'string', false);
     }
   }
   // Assert that a condition is true by raising an exception if not

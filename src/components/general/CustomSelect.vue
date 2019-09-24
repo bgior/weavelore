@@ -2,7 +2,7 @@
 
 <template>
   <div class="cs" v-on-clickaway="close">
-    <div class="cs-field" @click="open = !open">
+    <div :class="`cs-field ${value == '' ? 'blank' : ''}`" @click="open = !open">
       <img v-if="selectedOption.image" v-show="value != ''" class="cs-field-icon" :src="selectedOption.image"/> {{ selectedOption.text || selectedOption.value }}
     </div>
     <div :class="`cs-options ${ align == 'right' ? 'cs-right' : ''}`" v-show="open">
@@ -27,6 +27,9 @@
     text-transform: capitalize;
     overflow-x: hidden;
     white-space: nowrap;
+  }
+  .cs-field.blank {
+    color: #555;
   }
   .cs-field:hover {
     border-color: #ddd;
