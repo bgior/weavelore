@@ -7,7 +7,7 @@
     </div>
     <div :class="`cs-options ${ align == 'right' ? 'cs-right' : ''}`" v-show="open">
       <div v-for="option in options" :key="option.value" @click="choose(option.value)" class="cs-option">
-        <img v-if="selectedOption.image" class="cs-option-icon" :src="option.image"/> {{ option.text || option.value }}
+        <img v-if="option.image" class="cs-option-icon" :src="option.image"/> {{ option.text || option.value }}
       </div>
     </div>
   </div>
@@ -70,7 +70,7 @@ import { mixin as clickaway } from 'vue-clickaway';
 export default {
   name: 'CustomSelect',
   props: {
-    value: String,
+    value: [String, Number],
     options: Array,
     align: String
   },

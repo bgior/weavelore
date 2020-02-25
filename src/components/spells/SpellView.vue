@@ -53,11 +53,10 @@
       </div>
     </div>
     <div class="spell-description" v-html="prettyDescription" @click="handleDescriptionClick"></div>
-    <div v-if="spell.atHigherLevel" v-html="prettyHigherLevel" class="spell-higher">
-    </div>
+    <div v-if="spell.atHigherLevel" v-html="prettyHigherLevel" class="spell-higher"></div>
     <Diagram :range="numericRange" :aoe="spell.aoe" title="Range visualization"/>
     <div class="d-block d-lg-none mobile-foot">
-      <img :src="require('@/assets/images/icons/spell_features/source.png')" title="Which book/source this spell originates from"/> {{ spell.source }}<br/>
+      <img :src="require('@/assets/images/icons/spell_features/source.png')" title="Which book/source this spell originates from"/> {{ spell.sourceName }}<br/>
       <div v-if="spell.material > 0" title="Materials" v-html="prettyMaterials"></div>
     </div>
     <HelpModal :app="app" :topic="helpTopic"/>
@@ -108,13 +107,15 @@ export default {
       return Icons;
     },
     prettyDescription() {
-      return TextBeautifier.beautify(this.spell.description);
+      return TextBeautifier.beautify(this.spell.description || "");
     },
     prettyHigherLevel() {
-      return TextBeautifier.colorize(this.spell.atHigherLevel).replace('<p>', `<p><img src="${require('@/assets/images/icons/spell_features/scalable.png')}"> `);
+      // Regex: inject an <img> tag at the beginning of the string, or if there's a leading <p>, right after that instead
+      return TextBeautifier.colorize(this.spell.atHigherLevel || "").replace(/^(<p>)?/, `$1<img src="${require('@/assets/images/icons/spell_features/scalable.png')}"> `);
     },
+    // Applies only for the mobile version of this field, which is shown differently
     prettyMaterials() {
-      return this.spell.materials.replace('<p>', `<p><img src="${require('@/assets/images/icons/components/material.png')}"> `);
+      return (this.spell.materials || "").replace(/^(<p>)?/, `$1<img src="${require('@/assets/images/icons/components/material.png')}"> `);
     },
     // Returns an integer corresponding to the spell's range in feet, or 0 if it's Self/Touch/unrecognized
     numericRange() {

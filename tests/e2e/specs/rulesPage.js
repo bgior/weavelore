@@ -1,6 +1,6 @@
 // © Copyright 2019 Bruno Giorello. Released under GNU AGPLv3, see 'LICENSE.md'.
 
-describe('Spells page', () => {
+describe('Rules page', () => {
 
   it('opens individual rules correctly', () => {
     cy.visit('/');

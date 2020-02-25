@@ -78,7 +78,8 @@ export default {
         rules: [],
         settings: settingsDatabase.getSettings(),
         appUpdateAvailable: false, // Whether an updated version of the app is awaiting activation
-        alert: (msg, type, duration) => this.$refs.alert.alert(msg, type, duration),
+        editionModeOn: false, // Whether we should show the spell editor instead of the normal spell view
+        alert: (msg, type, duration) => this.$refs.alert.alert(msg, type, duration), // A helper function to display messages from anywhere
         reloadDatabase: function() { // Fetch the data from the contentDatabase again
           this.spells = this.contentDatabase.getSpells();
           this.rules = this.contentDatabase.getRules();
@@ -90,7 +91,7 @@ export default {
   }},
   methods: {
     // Let the app know that there's a new app version available
-    notifyUpdate(registration) {
+    notifyUpdate() {
       this.app.appUpdateAvailable = true;
     }
   },

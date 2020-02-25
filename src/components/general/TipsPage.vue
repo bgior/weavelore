@@ -15,12 +15,24 @@
         <li>Separate window from your browser</li>
       </ul>
       To install, look for an "Add to home" button in your browser of choice.
+      <h2>Editing spells</h2>
+      You can create, edit and remove spells by entering <img :src="require('@/assets/images/icons/misc/edition.png')" style="width: 20px"/> <span class="highlight ml-1">Edition mode</span>.
+      <ul>
+        <li><img :src="require('@/assets/images/icons/misc/save.png')" style="width: 20px"/> <span class="highlight ml-1">Save</span> often (this makes your changes persist after refreshing/closing your browser).</li>
+        <li>Keep backups by <router-link to="/content">exporting your database</router-link>. This way you can restore everything after clearing your browser history.</li>
+        <li>Avoid making changes to the default content, because the SRD database may be periodically updated and your changes will be overwritten.</li>
+        <li>Long text fields support some HTML. Use <span class="highlight">&lt;p&gt;</span> tags to mark paragraphs. The following tags are also supported: <span class="highlight">&lt;b&gt;</span>, <span class="highlight">&lt;i&gt;</span>, <span class="highlight">&lt;ul&gt;</span>, <span class="highlight">&lt;li&gt;</span>, <span class="highlight">&lt;table&gt;</span> and table sub-tags.</li>
+        <li>Check out the <a href="https://github.com/bgior/weavelore/wiki/WLC-Format" target="_blank">documentation</a> for more information.</li>
+      </ul>
     </div>
   </div>
 </template>
 <style>
 .tips > h2 {
   margin-top: 20px;
+}
+.tips .highlight {
+  color: #fea357;
 }
 </style>
 <script>

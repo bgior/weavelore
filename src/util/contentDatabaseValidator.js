@@ -17,6 +17,8 @@ class ContentDatabaseValidator {
       this.assertType(source, 'version', 'number');
       this.assertType(source, 'spells', 'object');
       this.assertType(source, 'rules', 'object');
+      this.assert(source.name.length > 0 && source.name.length <= 32, "Source name must be between 1 and 32 characters");
+      this.assert(source.description.length > 0 && source.name.length <= 512, "Source description must be between 1 and 512 characters");
       this.validateSpells(source.spells);
       this.validateRules(source.rules);
     }

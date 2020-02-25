@@ -129,7 +129,7 @@ export default {
     font-weight: bold;
     color: #5a5a5a;
   }
-  .absent {
+  .spell img.absent {
     opacity: 0.1;
   }
   @media(max-width: 767px) {

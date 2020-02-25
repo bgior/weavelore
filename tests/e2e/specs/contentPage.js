@@ -1,6 +1,6 @@
 // © Copyright 2019 Bruno Giorello. Released under GNU AGPLv3, see 'LICENSE.md'.
 
-describe('Import page', () => {
+describe('Content page', () => {
 
   it('can load external URLs', () => {
     cy.visit('/content')
@@ -24,7 +24,7 @@ describe('Import page', () => {
     cy.visit('/content')
     // Delete source individually
     cy.contains('Load SRD').click();
-    cy.contains('SRD 5.1').closest('.source').find('.source-delete').click();
+    cy.contains('SRD 5.1').closest('.source').find('.source-action').last().click(); // Click on the delete button
     cy.get('.source').should('have.length', 0);
     // Delete all sources
     cy.contains('Load SRD').click();

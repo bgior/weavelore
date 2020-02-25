@@ -117,7 +117,7 @@ h2 {
 .form-control {
   color: white;
 }
-input.form-control {
+input.form-control, textarea.form-control {
   background-color: transparent;
   width: 100%;
   border: 0;

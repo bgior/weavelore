@@ -8,12 +8,13 @@
         <span @click="clearQuery">
           <img :src="require('@/assets/images/icons/misc/close.png')" class="details-icon" title="Reset query and filters"/>
         </span>
-        <span class="d-none d-md-inline-block" @click="$emit('toggleDetailedView')">
+        <span class="d-none d-md-inline-block" @click="$emit('toggle-detailed-view')">
           <img :src="require('@/assets/images/icons/misc/details.png')" :class="`details-icon ${detailedModeOn ? 'active' : ''}`" title="Toggle detailed spell list"/>
         </span>
         <span @click="query.favorites = !query.favorites">
           <img :src="require('@/assets/images/icons/misc/favorite.png')" :class="`details-icon ${query.favorites ? 'active' : ''}`" title="Toggle favorites filter"/>
         </span>
+        <SpellEditionControls :app="app" :selectedSpell="selectedSpell" @select-spell="s => $emit('select-spell', s)"/>
       </div>
     </div>
     <div class="col-12 col-lg-7 col-xl-6 filters">
@@ -37,15 +38,20 @@
 
 <script>
 import CustomSelect from "@/components/general/CustomSelect.vue";
-import Icons from '@/util/icons.js';
-import constants from '@/util/constants.js';
+import SpellEditionControls from "@/components/spells/SpellEditionControls.vue";
+import spellOptions from '@/util/spellOptions.js';
 import { debounce } from "debounce";
 
 export default {
-  name: 'SpellSearcher',
+  name: 'SpellsToolbar',
+  components: {
+    SpellEditionControls,
+    CustomSelect
+  },
   props: {
     app: Object,
     query: Object,
+    selectedSpell: Object,
     detailedModeOn: Boolean
   },
   data() { return {
@@ -53,22 +59,16 @@ export default {
   }},
   computed: {
     classOptions() {
-      return [{ value: '', text: 'Any class', image: require('@/assets/images/icons/misc/none.png') }].
-      concat(constants.classes.map(c => { return { value: c, text: c, image: Icons.classIcon(c) }}));
+      return [{ value: '', text: 'Any class', image: require('@/assets/images/icons/misc/none.png') }].concat(spellOptions.classOptions);
     },
     levelOptions() {
-      return [
-        { value: '', text: 'Any level' }, { value: '0', text: 'Cantrip' }, { value: '1', text: '1st level' },
-        { value: '2', text: '2nd level' }, { value: '3', text: '3rd level' }
-      ].concat([4,5,6,7,8,9].map(n => { return { value: n.toString(), text: n + 'th level' }}));
+      return [{ value: '', text: 'Any level' }].concat(spellOptions.levelOptions);
     },
     schoolOptions() {
-      return [{value: '', text: 'Any school', image: require('@/assets/images/icons/misc/none.png')}].
-      concat(constants.schools.map(s => { return { value: s, text: s, image: Icons.schoolIcon({school: s}) }}));
+      return [{value: '', text: 'Any school', image: require('@/assets/images/icons/misc/none.png')}].concat(spellOptions.schoolOptions);
     },
     sourceOptions() {
-      return [{value: '', text: 'Any source', image: require('@/assets/images/icons/misc/none.png')}].
-      concat(this.app.contentDatabase.data.sources.map(s => { return { value: s.name, image: require('@/assets/images/icons/spell_features/source.png') } }));
+      return [{value: '', text: 'Any source', image: require('@/assets/images/icons/misc/none.png')}].concat(spellOptions.sourceOptions(this.app));
     }
   },
   methods: {
@@ -95,9 +95,6 @@ export default {
         this.query.text = (this.query.includeDescription ? this.rawQueryText.substring(1) : this.rawQueryText).toLowerCase();
       }, 200)();
     }
-  },
-  components: {
-    CustomSelect
   }
 }
 </script>
@@ -130,12 +127,19 @@ export default {
   }
   input.query {
     display: inline-block;
+    flex-grow: 1;
+    width: 10px !important; /* Will be "stretched" by flex to the appropriate width */
   }
   /* Make favorite hover effect work only on non-touch devices, because otherwise it looks favorited after un-favoriting */
   @media (pointer: fine) {
     .query-area img:hover {
       filter: saturate(100%);
       opacity: 1;
+    }
+    .query-area img.disabled, .query-area img.disabled:hover {
+      filter: saturate(0%);
+      opacity: 0.15;
+      cursor: not-allowed;
     }
   }
 </style>

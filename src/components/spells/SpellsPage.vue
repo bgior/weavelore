@@ -2,28 +2,33 @@
 
 <template>
   <div>
-    <SpellSearcher :app="app" :class="panelIsOpen ? 'd-none d-md-flex' : ''" :query="query" :detailedModeOn="detailedModeOn" @toggleDetailedView="toggleDetailedView"/>
+    <SpellsToolbar :app="app" :class="panelIsOpen ? 'd-none d-md-flex' : ''" :query="query" :selectedSpell="selectedSpell" :detailedModeOn="detailedModeOn" @toggle-detailed-view="toggleDetailedView" @select-spell="s => { selectedSpell = s }"/>
     <div class="row">
       <div :class="detailedModeOn ? (panelIsOpen ? 'd-none' : 'd-block col-12') : (panelIsOpen ? 'col-md-6 col-lg-4 col-xl-3 d-none d-md-block' : 'col-12')">
         <SpellList :app="app" :query="query" :panelIsOpen="panelIsOpen" :selectedSpell="selectedSpell" :detailedModeOn="detailedModeOn" @spell-clicked="openSpell"/>
       </div>
-      <SpellView :app="app" v-if="panelIsOpen" :spell="selectedSpell" @clear-spell="clearSpell" :class="`${detailedModeOn ? 'col-12' : 'col-md-6 col-lg-8 col-xl-9'} scrollable-panel`"/>
+      <template v-if="selectedSpell">
+        <SpellEditor v-if="app.editionModeOn" :app="app" :spell="selectedSpell" :class="`${detailedModeOn ? 'col-12' : 'col-md-6 col-lg-8 col-xl-9'} scrollable-panel`"/>
+        <SpellView v-else :app="app" :spell="selectedSpell" @clear-spell="clearSpell" :class="`${detailedModeOn ? 'col-12' : 'col-md-6 col-lg-8 col-xl-9'} scrollable-panel`"/>
+      </template>
     </div>
   </div>
 </template>
 
 <script>
 import SpellList from './SpellList.vue';
-import SpellSearcher from './SpellSearcher.vue';
+import SpellsToolbar from './SpellsToolbar.vue';
 import SpellView from './SpellView.vue';
+import SpellEditor from './SpellEditor.vue';
 import constants from '@/util/constants.js';
 
 export default {
   name: 'SpellsPage',
   components: {
     SpellList,
-    SpellSearcher,
-    SpellView
+    SpellsToolbar,
+    SpellView,
+    SpellEditor
   },
   props: {
     app: Object,
@@ -96,8 +101,11 @@ export default {
 </script>
 
 <style>
-  .spells, .spell-details {
+  .spells {
     max-height: calc(100vh - 90px);
+  }
+  .spell-details, .spell-editor {
+    height: calc(100vh - 90px);
   }
   @media(max-width: 767px) {
     /* On mobile, the spell list is further down because the search filters take up two rows instead of one */
@@ -105,16 +113,16 @@ export default {
       max-height: calc(100vh - 130px);
     }
     /* On mobile, the spell view takes up the whole screen (except navbar), without having the search bar above */
-    .spell-details {
-      max-height: calc(100vh - 50px);
+    .spell-details, .spell-editor {
+      height: calc(100vh - 50px);
     }
   }
   @media(min-width: 768px) and (max-width: 991px) {
     .spells {
       max-height: calc(100vh - 130px);
     }
-    .spell-details {
-      max-height: calc(100vh - 130px);
+    .spell-details, .spell-editor {
+      height: calc(100vh - 130px);
     }
   }
 </style>

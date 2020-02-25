@@ -53,6 +53,7 @@
   }
 </style>
 <script>
+import spellOptions from '@/util/spellOptions.js';
 import CustomSelect from '@/components/general/CustomSelect.vue';
 import Diagram from '../spells/Diagram.vue';
 
@@ -70,18 +71,8 @@ export default {
     angleDegrees: 0
   }},
   computed: {
-    aoeOptions() {
-      return ['sphere', 'cube', 'cone'].map(a => { return { value: a, image: require(`@/assets/images/icons/ranges/${a}.png`) }}).concat(
-        [{ value: '', text: 'None', image: require('@/assets/images/icons/misc/none.png') }]
-      );
-    },
-    centerOptions() {
-      return [
-        { value: '', text: "automatic", image: require('@/assets/images/icons/misc/none.png') },
-        { value: 'intersection', image: require('@/assets/images/icons/misc/cntInter.png') },
-        { value: 'cell', image: require('@/assets/images/icons/misc/cntCell.png') }
-      ];
-    }
+    aoeOptions: () => spellOptions.aoeOptions,
+    centerOptions: () => spellOptions.centerOptions
   },
   watch: {
     angleDegrees() {

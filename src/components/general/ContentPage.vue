@@ -11,8 +11,8 @@
           </span>
           <span class="no-shrink pb-3 pr-3">
             <strong class="source-amounts">
-              <img :src="require('@/assets/images/icons/menu/spells.png')" style="filter: brightness(2.3)" title="Amount of spells in this source" alt="Spells"> {{ app.spells.length }}
-              <img :src="require('@/assets/images/icons/menu/rules.png')" class="ml-3" style="filter: brightness(2.0)" title="Amount of rules in this source" alt="Rules"> {{ app.rules.length }}
+              <img :src="require('@/assets/images/icons/menu/spells.png')" style="filter: brightness(2.3)" title="Total amount of spells" alt="Spells"> {{ app.spells.length }}
+              <img :src="require('@/assets/images/icons/menu/rules.png')" class="ml-3" style="filter: brightness(2.0)" title="Total amount of rules" alt="Rules"> {{ app.rules.length }}
             </strong>
           </span>
         </div>
@@ -20,12 +20,12 @@
           <img :src="require('@/assets/images/icons/misc/content.png')" class="source-icon" alt="">
           <div class="source-info pl-2">
             <div class="source-head">
-              <span class="source-title">{{ source.name }} <span class="source-version badge ml-2">v{{ source.version }}</span></span>
-
+              <span class="source-title">{{ source.name }} <span v-if="source.version > 0" class="source-version badge ml-2">v{{ source.version }}</span></span>
               <span class="source-amounts no-shrink ml-4">
                 <img :src="require('@/assets/images/icons/menu/spells.png')" style="filter: brightness(1.8)" title="Amount of spells in this source" alt="Spells"> {{ source.spells.length }}
                 <img :src="require('@/assets/images/icons/menu/rules.png')" class="ml-3" style="filter: brightness(1.6)" title="Amount of rules in this source" alt="Rules"> {{ source.rules.length }}
-                <img :src="require('@/assets/images/icons/misc/close.png')" class="source-delete ml-2" @click="deleteSource(source)" />
+                <img :src="require('@/assets/images/icons/misc/exportFile.png')" class="source-action ml-2" @click="exportSource(source)" title="Export this source"/>
+                <img :src="require('@/assets/images/icons/misc/close.png')" class="source-action ml-2" @click="deleteSource(source)" title="Delete this source"/>
               </span>
             </div>
             {{ source.description }}
@@ -64,6 +64,18 @@
             <img :src="require('@/assets/images/icons/misc/trash.png')"/>
             Delete all
           </button>
+        </div>
+        <div class="col-12 col-md-6 col-xl-4">
+          <button class="btn btn-primary w-100" @click="validateDatabase" :disabled="sources.length == 0" title="Check your content sources for any issues">
+            <img :src="require('@/assets/images/icons/misc/check.png')"/>
+            Validate
+          </button>
+        </div>
+        <div class="col-12 col-md-6 col-xl-4">
+          <a class="btn btn-primary w-100" href="https://github.com/bgior/weavelore/wiki/Content-FAQ" target="_blank">
+            <img :src="require('@/assets/images/icons/misc/help.png')"/>
+            Help
+          </a>
         </div>
       </div>
       <b-modal id="urlloader" title="Enter the URL of the file:" @ok="handleURLSelect">
@@ -105,12 +117,12 @@
 .source-amounts > img {
   height: 20px;
 }
-.source-delete {
+.source-action {
   filter: contrast(0.6) brightness(0.5);
   cursor: pointer;
   transition: filter 0.3s;
 }
-.source-delete:hover {
+.source-action:hover {
   filter: contrast(1) brightness(1);
 }
 .sources-actions img {
@@ -179,7 +191,7 @@ export default {
       }
     },
     exportDatabase() {
-      this.download('WeaveLoreExport.json', this.app.contentDatabase.export());
+      this.download(`WeaveLoreExport-${this.app.contentDatabase.data.sources.length}c-${this.app.spells.length}s-${this.app.rules.length}r.json`, this.app.contentDatabase.export());
     },
     download(name, text) {
       const link = this.$refs.downloadLink;
@@ -189,14 +201,34 @@ export default {
       link.click();
     },
     resetDatabase() {
-      if (confirm("Are you sure?")) {
+      if (confirm("Are you sure you want to delete all your content sources?")) {
         this.app.contentDatabase.deleteAllSources();
         this.app.reloadDatabase();
       }
     },
     deleteSource(source) {
-      this.app.contentDatabase.deleteSource(source);
-      this.app.reloadDatabase();
+      if (source.name == "SRD 5.1" || (source.spells.length == 0 && source.rules.length == 0) ||
+        confirm(`Delete all spells and rules in source '${source.name}'?`)) {
+        this.app.contentDatabase.deleteSource(source);
+        this.app.reloadDatabase();
+      }
+    },
+    exportSource(source) {
+      this.download(source.name + '.json', this.app.contentDatabase.export(source.name));
+    },
+    validateDatabase() {
+      try {
+        this.app.contentDatabase.validate();
+      } catch (error) {
+        if (error.name == "ValidationError") {
+          this.app.alert(error.message);
+        } else {
+          this.app.alert("An unexpected error ocurred when validating. See console for details");
+          console.error(error.message || error);
+        }
+        return;
+      }
+      this.app.alert("All your content sources are valid.", "success");
     },
     showError(error) {
       let message;
