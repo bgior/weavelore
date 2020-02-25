@@ -7,7 +7,7 @@
       <img :src="require('@/assets/images/icons/misc/edition.png')" :class="{ 'details-icon': true, active: app.editionModeOn }" title="Toggle spell edition mode"/>
     </span>
     <span v-if="app.editionModeOn" @click="validateAndSave()">
-      <img :src="require('@/assets/images/icons/misc/save.png')" class="details-icon" title="Save changes"/>
+      <img :src="require('@/assets/images/icons/misc/save1.png')" class="details-icon" title="Save changes"/>
     </span>
     <span v-if="app.editionModeOn" @click="addNewSpell()">
       <img :src="require('@/assets/images/icons/misc/addSpell.png')" class="details-icon" title="Add a new blank spell"/>
@@ -15,6 +15,7 @@
     <span v-if="app.editionModeOn" @click="deleteSpell()">
       <img :src="require('@/assets/images/icons/misc/deleteSpell.png')" :class="{ 'details-icon': true, disabled: !selectedSpell }" title="Delete the currently selected spell"/>
     </span>
+
   </span>
 </template>
 
@@ -73,7 +74,7 @@ export default {
       }
       // If a spell named "New spell" already exists, append numbers until necessary
       while(this.app.spells.some(s => s.name == newSpell.name)) {
-        const number = (newSpell.name.match(/ (\d+)$/) || [])[1]; // Grab the number from the current filename
+        const number = (newSpell.name.match(/ (\d+)$/) || [])[1]; // Grab the number from the current spell name
         if (number) {
           newSpell.name = "New spell " + (parseInt(number) + 1);
         } else {
