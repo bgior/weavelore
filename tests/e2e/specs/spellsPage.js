@@ -5,7 +5,6 @@ describe('Spells page', () => {
 
   it('opens individual spells correctly', () => {
     cy.visit('/')
-    cy.contains('Standard content (SRD)').click();
     cy.contains('Bless').click();
     cy.contains('30 feet');
     cy.contains('Up to 1 minute');
@@ -19,7 +18,6 @@ describe('Spells page', () => {
   it('filters spells correctly', () => {
     // The only 1st-level cleric abjuration that contains "ar" should be "Sanctuary"
     cy.visit('/')
-    cy.contains('Standard content (SRD)').click();
     cy.contains('Any class').click();
     cy.contains('cleric').click();
     cy.contains('Any level').click();
@@ -32,7 +30,6 @@ describe('Spells page', () => {
 
   it('favorites and unfavorites correctly', () => {
     cy.visit('/')
-    cy.contains('Standard content (SRD)').click();
     // Favorite the spell 'Bless'
     cy.contains('Bless').click();
     cy.get('.spell-favorite').click();
@@ -50,9 +47,8 @@ describe('Spells page', () => {
 
   it('creates, edits, saves and removes a spell correctly', () => {
     cy.visit('/');
-    cy.contains('Standard content (SRD)').click();
     cy.get(':nth-child(4) > span > .details-icon').click(); // Toggle edition mode on
-    cy.get(':nth-child(4) > :nth-child(3) > .details-icon').click(); // Create new spell
+    cy.get(':nth-child(4) > :nth-child(1) > .details-icon').click(); // Create new spell
 
     const spell = {
       name: "Expelliarmus",
@@ -85,7 +81,7 @@ describe('Spells page', () => {
     cy.get('[style=""] > .form-control').type(spell.materials);
     cy.get('.col-6 > .cs').click().contains(spell.aoeType).click();
 
-    cy.get(':nth-child(4) > :nth-child(2) > .details-icon').click(); // Save
+    cy.get(':nth-child(4) > :nth-child(3) > .details-icon').click(); // Save
     cy.visit('/'); // Reload the page to test whether the save was successful
     cy.get('.query').type('expel');
     cy.get('.spell:visible').should('have.length', 1).contains('Expelliarmus').click();
@@ -107,7 +103,7 @@ describe('Spells page', () => {
     cy.get(':nth-child(7) > .form-control').should('have.value', spell.materials);
     cy.get('.col-6 > .cs > .cs-field').should('contain', spell.aoeType);
 
-    cy.get(':nth-child(4) > .details-icon').click(); // Delete the spell
+    cy.get(':nth-child(4) > :nth-child(2) > .details-icon').click(); // Delete the spell
     cy.get('.spell:visible').should('have.length', 0);
   });
 })

@@ -70,10 +70,6 @@ export default {
     }
   },
   created() {
-    // Redirect to import page if there is no database loaded
-    if (this.app.rules.length == 0) {
-      this.$router.push('/welcome');
-    }
     this.loadRuleInURL();
   },
   watch: {

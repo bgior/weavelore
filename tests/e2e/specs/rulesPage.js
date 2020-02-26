@@ -4,7 +4,6 @@ describe('Rules page', () => {
 
   it('opens individual rules correctly', () => {
     cy.visit('/');
-    cy.contains('Standard content (SRD)').click();
     cy.contains('Rules').click();
     cy.contains('Blinded').click();
     cy.contains('Condition');
@@ -15,7 +14,6 @@ describe('Rules page', () => {
   it('filters rules correctly', () => {
     // The string "rea" should be both in the name of "Areas of Effect" and the tags of "Casting Time"
     cy.visit('/');
-    cy.contains('Standard content (SRD)').click();
     cy.contains('Rules').click();
     cy.get('.query').type('rea');
     cy.get('.rule:visible').should('have.length', 2).contains('Areas of Effect');

@@ -18,7 +18,7 @@
       <h2>Editing spells</h2>
       You can create, edit and remove spells by entering <img :src="require('@/assets/images/icons/misc/edition.png')" style="width: 20px"/> <span class="highlight ml-1">Edition mode</span>.
       <ul>
-        <li><img :src="require('@/assets/images/icons/misc/save.png')" style="width: 20px"/> <span class="highlight ml-1">Save</span> often (this makes your changes persist after refreshing/closing your browser).</li>
+        <li><img :src="require('@/assets/images/icons/misc/save1.png')" style="width: 20px"/> <span class="highlight ml-1">Save</span> often (this makes your changes persist after refreshing/closing your browser).</li>
         <li>Keep backups by <router-link to="/content">exporting your database</router-link>. This way you can restore everything after clearing your browser history.</li>
         <li>Avoid making changes to the default content, because the SRD database may be periodically updated and your changes will be overwritten.</li>
         <li>Long text fields support some HTML. Use <span class="highlight">&lt;p&gt;</span> tags to mark paragraphs. The following tags are also supported: <span class="highlight">&lt;b&gt;</span>, <span class="highlight">&lt;i&gt;</span>, <span class="highlight">&lt;ul&gt;</span>, <span class="highlight">&lt;li&gt;</span>, <span class="highlight">&lt;table&gt;</span> and table sub-tags.</li>

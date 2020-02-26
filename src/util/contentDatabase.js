@@ -8,6 +8,7 @@ class ContentDatabase {
 
   constructor(contentJSON, runValidations = true) {
     this.data = getDefaultData();
+    this.awaitingFetch = false; // This boolean is true while an asynchronous data load from URL is taking place
     this.loadJSON(contentJSON, runValidations);
   }
   // Returns true if the database has at least one spell
@@ -66,6 +67,7 @@ class ContentDatabase {
   }
   // Fetch a JSON from a URL and then load it
   loadURL(url, onSuccess, onError = console.error) {
+    this.awaitingFetch = true;
     fetch(url).then(res => res.json()).then(json => {
       try {
         this.loadJSON(json);
@@ -76,6 +78,8 @@ class ContentDatabase {
     }).catch(error => {
       onError(`Failed to fetch URL. See console for details.`);
       console.error(error);
+    }).finally(() => {
+      this.awaitingFetch = false;
     });
   }
   // Add a new source to the database

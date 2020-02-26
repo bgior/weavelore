@@ -81,10 +81,6 @@ export default {
     }
   },
   created() {
-    // Redirect to import page if there is no database loaded
-    if (this.app.spells.length == 0) {
-      this.$router.push('/welcome');
-    }
     // If the URL contains a spell, display it
     this.loadSpellInURL();
     // If an updated version of the SRD content is available, load it immediately

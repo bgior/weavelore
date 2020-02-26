@@ -4,7 +4,10 @@
   <div id="app">
     <Navbar :app="app"/>
     <main class="container-fluid">
-      <router-view :app="app"></router-view>
+      <div v-if="app.contentDatabase.awaitingFetch" class="text-center">
+        <img :src="require('@/assets/images/icons/misc/spinner.png')" id="loadingIcon"/>
+      </div>
+      <router-view v-else :app="app"></router-view>
     </main>
     <Alert ref="alert"/>
     <UpdateNotice v-if="app.appUpdateAvailable && this.$route.path != '/updates'"/>
@@ -17,7 +20,6 @@ import VueRouter from 'vue-router';
 import Navbar from './Navbar.vue';
 import SpellsPage from '../spells/SpellsPage.vue';
 import StatsPage from './StatsPage.vue';
-import WelcomePage from './WelcomePage.vue';
 import SettingsPage from './SettingsPage.vue';
 import OGLPage from './OGLPage.vue';
 import TipsPage from './TipsPage.vue';
@@ -44,7 +46,6 @@ const router = new VueRouter({
     { path: '/spells', component: SpellsPage },
     { path: '/rules/:urlRuleName', component: RulesPage, props: true },
     { path: '/rules', component: RulesPage },
-    { path: '/welcome', component: WelcomePage },
     { path: '/stats', component: StatsPage },
     { path: '/settings', component: SettingsPage },
     { path: '/tips', component: TipsPage },
@@ -99,6 +100,12 @@ export default {
     // Share the Vue app reference here so that the Service Worker can call notifyUpdate()
     window.vueApp = this;
     this.app.reloadDatabase();
+    // If the database is empty, load the SRD
+    if (this.app.spells.length == 0 && this.app.rules.length == 0) {
+      this.app.contentDatabase.loadURL('/srd.json', () => {
+        this.app.reloadDatabase();
+      });
+    }
   },
   watch: {
     '$route': function() {
@@ -142,5 +149,13 @@ Vue.directive('focus', {
     font-display: swap;
     src: local('Ubuntu Regular'), local('Ubuntu-Regular'), url(/fonts/ubuntu.woff2) format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  #loadingIcon {
+    width: 150px;
+    margin-top: 100px;
+    animation: spin 1.2s linear infinite;
+  }
+  @keyframes spin {
+    100% { transform: rotate(360deg); }
   }
 </style>

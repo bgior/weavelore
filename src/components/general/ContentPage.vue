@@ -16,14 +16,14 @@
             </strong>
           </span>
         </div>
-        <div v-for="source in sources" :key="source.name" class="source mb-3">
+        <div v-for="source in sources" class="source mb-3">
           <img :src="require('@/assets/images/icons/misc/content.png')" class="source-icon" alt="">
           <div class="source-info pl-2">
             <div class="source-head">
               <span class="source-title d-flex">
                 <template v-if="sourceBeingEdited == source">
-                  <input type="text" class="form-control font-weight-bold" v-model="source.name"/>
-                  <input type="number" class="form-control ml-2 d-none d-md-block" v-model.number="source.version" title="Version number for this source" style="width:70px"/>
+                  <input type="text" class="form-control font-weight-bold" v-model="source.name" maxlength="32"/>
+                  <input type="number" class="form-control ml-2 d-none d-md-block" v-model.number="source.version" min="0" title="Version number for this source" style="width:70px"/>
                 </template>
                 <template v-else>{{ source.name }} <span v-if="source.version > 0" class="source-version badge ml-2">v{{ source.version }}</span></template>
               </span>
@@ -35,8 +35,8 @@
                 <img :src="require('@/assets/images/icons/misc/close.png')" class="source-action ml-2" @click="deleteSource(source)" title="Delete this source"/>
               </span>
             </div>
-            <textarea v-if="sourceBeingEdited == source" class="form-control" v-model="source.description"></textarea>
-            <template v-else>{{ source.description }}</template>
+            <textarea v-if="sourceBeingEdited == source" class="form-control" v-model="source.description" maxlength="512"></textarea>
+            <div v-else style="line-break: anywhere">{{ source.description }}</div>
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@
           </button>
         </div>
         <div class="col-12 col-md-6 col-xl-4 mt-1">
-          <button class="btn btn-primary w-100" @click="saveDatabase">
+          <button class="btn btn-primary w-100" @click="saveDatabase" :disabled="sources.length == 0">
             <img :src="require('@/assets/images/icons/misc/save2.png')"/>
             Save changes
           </button>
@@ -123,6 +123,7 @@
   font-size: 120%;
   font-weight: bold;
   width: 100%;
+  overflow-x: hidden;
 }
 .source-icon {
   height: 48px;
@@ -190,7 +191,7 @@ export default {
     addSource() {
       const newSource = {
         name: "New source",
-        description: "",
+        description: "Edit me!",
         version: 0,
         spells: [],
         rules: []

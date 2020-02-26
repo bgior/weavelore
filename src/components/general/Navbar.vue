@@ -9,8 +9,7 @@
           WeaveLore
         </router-link>
       </b-navbar-brand>
-
-      <template v-if="app.spells.length > 0">
+      <template v-if="!app.contentDatabase.awaitingFetch">
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
