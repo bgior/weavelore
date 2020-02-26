@@ -1,5 +1,9 @@
 [
   {
+    "date": "2020-02-25",
+    "title": "Spell editor",
+    "description": "<p>You can now create and edit spells from within the application! Check it out by enabling the new <b>edition mode</b>, which you can find to the right of the search bar. Learn more about this feature on the Tips page.</p>"
+  },{
     "date": "2019-08-31",
     "title": "Introducing Rules",
     "description": "<p>Can you remember all the effects of the \"paralyzed\" condition? How about what it means for an area to be \"heavily obscured\"? From now on you won't have to worry about that, as WeaveLore brings all the most common spell-related rules of D&D into the app. Check them out on the new Rules page, or try clicking on any underlined word!</p><p>More rules will be added in future versions, suggestions are welcome.</p>"
