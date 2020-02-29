@@ -56,7 +56,7 @@
     <div v-if="spell.atHigherLevel" v-html="prettyHigherLevel" class="spell-higher"></div>
     <Diagram :range="numericRange" :aoe="spell.aoe" title="Range visualization"/>
     <div class="d-block d-lg-none mobile-foot">
-      <img :src="require('@/assets/images/icons/spell_features/source.png')" title="Which book/source this spell originates from"/> {{ spell.sourceName }}<br/>
+      <img :src="require('@/assets/images/icons/spell_features/source.png')" title="Which book/source this spell originates from"/> {{ spell.location || spell.sourceName }}<br/>
       <div v-if="spell.material > 0" title="Materials" v-html="prettyMaterials"></div>
     </div>
     <HelpModal :app="app" :topic="helpTopic"/>
