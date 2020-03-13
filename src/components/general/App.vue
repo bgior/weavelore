@@ -5,7 +5,11 @@
     <Navbar :app="app"/>
     <main class="container-fluid">
       <div v-if="app.contentDatabase.awaitingFetch" class="text-center">
-        <img :src="require('@/assets/images/icons/misc/spinner.png')" id="loadingIcon"/>
+        <svg id="loadingIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+          <g fill="none" stroke="#393939" stroke-width="5" stroke-linecap="square" stroke-linejoin="bevel">
+            <path d="M92 50a42 42 0 01-41 42M8 50A42 42 0 0149 8M30 70a28 28 0 0039 0m1-40a28 28 0 00-39 0M35 50a15 15 0 0015 15m15-15a15 15 0 00-15-15M19 81l11-11M70 30l11-11M19 50h16M65 50h16"/>
+          </g>
+        </svg>
       </div>
       <router-view v-else :app="app"></router-view>
     </main>
@@ -151,9 +155,9 @@ Vue.directive('focus', {
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   }
   #loadingIcon {
-    width: 150px;
+    width: 120px;
     margin-top: 100px;
-    animation: spin 1.2s linear infinite;
+    animation: spin 1.0s linear infinite;
   }
   @keyframes spin {
     100% { transform: rotate(360deg); }
