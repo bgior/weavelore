@@ -5,7 +5,7 @@
     {
       "name": "SRD 5.1",
       "description": "Default spells and rules for WeaveLore, taken from the SRD 5.1.",
-      "version": 14,
+      "version": 15,
       "spells": [
         {
           "name": "Acid Arrow",
@@ -84,7 +84,7 @@
           "description": "<p>You set an alarm against unwanted intrusion. Choose a door, a window, or an area within range that is no larger than a 20-foot cube. Until the spell ends, an alarm alerts you whenever a Tiny or larger creature touches or enters the warded area. When you cast the spell, you can designate creatures that won&#39;t set off the alarm. You also choose whether the alarm is mental or audible.</p><p>A mental alarm alerts you with a ping in your mind if you are within 1 mile of the warded area. This ping awakens you if you are sleeping.</p><p>An audible alarm produces the sound of a hand bell for 10 seconds within 60 feet.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "20"
+            "edge": 20
           }
         },
         {
@@ -222,7 +222,7 @@
           "description": "<p>A shimmering barrier extends out from you in a 10-foot radius and moves with you, remaining centered on you and hedging out creatures other than undead and constructs. The barrier lasts for the duration.</p><p>The barrier prevents an affected creature from passing or reaching through. An affected creature can cast spells or make attacks with ranged or reach weapons through the barrier.</p><p>If you move so an affected creature is forced to pass through the barrier, the spell ends.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "10"
+            "radius": 10
           }
         },
         {
@@ -245,7 +245,7 @@
           "description": "<p>A 10-foot-radius invisible sphere of antimagic surrounds you. This area is divorced from the magical energy that suffuses the multiverse. Within the sphere, spells can't be cast, summoned creatures disappear, and even magic items become mundane. Until the spell ends, the sphere moves with you, centered on you.</p><p>Spells and other magical effects, except those created by an artifact or a deity, are suppressed in the sphere and can't protrude into it. A slot expended to cast a suppressed spell is consumed. While an effect is suppressed, it doesn't function, but the time it spends suppressed counts against its duration.</p><p><b>Targeted Effects.</b> Spells and other magical effects, such as <i>magic missile</i> and <i>charm person</i>, that target a creature or an object in the sphere have no effect on that target.</p><p><b>Areas of Magic.</b> The area of another spell or magical effect, such as <i>fireball</i>, can't extend into the sphere. If the sphere overlaps an area of magic, the part of the area that is covered by the sphere is suppressed. For example, the flames created by a <i>wall of fire</i> are suppressed within the sphere, creating a gap in the wall if the overlap is large enough.</p><p><b>Spells.</b> Any active spell or other magical effect on a creature or an object in the sphere is suppressed while the creature or object is in it.</p><p><b>Magic Items.</b> The properties and powers of magic items are suppressed in the sphere. For example, a <i>+1 longsword</i> in the sphere functions as a nonmagical longsword.</p><p>A magic weapon's properties and powers are suppressed if it is used against a target in the sphere or wielded by an attacker in the sphere. If a magic weapon or a piece of magic ammunition fully leaves the sphere (for example, if you fire a magic arrow or throw a magic spear at a target outside the sphere), the magic of the item ceases to be suppressed as soon as it exits.</p><p><b>Magical Travel.</b> Teleportation and planar travel fail to work in the sphere, whether the sphere is the destination or the departure point for such magical travel. A portal to another location, world, or plane of existence, as well as an opening to an extradimensional space such as that created by the rope trick spell, temporarily closes while in the sphere.</p><p><b>Creatures and Objects.</b> A creature or object summoned or created by magic temporarily winks out of existence in the sphere. Such a creature instantly reappears once the space the creature occupied is no longer within the sphere.</p><p><b>Dispel Magic.</b> Spells and magical effects such as <i>dispel magic</i> have no effect on the sphere. Likewise, the spheres created by different <i>antimagic field</i> spells don't nullify each other.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "10"
+            "radius": 10
           }
         },
         {
@@ -283,7 +283,11 @@
           "materials": "A bit of bat fur",
           "concentration": true,
           "ritual": false,
-          "description": "<p>You create an invisible, magical eye within range that hovers in the for the duration.</p><p>You mentally recieve visual information from the eye, which has normal vision and darkvision out to 30 feet. The eye can look in every direction.</p><p>As an action, you can move the eye up to 30 feet in any direction. There is no limit to how far away from you the eye can move, but it can&#39;t enter another plane of existence. A solid barrier blocks the eye&#39;s movement, but the eye can pass through an opening as small as 1 inch in diameter.</p>"
+          "description": "<p>You create an invisible, magical eye within range that hovers in the for the duration.</p><p>You mentally recieve visual information from the eye, which has normal vision and darkvision out to 30 feet. The eye can look in every direction.</p><p>As an action, you can move the eye up to 30 feet in any direction. There is no limit to how far away from you the eye can move, but it can&#39;t enter another plane of existence. A solid barrier blocks the eye&#39;s movement, but the eye can pass through an opening as small as 1 inch in diameter.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 30
+          }
         },
         {
           "name": "Arcane Hand",
@@ -534,7 +538,7 @@
           "description": "<p>Squirming, ebony tentacles fill a 20-­foot square on ground that you can see within range. For the duration, these tentacles turn the ground in the area into difficult terrain.</p><p>When a creature enters the affected area for the first time on a turn or starts its turn there, the creature must succeed on a Dexterity saving throw or take 3d6 bludgeoning damage and be restrained by the tentacles until the spell ends. A creature that starts its turn in the area and is already restrained by the tentacles takes 3d6 bludgeoning damage.</p><p>A creature restrained by the tentacles can use its action to make a Strength or Dexterity check (its choice) against your spell save DC. On a success, it frees itself.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "20"
+            "edge": 20
           }
         },
         {
@@ -631,7 +635,11 @@
           "material": 0,
           "concentration": false,
           "ritual": false,
-          "description": "<p>Roll a d20 at the end of each of your turns for the duration of the spell. On a roll of 11 or higher, you vanish from your current plane of existence and appear in the Ethereal Plane (the spell fails and the casting is wasted if you were already on that plane). At the start of your next turn, and when the spell ends if you are on the Ethereal Plane, you return to an unoccupied space of your choice that you can see within 10 feet of the space you vanished from. If no unoccupied space is available within that range, you appear in the nearest unoccupied space (chosen at random if more than one space is equally near). You can dismiss this spell as an action.</p><p>While on the Ethereal Plane, you can see and hear the plane you originated from, which is cast in shades of gray, and you can't see anything there more than 60 feet away. You can only affect and be affected by other creatures on the Ethereal Plane. Creatures that aren't there can't perceive you or interact with you, unless they have the ability to do so.</p>"
+          "description": "<p>Roll a d20 at the end of each of your turns for the duration of the spell. On a roll of 11 or higher, you vanish from your current plane of existence and appear in the Ethereal Plane (the spell fails and the casting is wasted if you were already on that plane). At the start of your next turn, and when the spell ends if you are on the Ethereal Plane, you return to an unoccupied space of your choice that you can see within 10 feet of the space you vanished from. If no unoccupied space is available within that range, you appear in the nearest unoccupied space (chosen at random if more than one space is equally near). You can dismiss this spell as an action.</p><p>While on the Ethereal Plane, you can see and hear the plane you originated from, which is cast in shades of gray, and you can't see anything there more than 60 feet away. You can only affect and be affected by other creatures on the Ethereal Plane. Creatures that aren't there can't perceive you or interact with you, unless they have the ability to do so.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 10
+          }
         },
         {
           "name": "Blur",
@@ -689,7 +697,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st.</p>",
           "aoe": {
             "type": "cone",
-            "length": "15"
+            "length": 15
           }
         },
         {
@@ -708,7 +716,12 @@
           "concentration": true,
           "ritual": false,
           "description": "<p>A storm cloud appears in the shape of a cylinder that is 10 feet tall with a 60-foot radius, centered on a point you can see 100 feet directly above you. The spell fails if you can't see a point in the air where the storm cloud could appear (for example, if you are in a room that can't accommodate the cloud).</p><p>When you cast the spell, choose a point you can see within range. A bolt of lightning flashes down from the cloud to that point. Each creature within 5 feet of that point must make a Dexterity saving throw. A creature takes 3d10 lightning damage on a failed save, or half as much damage on a successful one. On each of your turns until the spell ends, you can use your action to call down lightning in this way again, targeting the same point or a different one.</p><p>If you are outdoors in stormy conditions when you cast this spell, the spell gives you control over the existing storm instead of creating a new one. Under such conditions, the spell's damage increases by 1d10.</p>",
-          "atHigherLevel": "<p>When you cast this spell using a spell slot of 4th or higher level, the damage increases by 1d10 for each slot level above 3rd.</p>"
+          "atHigherLevel": "<p>When you cast this spell using a spell slot of 4th or higher level, the damage increases by 1d10 for each slot level above 3rd.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 60,
+            "range": 0
+          }
         },
         {
           "name": "Calm Emotions",
@@ -729,7 +742,7 @@
           "description": "<p>You attempt to suppress strong emotions in a group of people. Each humanoid in a 20-foot-radius sphere centered on a point you choose within range must make a Charisma saving throw; a creature can choose to fail this saving throw if it wishes. If a creature fails its saving throw, choose one of the following two effects. You can suppress any effect causing a target to be charmed or frightened. When this spell ends, any suppressed effect resumes, provided that its duration has not expired in the meantime.</p><p>Alternatively, you can make a target indifferent about creatures of your choice that it is hostile toward. This indifference ends if the target is attacked or harmed by a spell or if it witnesses any of its friends being harmed. When the spell ends, the creature becomes hostile again, unless the DM rules otherwise.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "20"
+            "radius": 20
           }
         },
         {
@@ -750,7 +763,12 @@
           "concentration": false,
           "ritual": false,
           "description": "<p>You create a bolt of lightning that arcs toward a target of your choice that you can see within range. Three bolts then leap from that target to as many as three other targets, each of which must be within 30 feet of the first target. A target can be a creature or an object and can be targeted by only one of the bolts.</p><p>A target must make a Dexterity saving throw. The target takes 10d8 lightning damage on a failed save, or half as much damage on a successful one.</p>",
-          "atHigherLevel": "<p>When you cast this spell using a spell slot of 7th level or higher, one additional bolt leaps from the first target to another target for each slot level above 6th.</p>"
+          "atHigherLevel": "<p>When you cast this spell using a spell slot of 7th level or higher, one additional bolt leaps from the first target to another target for each slot level above 6th.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 30,
+            "center": "cell"
+          }
         },
         {
           "name": "Charm Person",
@@ -816,7 +834,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 7th level or higher, the damage increases by 2d6 for each slot level above 6th.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "60"
+            "radius": 60
           }
         },
         {
@@ -878,7 +896,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "20"
+            "radius": 20
           }
         },
         {
@@ -902,7 +920,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 2nd level or higher, roll an additional 2d10 for each slot level above 1st.</p>",
           "aoe": {
             "type": "cone",
-            "length": "15"
+            "length": 15
           }
         },
         {
@@ -1019,7 +1037,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th.</p>",
           "aoe": {
             "type": "cone",
-            "length": "60"
+            "length": 60
           }
         },
         {
@@ -1045,7 +1063,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 5th level or higher, the radius of the sphere increases by 5 feet for each spell slot above 4th.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "10"
+            "radius": 10
           }
         },
         {
@@ -1106,7 +1124,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 6th level or higher, the challenge rating increases by 1 for each slot level above 5th.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "10"
+            "edge": 10
           }
         },
         {
@@ -1261,7 +1279,7 @@
           "description": "<p>Until the spell ends, you control any freestanding water inside an area you choose that is a cube up to 100 feet on a side. You can choose from any of the following effects when you cast this spell. As an action on your turn, you can repeat the same effect or choose a different one.</p><p><b>Flood.</b> You cause the water level of all standing water in the area to rise by as much as 20 feet. If the area includes a shore, the flooding water spills over onto dry land.</p><p>If you choose an area in a large body of water, you instead create a 20-foot tall wave that travels from one side of the area to the other and then crashes down. Any Huge or smaller vehicles in the wave's path are carried with it to the other side. Any Huge or smaller vehicles struck by the wave have a 25 percent chance of capsizing.</p><p>The water level remains elevated until the spell ends or you choose a different effect. If this effect produced a wave, the wave repeats on the start of your next turn while the flood effect lasts.</p><p><b>Part Water.</b> You cause water in the area to move apart and create a trench. The trench extends across the spell's area, and the separated water forms a wall to either side. The trench remains until the spell ends or you choose a different effect. The water then slowly fills in the trench over the course of the next round until the normal water level is restored.</p><p><b>Redirect Flow.</b> You cause flowing water in the area to move in a direction you choose, even if the water has to flow over obstacles, up walls, or in other unlikely directions. The water in the area moves as you direct it, but once it moves beyond the spell's area, it resumes its flow based on the terrain conditions. The water continues to move in the direction you chose until the spell ends or you choose a different effect.</p><p><b>Whirlpool.</b> This effect requires a body of water at least 50 feet square and 25 feet deep. You cause a whirlpool to form in the center of the area. The whirlpool forms a vortex that is 5 feet wide at the base, up to 50 feet wide at the top, and 25 feet tall. Any creature or object in the water and within 25 feet of the vortex is pulled 10 feet toward it. A creature can swim away from the vortex by making a Strength (Athletics) check against your spell save DC.</p><p>When a creature enters the vortex for the first time on a turn or starts its turn there, it must make a Strength saving throw. On a failed save, the creature takes 2d8 bludgeoning damage and is caught in the vortex until the spell ends. On a successful save, the creature takes half damage, and isn't caught in the vortex. A creature caught in the vortex can use its action to try to swim away from the vortex as described above, but has disadvantage on the Strength (Athletics) check to do so.</p><p>The first time each turn that an object enters the vortex, the object takes 2d8 bludgeoning damage; this damage occurs each round it remains in the vortex.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "100"
+            "edge": 100
           }
         },
         {
@@ -1361,7 +1379,11 @@
           "concentration": false,
           "ritual": false,
           "description": "<p>You either create or destroy water.</p><p><b>Create Water.</b> You create up to 10 gallons of clean water within range in an open container. Alternatively, the water falls as rain in a 30-foot cube within range, extinguishing exposed flames in the area.</p><p><b>Destroy Water.</b> You destroy up to 10 gallons of water in an open container within range. Alternatively, you destroy fog in a 30-foot cube within range.</p>",
-          "atHigherLevel": "<p>When you cast this spell using a spell slot of 2nd level or higher, you create or destroy 10 additional gallons of water, or the size of the cube increases by 5 feet, for each slot level above 1st.</p>"
+          "atHigherLevel": "<p>When you cast this spell using a spell slot of 2nd level or higher, you create or destroy 10 additional gallons of water, or the size of the cube increases by 5 feet, for each slot level above 1st.</p>",
+          "aoe": {
+            "type": "cube",
+            "edge": 30
+          }
         },
         {
           "name": "Creation",
@@ -1381,7 +1403,11 @@
           "concentration": false,
           "ritual": false,
           "description": "<p>You pull wisps of shadow material from the Shadowfell to create a nonliving object of vegetable matter within range: soft goods, rope, wood, or something similar. You can also use this spell to create mineral objects such as stone, crystal, or metal. The object created must be no larger than a 5-foot cube, and the object must be of a form and material that you have seen before.</p><p>The duration depends on the object's material. If the object is composed of multiple materials, use the shortest duration.</p><table><thead><tr><th>Material</th><th>Duration</th></tr></thead><tbody><tr><td>Vegetable matter</td><td>1 day</td></tr><tr><td>Stone or crystal</td><td>12 hours</td></tr><tr><td>Precious metals</td><td>1 hour</td></tr><tr><td>Gems</td><td>10 minutes</td></tr><tr><td>Adamantine or mithral</td><td>1 minute</td></tr></tbody></table><p>Using any material created by this spell as another spell's material component causes that spell to fail.</p>",
-          "atHigherLevel": "<p>When you cast this spell using a spell slot of 6th level or higher, the cube increases by 5 feet for each slot level above 5th.</p>"
+          "atHigherLevel": "<p>When you cast this spell using a spell slot of 6th level or higher, the cube increases by 5 feet for each slot level above 5th.</p>",
+          "aoe": {
+            "type": "cube",
+            "edge": 5
+          }
         },
         {
           "name": "Cure Wounds",
@@ -1426,7 +1452,7 @@
           "description": "<p>You create up to four torch-sized lights within range, making them appear as torches, lanterns, or glowing orbs that hover in the air for the duration. You can also combine the four lights into one glowing vaguely humanoid form of Medium size. Whichever form you choose, each light sheds dim light in a 10-foot radius. As a bonus action on your turn, you can move the lights up to 60 feet to a new spot within range. A light must be within 20 feet of another light created by this spell, and a light winks out if it exceeds the spell's range.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "10"
+            "radius": 10
           }
         },
         {
@@ -1450,7 +1476,7 @@
           "description": "<p>Magical darkness spreads from a point you choose within range to fill a 15-foot-radius sphere for the duration. The darkness spreads around corners. A creature with darkvision can't see through this darkness, and nonmagical light can't illuminate it. If the point you choose is on an object you are holding or one that isn't being worn or carried, the darkness emanates from the object and moves with it. Completely covering the source of the darkness with an opaque object, such as a bowl or a helm, blocks the darkness. If any of this spell's area overlaps with an area of light created by a spell of 2nd level or lower, the spell that created the light is dispelled.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "15"
+            "radius": 15
           }
         },
         {
@@ -1472,7 +1498,11 @@
           "materials": "Either a pinch of dried carrot or an agate",
           "concentration": false,
           "ritual": false,
-          "description": "<p>You touch a willing creature to grant it the ability to see in the dark. For the duration, that creature has darkvision out to a range of 60 feet.</p>"
+          "description": "<p>You touch a willing creature to grant it the ability to see in the dark. For the duration, that creature has darkvision out to a range of 60 feet.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 60
+          }
         },
         {
           "name": "Daylight",
@@ -1495,7 +1525,7 @@
           "description": "<p>A 60-foot-radius sphere of light spreads out from a point you choose within range. The sphere is bright light and sheds dim light for an additional 60 feet.</p><p>If you chose a point on an object you are holding or one that isn't being worn or carried, the light shines from the object and moves with it. Completely covering the affected object with an opaque object, such as a bowl or a helm, blocks the light.</p><p>If any of this spell's area overlaps with an area of darkness created by a spell of 3rd level or lower, the spell that created the darkness is dispelled.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "60"
+            "radius": 60
           }
         },
         {
@@ -1537,7 +1567,7 @@
           "atHigherLevel": "<p>When you cast theis spell using a spell slot of 8th level or higher, the base damage increases by 1d6 for each slot level above 7th.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "20"
+            "radius": 20
           }
         },
         {
@@ -1556,7 +1586,11 @@
           "material": 0,
           "concentration": false,
           "ritual": false,
-          "description": "<p>You create a shadowy door on a flat solid surface that you can see within range. The door is large enough to allow Medium creatures to pass through unhindered. When opened, the door leads to a demiplane that appears to be an empty room 30 feet in each dimension, made of wood or stone. When the spell ends, the door disappears, and any creatures or objects inside the demiplane remain trapped there, as the door also disappears from the other side.</p><p>Each time you cast this spell, you can create a new demiplane, or have the shadowy door connect to a demiplane you created with a previous casting of this spell.  Additionally, if you know the nature and contents of a demiplane created by a casting of this spell by another creature, you can have the shadowy door connect to its demiplane instead.</p>"
+          "description": "<p>You create a shadowy door on a flat solid surface that you can see within range. The door is large enough to allow Medium creatures to pass through unhindered. When opened, the door leads to a demiplane that appears to be an empty room 30 feet in each dimension, made of wood or stone. When the spell ends, the door disappears, and any creatures or objects inside the demiplane remain trapped there, as the door also disappears from the other side.</p><p>Each time you cast this spell, you can create a new demiplane, or have the shadowy door connect to a demiplane you created with a previous casting of this spell.  Additionally, if you know the nature and contents of a demiplane created by a casting of this spell by another creature, you can have the shadowy door connect to its demiplane instead.</p>",
+          "aoe": {
+            "type": "cube",
+            "edge": 30
+          }
         },
         {
           "name": "Detect Evil and Good",
@@ -1577,7 +1611,7 @@
           "description": "<p>For the duration, you know if there is an aberration, celestial, elemental, fey, fiend, or undead within 30 feet of you, as well as where the creature is located. Similarly, you know if there is a place or object within 30 feet of you that has been magically consecrated or desecrated.</p><p>The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "30"
+            "radius": 30
           }
         },
         {
@@ -1604,7 +1638,7 @@
           "description": "<p>For the duration, you sense the presence of magic within 30 feet of you. If you sense magic in this way, you can use your action to see a faint aura around any visible creature or object in the area that bears magic, and you learn its school of magic, if any.</p><p>The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "30"
+            "radius": 30
           }
         },
         {
@@ -1629,7 +1663,7 @@
           "description": "<p>For the duration, you can sense the presence and location of poisons, poisonous creatures, and diseases within 30 feet of you. You also identify the kind of poison, poisonous creature, or disease in each case.</p><p>The spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "30"
+            "radius": 30
           }
         },
         {
@@ -1653,7 +1687,7 @@
           "description": "<p>For the duration, you can read the thoughts of certain creatures. When you cast the spell and as your action on each turn until the spell ends, you can focus your mind on any one creature that you can see within 30 feet of you. If the creature you choose has an Intelligence of 3 or lower or doesn't speak any language, the creature is unaffected.</p><p>You initially learn the surface thoughts of the creature—what is most on its mind in that moment. As an action, you can either shift your attention to another creature's thoughts or attempt to probe deeper into the same creature's mind. If you probe deeper, the target must make a Wisdom saving throw. If it fails, you gain insight into its reasoning (if any), its emotional state, and something that looms large in its mind (such as something it worries over, loves, or hates). If it succeeds, the spell ends. Either way, the target knows that you are probing into its mind, and unless you shift your attention to another creature's thoughts, the creature can use its action on its turn to make an Intelligence check contested by your Intelligence check; if it succeeds, the spell ends.</p><p>Questions verbally directed at the target creature naturally shape the course of its thoughts, so this spell is particularly effective as part of an interrogation. You can also use this spell to detect the presence of thinking creatures you can't see. When you cast the spell or as your action during the duration, you can search for thoughts within 30 feet of you. The spell can penetrate barriers, but 2 feet of rock, 2 inches of any metal other than lead, or a thin sheet of lead blocks you. You can't detect a creature with an Intelligence of 3 or lower or one that doesn't speak any language.</p><p>Once you detect the presence of a creature in this way, you can read its thoughts for the rest of the duration as described above, even if you can't see it, but it must still be within range.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "30"
+            "radius": 30
           }
         },
         {
@@ -1714,7 +1748,11 @@
           "concentration": false,
           "ritual": false,
           "description": "<p>A thin green ray springs from your pointing finger to a target that you can see within range. The target can be a creature, an object, or a creation of magical force, such as the wall created by <i>wall of force</i>.</p><p>A creature targeted by this spell must make a Dexterity saving throw. On a failed save, the target takes 10d6 + 40 force damage. If this damage reduces the target to 0 hit points, it is disintegrated.</p><p>A disintegrated creature and everything it is wearing and carrying, except magic items, are reduced to a pile of fine gray dust. The creature can be restored to life only by means of a <i>true resurrection</i> or a <i>wish</i> spell.</p><p>This spell automatically disintegrates a Large or smaller nonmagical object or a creation of magical force. If the target is a Huge or larger object or creation of force, this spell disintegrates a 10-foot-cube portion of it. A magic item is unaffected by this spell.</p>",
-          "atHigherLevel": "<p>When you cast this spell using a spell slot of 7th level or higher, the damage increases by 3d6 for each slot level above 6th.</p>"
+          "atHigherLevel": "<p>When you cast this spell using a spell slot of 7th level or higher, the damage increases by 3d6 for each slot level above 6th.</p>",
+          "aoe": {
+            "type": "cube",
+            "edge": 10
+          }
         },
         {
           "name": "Dispel Evil and Good",
@@ -1906,7 +1944,11 @@
           "material": 0,
           "concentration": false,
           "ritual": false,
-          "description": "<p>Whispering to the spirits of nature, you create one of the following effects within range:</p><ul><li>You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round.</li><li>You instantly make a flower blossom, a seed pod open, or a leaf bud bloom.</li><li>You create an instantaneous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint odor of skunk. The effect must fit in a 5-foot cube.</li><li>You instantly light or snuff out a candle, a torch, or a small campfire.</li></ul>"
+          "description": "<p>Whispering to the spirits of nature, you create one of the following effects within range:</p><ul><li>You create a tiny, harmless sensory effect that predicts what the weather will be at your location for the next 24 hours. The effect might manifest as a golden orb for clear skies, a cloud for rain, falling snowflakes for snow, and so on. This effect persists for 1 round.</li><li>You instantly make a flower blossom, a seed pod open, or a leaf bud bloom.</li><li>You create an instantaneous, harmless sensory effect, such as falling leaves, a puff of wind, the sound of a small animal, or the faint odor of skunk. The effect must fit in a 5-foot cube.</li><li>You instantly light or snuff out a candle, a torch, or a small campfire.</li></ul>",
+          "aoe": {
+            "type": "cube",
+            "edge": 5
+          }
         },
         {
           "name": "Earthquake",
@@ -1929,7 +1971,8 @@
           "description": "<p>You create a seismic disturbance at a point on the ground that you can see within range. For the duration, an intense tremor rips through the ground in a 100-foot-radius circle centered on that point and shakes creatures and structures in contact with the ground in that area.</p><p>The ground in the area becomes difficult terrain. Each creature on the ground that is concentrating must make a Constitution saving throw. On a failed save, the creature's concentration is broken.</p><p>When you cast this spell and at the end of each turn you spend concentrating on it, each creature on the ground in the area must make a Dexterity saving throw. On a failed save, the creature is knocked prone.</p><p>This spell can have additional effects depending on the terrain in the area, as determined by the GM.</p><p><b>Fissures.</b> Fissures open throughout the spell's area at the start of your next turn after you cast the spell. A total of 1d6 such fissures open in locations chosen by the GM. Each is 1d10 × 10 feet deep, 10 feet wide, and extends from one edge of the spell's area to the opposite side. A creature standing on a spot where a fissure opens must succeed on a Dexterity saving throw or fall in. A creature that successfully saves moves with the fissure's edge as it opens.</p><p>A fissure that opens beneath a structure causes it to automatically collapse (see below).</p><p><b>Structures.</b> The tremor deals 50 bludgeoning damage to any structure in contact with the ground in the area when you cast the spell and at the start of each of your turns until the spell ends. If a structure drops to 0 hit points, it collapses and potentially damages nearby creatures. A creature within half the distance of a structure's height must make a Dexterity saving throw. On a failed save, the creature takes 5d6 bludgeoning damage, is knocked prone, and is buried in the rubble, requiring a DC 20 Strength (Athletics) check as an action to escape. The GM can adjust the DC higher or lower, depending on the nature of the rubble. On a successful save, the creature takes half as much damage and doesn't fall prone or become buried.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "100"
+            "range": 0,
+            "radius": 100
           }
         },
         {
@@ -2008,7 +2051,7 @@
           "description": "<p>Grasping weeds and vines sprout from the ground in a 20-foot square starting form a point within range. For the duration, these plants turn the ground in the area into difficult terrain.</p><p>A creature in the area when you cast the spell must succeed on a Strength saving throw or be restrained by the entangling plants until the spell ends. A creature restrained by the plants can use its action to make a Strength check against your spell save DC. On a success, it frees itself.</p><p>When the spell ends, the conjured plants wilt away.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "20"
+            "edge": 20
           }
         },
         {
@@ -2049,7 +2092,11 @@
           "concentration": false,
           "ritual": false,
           "description": "<p>You step into the border regions of the Ethereal Plane, in the area where it overlaps with your current plane. You remain in the Border Ethereal for the duration or until you use your action to dismiss the spell. During this time, you can move in any direction. If you move up or down, every foot of movement costs an extra foot. You can see and hear the plane you originated from, but everything there looks gray, and you can&#39;t see anything more than 60 feet away.</p><p>While on the Ethereal Plane, you can only affect and be affected by other creatures on that plane. Creatures that aren&#39;t on the Ethereal Plane can&#39;t perceive you and can&#39;t interact with you, unless a special ability or magic has given them the ability to do so.</p><p>You ignore all objects and effects that aren&#39;t on the Ethereal Plane, allowing you to move through objects you perceive on the plane you originated from.</p><p>When the spell ends, you immediately return to the plan you originated from in the spot you currently occupy.  If you occupy the same spot as a solid object or creature when this happens, you are immediately shunted to the nearest unoccupied space that you can occupy and take force damage equal to twice the number of feet you are moved.</p><p>This spell has no effect if you cast it while you are on the Ethereal Plane or a plane that doesn&#39;t border it, such as one of the Outer Planes.</p>",
-          "atHigherLevel": "<p>When you cast this spell using a spell slot of 8th level or higher, you can target up to three willing creatures (including you) for each slot level above 7th. The creatures must be within 10 feet of you when you cast the spell.</p>"
+          "atHigherLevel": "<p>When you cast this spell using a spell slot of 8th level or higher, you can target up to three willing creatures (including you) for each slot level above 7th. The creatures must be within 10 feet of you when you cast the spell.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 60
+          }
         },
         {
           "name": "Expeditious Retreat",
@@ -2088,7 +2135,11 @@
           "material": 0,
           "concentration": true,
           "ritual": false,
-          "description": "<p>For the spell's duration, your eyes become an inky void imbued with dread power. One creature of your choice within 60 feet of you that you can see must succeed on a Wisdom saving throw or be affected by one of the following effects of your choice for the duration. On each of your turns until the spell ends, you can use your action to target another creature but can't target a creature again if it has succeeded on a saving throw against this casting of <i>eyebite</i>.</p><p><b>Asleep.</b> The target falls unconscious. It wakes up if it takes any damage or if another creature uses its action to shake the sleeper awake.</p><p><b>Panicked.</b> The target is frightened of you. On each of its turns, the frightened creature must take the Dash action and move away from you by the safest and shortest available route, unless there is nowhere to move. If the target moves to a place at least 60 feet away from you where it can no longer see you, this effect ends.</p><p><b>Sickened.</b> The target has disadvantage on attack rolls and ability checks. At the end of each of its turns, it can make another Wisdom saving throw. If it succeeds, the effect ends.</p>"
+          "description": "<p>For the spell's duration, your eyes become an inky void imbued with dread power. One creature of your choice within 60 feet of you that you can see must succeed on a Wisdom saving throw or be affected by one of the following effects of your choice for the duration. On each of your turns until the spell ends, you can use your action to target another creature but can't target a creature again if it has succeeded on a saving throw against this casting of <i>eyebite</i>.</p><p><b>Asleep.</b> The target falls unconscious. It wakes up if it takes any damage or if another creature uses its action to shake the sleeper awake.</p><p><b>Panicked.</b> The target is frightened of you. On each of its turns, the frightened creature must take the Dash action and move away from you by the safest and shortest available route, unless there is nowhere to move. If the target moves to a place at least 60 feet away from you where it can no longer see you, this effect ends.</p><p><b>Sickened.</b> The target has disadvantage on attack rolls and ability checks. At the end of each of its turns, it can make another Wisdom saving throw. If it succeeds, the effect ends.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 60
+          }
         },
         {
           "name": "Fabricate",
@@ -2105,7 +2156,11 @@
           "material": 0,
           "concentration": false,
           "ritual": false,
-          "description": "<p>You convert raw materials into products of the same material. For example, you can fabricate a wooden bridge from a clump of trees, a rope from a patch of hemp, and clothes from flax or wool.</p><p>Choose raw materials that you can see within range. You can fabricate a Large or smaller object (contained within a 10-foot cube, or eight connected 5-foot cubes), given a sufficient quantity of raw material. If you are working with metal, stone, or another mineral substance, however, the fabricated object can be no larger than Medium (contained within a single 5-foot cube). The quality of objects made by the spell is commensurate with the quality of the raw materials.</p><p>Creatures or magic items can&#39;t be created or transmuted by this spell. You also can&#39;t use it to create items that ordinarily require a high degree of craftsmanship, such as jewelry, weapons, glass, or armor, unless you have proficiency with the type of artisan&#39;s tools used to craft such objects.</p>"
+          "description": "<p>You convert raw materials into products of the same material. For example, you can fabricate a wooden bridge from a clump of trees, a rope from a patch of hemp, and clothes from flax or wool.</p><p>Choose raw materials that you can see within range. You can fabricate a Large or smaller object (contained within a 10-foot cube, or eight connected 5-foot cubes), given a sufficient quantity of raw material. If you are working with metal, stone, or another mineral substance, however, the fabricated object can be no larger than Medium (contained within a single 5-foot cube). The quality of objects made by the spell is commensurate with the quality of the raw materials.</p><p>Creatures or magic items can&#39;t be created or transmuted by this spell. You also can&#39;t use it to create items that ordinarily require a high degree of craftsmanship, such as jewelry, weapons, glass, or armor, unless you have proficiency with the type of artisan&#39;s tools used to craft such objects.</p>",
+          "aoe": {
+            "type": "cube",
+            "edge": 10
+          }
         },
         {
           "name": "Faerie Fire",
@@ -2126,7 +2181,7 @@
           "description": "<p>Each object in a 20-foot cube within range is outlined in blue, green, or violet light (your choice). Any creature in the area when the spell is cast is also outlined in light if it fails a Dexterity saving throw. For the duration, objects and affected creatures shed dim light in a 10-foot radius.</p><p>Any attack roll against an affected creature or object has advantage if the attacker can see it, and the affected creature or object can&#39;t benefit from being invisible.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "20"
+            "edge": 20
           }
         },
         {
@@ -2145,7 +2200,11 @@
           "materials": "A tiny silver whistle, a piece of bone, and a thread",
           "concentration": false,
           "ritual": false,
-          "description": "<p>You conjure a phantom watchdog in an unoccupied space that you can see within range, where it remains for the duration, until you dismiss it as an action, or until you move more than 100 feet away from it.</p><p>The hound is invisible to all creatures except you and can't be harmed. When a Small or larger creature comes within 30 feet of it without first speaking the password that you specify when you cast this spell, the hound starts barking loudly. The hound sees invisible creatures and can see into the Ethereal Plane. It ignores illusions.</p><p>At the start of each of your turns, the hound attempts to bite one creature within 5 feet of it that is hostile to you. The hound's attack bonus is equal to your spellcasting ability modifier + your proficiency bonus. On a hit, it deals 4d8 piercing damage.</p>"
+          "description": "<p>You conjure a phantom watchdog in an unoccupied space that you can see within range, where it remains for the duration, until you dismiss it as an action, or until you move more than 100 feet away from it.</p><p>The hound is invisible to all creatures except you and can't be harmed. When a Small or larger creature comes within 30 feet of it without first speaking the password that you specify when you cast this spell, the hound starts barking loudly. The hound sees invisible creatures and can see into the Ethereal Plane. It ignores illusions.</p><p>At the start of each of your turns, the hound attempts to bite one creature within 5 feet of it that is hostile to you. The hound's attack bonus is equal to your spellcasting ability modifier + your proficiency bonus. On a hit, it deals 4d8 piercing damage.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 30
+          }
         },
         {
           "name": "False Life",
@@ -2189,7 +2248,7 @@
           "description": "<p>You project a phantasmal image of a creature's worst fears. Each creature in a 30-foot cone must succeed on a Wisdom saving throw or drop whatever it is holding and become frightened for the duration.</p><p>While frightened by this spell, a creature must take the Dash action and move away from you by the safest available route on each of its turns, unless there is nowhere to move. If the creature ends its turn in a location where it doesn't have line of sight to you, the creature can make a Wisdom saving throw. On a successful save, the spell ends for that creature.</p>",
           "aoe": {
             "type": "cone",
-            "length": "30"
+            "length": 30
           }
         },
         {
@@ -2249,7 +2308,12 @@
           "materials": "10gp worth of charcoal, incense, and herbs that must be consumed by fire in a brass brazier",
           "concentration": false,
           "ritual": true,
-          "description": "<p>You gain the service of a familiar, a spirit that takes an animal form you choose: bat, cat, crab, frog (toad), hawk, lizard, octopus, owl, poisonous snake, fish (quipper), rat, raven, sea horse, spider, or weasel. Appearing in an unoccupied space within range, the familiar has the statistics of the chosen form, though it is a celestial, fey, or fiend (your choice) instead of a beast.</p><p>Your familiar acts independently of you, but it always obeys your commands. In combat, it rolls its own initiative and acts on its own turn. A familiar can't attack, but it can take other actions as normal.</p><p>When the familiar drops to 0 hit points, it disappears, leaving behind no physical form. It reappears after you cast this spell again.</p><p>While your familiar is within 100 feet of you, you can communicate with it telepathically. Additionally, as an action, you can see through your familiar's eyes and hear what it hears until the start of your next turn, gaining the benefits of any special senses that the familiar has. During this time, you are deaf and blind with regard to your own senses.</p><p>As an action, you can temporarily dismiss your familiar. It disappears into a pocket dimension where it awaits your summons. Alternatively, you can dismiss it forever. As an action while it is temporarily dismissed, you can cause it to reappear in any unoccupied space within 30 feet of you.</p><p>You can't have more than one familiar at a time. If you cast this spell while you already have a familiar, you instead cause it to adopt a new form. Choose one of the forms from the above list. Your familiar transforms into the chosen creature.</p><p>Finally, when you cast a spell with a range of touch, your familiar can deliver the spell as if it had cast the spell. Your familiar must be within 100 feet of you, and it must use its reaction to deliver the spell when you cast it. If the spell requires an attack roll, you use your attack modifier for the roll.</p>"
+          "description": "<p>You gain the service of a familiar, a spirit that takes an animal form you choose: bat, cat, crab, frog (toad), hawk, lizard, octopus, owl, poisonous snake, fish (quipper), rat, raven, sea horse, spider, or weasel. Appearing in an unoccupied space within range, the familiar has the statistics of the chosen form, though it is a celestial, fey, or fiend (your choice) instead of a beast.</p><p>Your familiar acts independently of you, but it always obeys your commands. In combat, it rolls its own initiative and acts on its own turn. A familiar can't attack, but it can take other actions as normal.</p><p>When the familiar drops to 0 hit points, it disappears, leaving behind no physical form. It reappears after you cast this spell again.</p><p>While your familiar is within 100 feet of you, you can communicate with it telepathically. Additionally, as an action, you can see through your familiar's eyes and hear what it hears until the start of your next turn, gaining the benefits of any special senses that the familiar has. During this time, you are deaf and blind with regard to your own senses.</p><p>As an action, you can temporarily dismiss your familiar. It disappears into a pocket dimension where it awaits your summons. Alternatively, you can dismiss it forever. As an action while it is temporarily dismissed, you can cause it to reappear in any unoccupied space within 30 feet of you.</p><p>You can't have more than one familiar at a time. If you cast this spell while you already have a familiar, you instead cause it to adopt a new form. Choose one of the forms from the above list. Your familiar transforms into the chosen creature.</p><p>Finally, when you cast a spell with a range of touch, your familiar can deliver the spell as if it had cast the spell. Your familiar must be within 100 feet of you, and it must use its reaction to deliver the spell when you cast it. If the spell requires an attack roll, you use your attack modifier for the roll.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 100,
+            "range": 0
+          }
         },
         {
           "name": "Find Steed",
@@ -2363,7 +2427,7 @@
           "description": "<p>Thin and wispy flames wreathe your body for the duration, shedding bright light in a 10-foot radius and dim light for an additional 10 feet, You can end the spell early by using an action to dismiss it.</p><p>The flames provide you with a warm shield or a chill shield, as you choose. The warm shield grants you resistance to cold damage, and the chill shield grants you resistance to fire damage.</p><p>In addition, whenever a creature within 5 feet of you hits you with a melee attack, the shield erupts with flame. The attacker takes 2d8 fire damage from a warm shield, or 2d8 cold damage from a cold shield.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "20"
+            "radius": 20
           }
         },
         {
@@ -2406,7 +2470,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "20"
+            "radius": 20
           }
         },
         {
@@ -2429,7 +2493,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for every two slot levels above 2nd.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "20"
+            "radius": 20
           }
         },
         {
@@ -2452,7 +2516,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 6th level or higher, the fire damage or the radiant damage (your choice) inceases by 1d6 for each slot level above 5th.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "10"
+            "radius": 10
           }
         },
         {
@@ -2555,7 +2619,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 2nd level or higher, the radius of the fog increases by 20 feet for each slot level above 1st.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "20"
+            "radius": 20
           }
         },
         {
@@ -2597,7 +2661,7 @@
           "description": "<p>An immobile, invisible, cube-shaped prison composed of magical force springs into existence around an area you choose within range. The prison can be a cage or a solid box, as you choose.</p><p>A prison in the shape of a cage can be up to 20 feet on a side and is made from 1/2-inch diameter bars spaced 1/2-inch apart.</p><p>A prison in the shape of a box can be up to 10 feet on a size, creating a solid barrier that prevents any matter from passing through it and blocking any spells cast into or out from the area.</p><p>When you cast the spell, any creature that is completely inside the cage&#39;s area is trapped. Creatures only partially within the area, or those too large to fit inside the area, are pushed away from the center of the area until they are completely outside the area.</p><p>A creature inside the cage can&#39;t leave it by nonmagical means. If the creature tries to use teleportation or interplanar travel to leave the cage, it must first make a Charisma saving throw. On a success, the creature can use that magic to exit the cage. On a failure, the creature can&#39;t exit the cage and wastes the use of the spell or effect. The cage also extends into the Ethereal Plane, blocking ethereal travel.</p><p>This spell can&#39;t be dispelled by <i>dispel magic</i>.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "20"
+            "edge": 20
           }
         },
         {
@@ -2662,7 +2726,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 7th level or higher, the damage increases by 1d6 for each slot level above 6th.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "60"
+            "radius": 60
           }
         },
         {
@@ -2801,7 +2865,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 7th level or higher, the barrier blocks spells of one level higher for each slot level above 6th.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "10"
+            "radius": 10
           }
         },
         {
@@ -2823,7 +2887,11 @@
           "concentration": false,
           "ritual": false,
           "description": "<p>When you cast this spell, you inscribe a glyph that harms other creatures, either upon a surface (such as a table or a section of floor or wall) or within an object that can be closed (such as a book, a scroll, or a treasure chest) to conceal the glyph. If you choose a surface, the glyph can cover an area of the surface no larger than 10 feet in diameter. If you choose an object, that object must remain in its place; if the object is moved more than 10 feet from where you cast this spell, the glyph is broken, and the spell ends without being triggered.</p><p>The glyph is nearly invisible and requires a successful Intelligence (Investigation) check against your spell save DC to be found.</p><p>You decide what triggers the glyph when you cast the spell. For glyphs inscribed on a surface, the most typical triggers include touching or standing on the glyph, removing another object covering the glyph, approaching within a certain distance of the glyph, or manipulating the object on which the glyph is inscribed. For glyphs inscribed within an object, the most common triggers include opening that object, approaching within a certain distance of the object, or seeing or reading the glyph. Once a glyph is triggered, this spell ends.</p><p>You can further refine the trigger so the spell activates only under certain circumstances or according to physical characteristics (such as height or weight), creature kind (for example, the ward could be set to affect aberrations or drow), or alignment. You can also set conditions for creatures that don't trigger the glyph, such as those who say a certain password.</p><p>When you inscribe the glyph, choose <i>explosive runes</i> or a <i>spell glyph</i>.</p><p><b>Explosive Runes.</b> When triggered, the glyph erupts with magical energy in a 20-foot-radius sphere centered on the glyph. The sphere spreads around corners. Each creature in the area must make a Dexterity saving throw. A creature takes 5d8 acid, cold, fire, lightning, or thunder damage on a failed saving throw (your choice when you create the glyph), or half as much damage on a successful one.</p><p><b>Spell Glyph.</b> You can store a prepared spell of 3rd level or lower in the glyph by casting it as part of creating the glyph. The spell must target a single creature or an area. The spell being stored has no immediate effect when cast in this way. When the glyph is triggered, the stored spell is cast. If the spell has a target, it targets the creature that triggered the glyph. If the spell affects an area, the area is centered on that creature. If the spell summons hostile creatures or creates harmful objects or traps, they appear as close as possible to the intruder and attack it. If the spell requires concentration, it lasts until the end of its full duration.</p>",
-          "atHigherLevel": "<p>When you cast this spell using a spell slot of 4th level or higher, the damage of an <i>explosive runes</i> glyph increases by 1d8 for each slot level above 3rd. If you create a <i>spell glyph</i>, you can store any spell of up to the same level as the slot you use for the <i>glyph of warding</i>.</p>"
+          "atHigherLevel": "<p>When you cast this spell using a spell slot of 4th level or higher, the damage of an <i>explosive runes</i> glyph increases by 1d8 for each slot level above 3rd. If you create a <i>spell glyph</i>, you can store any spell of up to the same level as the slot you use for the <i>glyph of warding</i>.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 20
+          }
         },
         {
           "name": "Goodberry",
@@ -2863,7 +2931,7 @@
           "description": "<p>Slick grease covers the ground in a 10-foot square centered on a point within range and turns it into difficult terrain for the duration.</p><p>When the grease appears, each creature standing in its area must succeed on a Dexterity saving throw or fall prone. A creature that enters the area or ends its turn there must also succeed on a Dexterity saving throw or fall prone.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "10"
+            "edge": 10
           }
         },
         {
@@ -2920,7 +2988,12 @@
           "material": 0,
           "concentration": false,
           "ritual": false,
-          "description": "<p>A Large spectral guardian appears and hovers for the duration in an unoccupied space of your choice that you can see within range. The guardian occupies that space and is indistinct except for a gleaming sword and shield emblazoned with the symbol of your deity.</p><p>Any creature hostile to you that moves to a space within 10 feet of the guardian for the first time on a turn must succeed on a Dexterity saving throw. The creature takes 20 radiant damage on a failed save, or half as much damage on a successful one. The guardian vanishes when it has dealt a total of 60 damage.</p>"
+          "description": "<p>A Large spectral guardian appears and hovers for the duration in an unoccupied space of your choice that you can see within range. The guardian occupies that space and is indistinct except for a gleaming sword and shield emblazoned with the symbol of your deity.</p><p>Any creature hostile to you that moves to a space within 10 feet of the guardian for the first time on a turn must succeed on a Dexterity saving throw. The creature takes 20 radiant damage on a failed save, or half as much damage on a successful one. The guardian vanishes when it has dealt a total of 60 damage.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 10,
+            "center": "cell"
+          }
         },
         {
           "name": "Guards and Wards",
@@ -2942,7 +3015,7 @@
           "description": "<p>You create a ward that protects up to 2,500 square feet of floor space (an area 50 feet square, or one hundred 5-foot squares or twenty-five 10-foot squares). The warded area can be up to 20 feet tall, and shaped as you desire. You can ward several stories of a stronghold by dividing the area among them, as long as you can walk into each contiguous area while you are casting the spell.</p><p>When you cast this spell, you can specify individuals that are unaffected by any or all of the effects that you choose. You can also specify a password that, when spoken aloud, makes the speaker immune to these effects.</p><p><i>Guards and wards</i> creates the following effects within the warded area.</p><p><b>Corridors.</b> Fog fills all the warded corridors, making them heavily obscured. In addition, at each intersection or branching passage offering a choice of direction, there is a 50 percent chance that a creature other than you will believe it is going in the opposite direction from the one it chooses.</p><p><b>Doors.</b> All doors in the warded area are magically locked, as if sealed by an arcane lock spell. In addition, you can cover up to ten doors with an illusion (equivalent to the illusory object function of the minor illusion spell) to make them appear as plain sections of wall.</p><p><b>Stairs.</b> Webs fill all stairs in the warded area from top to bottom, as the web spell. These strands regrow in 10 minutes if they are burned or torn away while guards and wards lasts.</p><p><b>Other Spell Effect.</b> You can place your choice of one of the following magical effects within the warded area of the stronghold.</p><ul><li>Place <i>dancing lights</i> in four corridors. You can designate a simple program that the lights repeat as long as guards and wards lasts.</li><li>Place <i>magic mouth</i> in two locations.</li><li>Place <i>stinking cloud</i> in two locations. The vapors appear in the places you designate; they return within 10 minutes if dispersed by wind while <i>guards and wards</i> lasts.</li><li>Place a constant <i>gust of wind</i> in one corridor or room.</li><li>Place a <i>suggestion</i> in one location. You select an area of up to 5 feet square, and any creature that enters or passes through the area receives the suggestion mentally.</li></ul><p>The whole warded area radiates magic. A <i>dispel magic</i> cast on a specific effect, if successful, removes only that effect.</p><p>You can create a permanently guarded and warded structure by casting this spell there every day for one year.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "50"
+            "edge": 50
           }
         },
         {
@@ -3020,7 +3093,7 @@
           "description": "<p>You touch a point and infuse an area around it with holy (or unholy) power. The area can have a radius up to 60 feet, and the spell fails if the radius includes an area already under the effect a hallow spell. The affected area is subject to the following effects.</p><p>First, celestials, elementals, fey, fiends, and undead can't enter the area, nor can such creatures charm, frighten, or possess creatures within it. Any creature charmed, frightened, or possessed by such a creature is no longer charmed, frightened, or possessed upon entering the area. You can exclude one or more of those types of creatures from this effect.</p><p>Second, you can bind an extra effect to the area. Choose the effect from the following list, or choose an effect offered by the GM. Some of these effects apply to creatures in the area; you can designate whether the effect applies to all creatures, creatures that follow a specific deity or leader, or creatures of a specific sort, such as orcs or trolls. When a creature that would be affected enters the spell's area for the first time on a turn or starts its turn there, it can make a Charisma saving throw. On a success, the creature ignores the extra effect until it leaves the area.</p><p><b>Courage.</b> Affected creatures can't be frightened while in the area.</p><p><b>Darkness.</b> Darkness fills the area. Normal light, as well as magical light created by spells of a lower level than the slot you used to cast this spell, can't illuminate the area.</p><p><b>Daylight.</b> Bright light fills the area. Magical darkness created by spells of a lower level than the slot you used to cast this spell can't extinguish the light.</p><p><b>Energy Protection.</b> Affected creatures in the area have resistance to one damage type of your choice, except for bludgeoning, piercing, or slashing.</p><p><b>Energy Vulnerability.</b> Affected creatures in the area have vulnerability to one damage type of your choice, except for bludgeoning, piercing, or slashing.</p><p><b>Everlasting Rest.</b> Dead bodies interred in the area can't be turned into undead.</p><p><b>Extradimensional Interference.</b> Affected creatures can't move or travel using teleportation or by extradimensional or interplanar means.</p><p><b>Fear.</b> Affected creatures are frightened while in the area.</p><p><b>Silence.</b> No sound can emanate from within the area, and no sound can reach into it.</p><p><b>Tongues.</b> Affected creatures can communicate with any other creature in the area, even if they don't share a common language.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "60"
+            "radius": 60
           }
         },
         {
@@ -3045,7 +3118,7 @@
           "description": "<p>You make natural terrain in a 150-foot cube in range look, sound, and smell like some other sort of natural terrain. Thus, open fields or a road can be made to resemble a swamp, hill, crevasse, or some other difficult or impassable terrain. A pond can be made to seem like a grassy meadow, a precipice like a gentle slope, or a rock-strewn gully like a wide and smooth road. Manufactured structures, equipment, and creatures within the area aren't changed in appearance.</p><p>The tactile characteristics of the terrain are unchanged, so creatures entering the area are likely to see through the illusion. If the difference isn't obvious by touch, a creature carefully examining the illusion can attempt an Intelligence (Investigation) check against your spell save DC to disbelieve it. A creature who discerns the illusion for what it is, sees it as a vague image superimposed on the terrain.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "150"
+            "edge": 150
           }
         },
         {
@@ -3282,7 +3355,7 @@
           "description": "<p>Divine light washes out from you and coalesces in a soft radiance in a 30-foot radius around you. Creatures of your choice in that radius when you cast this spell shed dim light in a 5-foot radius and have advantage on all saving throws, and other creatures have disadvantage on attack rolls against them until the spell ends. In addition, when a fiend or an undead hits an affected creature with a melee attack, the aura flashes with brilliant light. The attacker must succeed on a Constitution saving throw or be blinded until the spell ends.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "30"
+            "radius": 30
           }
         },
         {
@@ -3325,7 +3398,7 @@
           "description": "<p>You create a twisting pattern of colors that weaves through the air inside a 30-foot cube within range. The pattern appears for a moment and vanishes. Each creature in the area who sees the pattern must make a Wisdom saving throw. On a failed save, the creature becomes charmed for the duration. While charmed by this spell, the creature is incapacitated and has a speed of 0.</p><p>The spell ends for an affected creature if it takes any damage or if someone else uses an action to shake the creature out of its stupor.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "30"
+            "edge": 30
           }
         },
         {
@@ -3350,7 +3423,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 5th level or higher, the bludgeoning damage increases by 1d8 for each slot level above 4th.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "20"
+            "radius": 20
           }
         },
         {
@@ -3430,7 +3503,7 @@
           "description": "<p>A swirling cloud of smoke shot through with white-hot embers appears in a 20-foot-range. The cloud spreads around corners and is heavily obscured. It lasts for the duration or until a wind of moderate or greater speed (at least 10 miles per hour) disperses it.</p><p>When the cloud appears, each creature in it must make a Dexterity saving throw. A creature takes 10d8 fire damage on a failed save, or half as much damage on a successful one. A creature must also make this saving throw when it enters the spell&#39;s area for the first time on a turn or ends its turn there.</p><p>The cloud moves 10 feet directly away from you in a direction that you choose at the start of each of your turns.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "20"
+            "radius": 20
           }
         },
         {
@@ -3473,7 +3546,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 6th level or higher, the damage increases by 1d10 for each slot level above 5th.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "20"
+            "radius": 20
           }
         },
         {
@@ -3656,7 +3729,7 @@
           "description": "<p>You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet. The light can be colored as you like. Completely covering the object with something opaque blocks the light. The spell ends if you cast it again or dismiss it as an action.</p><p>If you target an object held or worn by a hostile creature, that creature must succeed on a Dexterity saving throw to avoid the spell.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "40"
+            "radius": 40
           }
         },
         {
@@ -3720,7 +3793,7 @@
           "materials": "A bit of fur from a bloodhound",
           "concentration": true,
           "ritual": false,
-          "description": "<p>Describe or name a creature that is familiar to you. You sense the direction to the creature&#39;s location, as long as that creature is within 1,000 feet of you. If the creature is moving, you know the direction of its movement.</p><p>The spell can locate a specific creature known to you, or the nearest creature of a specific kind (such as a human or a unicorn), so long as you have seen such a creature up close—-within 30 feet-—at least once. If the creature you described or named is in a different form, such as being under the effects of a <i>polymorph</i> spell, this spell doesn't locate the creature.</p><p>This spell can&#39;t locate a creature if running water at least 10 feet wide blocks a direct path between you and the creature.</p>"
+          "description": "<p>Describe or name a creature that is familiar to you. You sense the direction to the creature&#39;s location, as long as that creature is within 1,000 feet of you. If the creature is moving, you know the direction of its movement.</p><p>The spell can locate a specific creature known to you, or the nearest creature of a specific kind (such as a human or a unicorn), so long as you have seen such a creature up close - within 30 feet - at least once. If the creature you described or named is in a different form, such as being under the effects of a <i>polymorph</i> spell, this spell doesn't locate the creature.</p><p>This spell can&#39;t locate a creature if running water at least 10 feet wide blocks a direct path between you and the creature.</p>"
         },
         {
           "name": "Locate Object",
@@ -3829,7 +3902,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 4th level or higher, the duration increases by 1 hour for each slot level above 3rd.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "10"
+            "radius": 10
           }
         },
         {
@@ -3848,7 +3921,11 @@
           "materials": "A gem, crystal, reliquary, or some other ornamental container worth at least 500 gp",
           "concentration": false,
           "ritual": false,
-          "description": "<p>Your body falls into a catatonic state as your soul leaves it and enters the container you used for the spell&#39;s material component. While your soul inhabits the container, you are aware of your surroundings as if you were in the container&#39;s space. You can&#39;t move or use reactions. The only action you can take is to project your soul up to 100 feet out of the container, either returning to your living body (and ending the spell) or attempting to possess a humanoid&#39;s body.</p><p>You can attempt to possess any humanoid within 100 feet of you that you can see (creatures warded by a <i>protection from evil and good</i> or <i>magic circle</i> spell can&#39;t be possessed). The target must make a Charisma saving throw. On a failure, your soul moves into the target&#39;s body, and the target&#39;s soul becomes trapped in the container. On a success, the target resists your efforts to possess it, and you can&#39;t attempt to possess it again for 24 hours.</p><p>Once you possess a creature&#39;s body, you control it. Your game statistics are replaced by the statistics of the creature, though you retain your alignment and your Intelligence, Wisdom, and Charisma scores. You retain the benefit of your own class features. If the target has any class levels, you can&#39;t use any of its class features.</p><p>Meanwhile, the possessed creature&#39;s soul can perceive from the container using its own senses, but it can&#39;t move or take actions at all.</p><p>While possessing a body, you can use your action to return from the host body to the container if it is within 100 feet of you, returning the host creature&#39;s soul to its body. If the host body dies while you&#39;re in it, the creature dies, and you must make a Charisma saving throw against your own spellcasting DC. On a success, you return to the container if it is within 100 feet of you. Otherwise, you die.</p><p>If the container is destroyed or the spell ends, your soul immediately returns to your body. If your body is more than 100 feet away from you or if your body is dead when you attempt to return to it, you die. If another creature&#39;s soul is in the container when it is destroyed, the creature&#39;s soul returns to its body if the body is alive and within 100 feet. Otherwise, that creature dies.</p><p>When the spell ends, the container is destroyed.</p>"
+          "description": "<p>Your body falls into a catatonic state as your soul leaves it and enters the container you used for the spell&#39;s material component. While your soul inhabits the container, you are aware of your surroundings as if you were in the container&#39;s space. You can&#39;t move or use reactions. The only action you can take is to project your soul up to 100 feet out of the container, either returning to your living body (and ending the spell) or attempting to possess a humanoid&#39;s body.</p><p>You can attempt to possess any humanoid within 100 feet of you that you can see (creatures warded by a <i>protection from evil and good</i> or <i>magic circle</i> spell can&#39;t be possessed). The target must make a Charisma saving throw. On a failure, your soul moves into the target&#39;s body, and the target&#39;s soul becomes trapped in the container. On a success, the target resists your efforts to possess it, and you can&#39;t attempt to possess it again for 24 hours.</p><p>Once you possess a creature&#39;s body, you control it. Your game statistics are replaced by the statistics of the creature, though you retain your alignment and your Intelligence, Wisdom, and Charisma scores. You retain the benefit of your own class features. If the target has any class levels, you can&#39;t use any of its class features.</p><p>Meanwhile, the possessed creature&#39;s soul can perceive from the container using its own senses, but it can&#39;t move or take actions at all.</p><p>While possessing a body, you can use your action to return from the host body to the container if it is within 100 feet of you, returning the host creature&#39;s soul to its body. If the host body dies while you&#39;re in it, the creature dies, and you must make a Charisma saving throw against your own spellcasting DC. On a success, you return to the container if it is within 100 feet of you. Otherwise, you die.</p><p>If the container is destroyed or the spell ends, your soul immediately returns to your body. If your body is more than 100 feet away from you or if your body is dead when you attempt to return to it, you die. If another creature&#39;s soul is in the container when it is destroyed, the creature&#39;s soul returns to its body if the body is alive and within 100 feet. Otherwise, that creature dies.</p><p>When the spell ends, the container is destroyed.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 100
+          }
         },
         {
           "name": "Magic Missile",
@@ -3886,7 +3963,11 @@
           "materials": "A small bit of honeycomb and jade dust worth at least 10 gp, which the spell consumes",
           "concentration": false,
           "ritual": true,
-          "description": "<p>You implant a message within an object in range, a message that is uttered when a trigger condition is met. Choose an object that you can see that isn&#39;t being worn or carried by another creature, then speak the message, which must be 25 words or less, though it can be delivered over as long as ten minutes. Finally, determine the circumstance that will trigger the spell to deliver your message.</p><p>When that circumstance occurs, a magical mouth appears on the object and recites the message in your voice at the same volume you spoke. If the object you chose has a mouth or something that looks like a mouth (for example, the mouth of a statue) the magical mouth appears there so that the words appear to come from the object&#39;s mouth. When you cast this spell, you can have the spell end after it delivers its message or it can remain and repeat its message whenever the trigger occurs.</p><p>The triggering circumstance can be as general or as detailed as you like, though it must be based on visual or audible conditions that occur within 30 feet of the object. For example, you could instruct the mouth to speak when any creature moves within 30 feet of the object or when a silver bell rings within 30 feet.</p>"
+          "description": "<p>You implant a message within an object in range, a message that is uttered when a trigger condition is met. Choose an object that you can see that isn&#39;t being worn or carried by another creature, then speak the message, which must be 25 words or less, though it can be delivered over as long as ten minutes. Finally, determine the circumstance that will trigger the spell to deliver your message.</p><p>When that circumstance occurs, a magical mouth appears on the object and recites the message in your voice at the same volume you spoke. If the object you chose has a mouth or something that looks like a mouth (for example, the mouth of a statue) the magical mouth appears there so that the words appear to come from the object&#39;s mouth. When you cast this spell, you can have the spell end after it delivers its message or it can remain and repeat its message whenever the trigger occurs.</p><p>The triggering circumstance can be as general or as detailed as you like, though it must be based on visual or audible conditions that occur within 30 feet of the object. For example, you could instruct the mouth to speak when any creature moves within 30 feet of the object or when a silver bell rings within 30 feet.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 30
+          }
         },
         {
           "name": "Magic Weapon",
@@ -3949,7 +4030,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 6th level or higher, the spell lasts until dispelled, without requiring your concentration.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "20"
+            "edge": 20
           }
         },
         {
@@ -3973,7 +4054,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 6th level or higher, the healing increases by 1d8 for each slot level above 5th.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "30"
+            "radius": 30
           }
         },
         {
@@ -4129,7 +4210,7 @@
           "description": "<p>Blazing orbs of fire plummet to the ground at four different points you can see within range. Each creature in a 40-foot-radius sphere centered on each point you choose must make a Dexterity saving throw. The sphere spreads around corners. A creature takes 20d6 fire damage and 20d6 bludgeoning damage on a failed save, or half as much damage on a successful one. A creature in the area of more than one fiery burst is affected only once.</p><p>The spell damages objects in the area and ignites flammable objects that aren&#39;t being worn or carried.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "40"
+            "radius": 40
           }
         },
         {
@@ -4172,7 +4253,7 @@
           "description": "<p>You create a sound or an image of an object within range that lasts for the duration. The illusion also ends if you dismiss it as an action or cast this spell again.</p><p>If you create a sound, its volume can range from a whisper to a scream. It can be your voice, someone else's voice, a lion's roar, a beating of drums, or any other sound you choose. The sound continues unabated throughout the duration, or you can make discrete sounds at different times before the spell ends.</p><p>If you create an image of an object—such as a chair, muddy footprints, or a small chest—it must be no larger than a 5-foot cube. The image can't create sound, light, smell, or any other sensory effect. Physical interaction with the image reveals it to be an illusion, because things can pass through it.</p><p>If a creature uses its action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "5"
+            "edge": 5
           }
         },
         {
@@ -4248,7 +4329,11 @@
           "material": 0,
           "concentration": false,
           "ritual": false,
-          "description": "<p>Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see.</p>"
+          "description": "<p>Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 30
+          }
         },
         {
           "name": "Modify Memory",
@@ -4289,7 +4374,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d10 for each slot level above 2nd.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "5"
+            "radius": 5
           }
         },
         {
@@ -4313,7 +4398,7 @@
           "description": "<p>Choose an area of terrain no larger than 40 feet on a side within range. You can reshape dirt, sand, or clay in the area in any manner you choose for the duration. You can raise or lower the area&#39;s elevation, create or fill in a trench, erect or flatten a wall, or form a pillar. The extent of any such changes can&#39;t exceed half the area&#39;s largest dimension. So, if you affect a 40-foot square, you can create a pillar up to 20 feet high, raise or lower the square&#39;s elevation by up to 20 feet, dig a trench up to 20 feet deep, and so on. It takes 10 minutes for these changes to complete.</p><p>At the end of every 10 minutes you spend concentrating on the spell, you can choose a new area of terrain to affect.</p><p>Because the terrain's transformation occurs slowly, creatures in the area can&#39;t usually be trapped or injured by the ground&#39;s movement. This spell can&#39;t manipulate natural stone or stone construction. Rocks and structures shift to accommodate the new terrain. If the way you shape the terrain would make a structure unstable, it might collapse.</p><p>Similarly, this spell doesn&#39;t directly affect plant growth. The moved earth carries any plants along with it.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "40"
+            "edge": 40
           }
         },
         {
@@ -4337,7 +4422,7 @@
           "description": "<p>For the duration, you hide a target that you touch from divination magic. The target can be a willing creature or a place or an object no larger than 10 feet in any dimension. The target can't be targeted by any divination magic or perceived through magical scrying sensors.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "10"
+            "edge": 10
           }
         },
         {
@@ -4360,7 +4445,7 @@
           "description": "<p>A veil of shadows and silence radiates from you, masking you and your companions from detection. For the duration, each creature you choose within 30 feet of you (including you) has a +10 bonus to Dexterity (Stealth) checks and can't be tracked except by magical means. A creature that receives this bonus leaves behind no tracks or other traces of its passage.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "30"
+            "radius": 30
           }
         },
         {
@@ -4497,7 +4582,7 @@
           "description": "<p>This spell channels vitality into plants within a specific area. There are two possible uses for the spell, granting either immediate or long-term benefits.</p><p>If you cast this spell using 1 action, choose a point within range. All normal plants in a 100-foot radius centered on that point become thick and overgrown. A creature moving through the area must spend 4 feet of movement for every 1 foot it moves.</p><p>You can exclude one or more areas of any size within the spell's area from being affected.</p><p>If you cast this spell over 8 hours, you enrich the land. All plants in a half-mile radius centered on a point within range become enriched for 1 year. The plants yield twice the normal amount of food when harvested.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "100"
+            "radius": 100
           }
         },
         {
@@ -4638,7 +4723,7 @@
           "description": "<p>Eight multicolored rays of light flash from your hand. Each ray is a different color and has a different power and purpose. Each creature in a 60-foot cone must make a Dexterity saving throw. For each target, roll a d8 to determine which color ray affects it.</p><p><b>1. Red.</b> The target takes 10d6 fire damage on a failed save, or half as much damage on a successful one.</p><p><b>2. Orange.</b> The target takes 10d6 acid damage on a failed save, or half as much damage on a successful one.</p><p><b>3. Yellow.</b> The target takes 10d6 lightning damage on a failed save, or half as much damage on a successful one.</p><p><b>4. Green.</b> The target takes 10d6 poison damage on a failed save, or half as much damage on a successful one.</p><p><b>5. Blue.</b> The target takes 10d6 cold damage on a failed save, or half as much damage on a successful one.</p><p><b>6. Indigo.</b> On a failed save, the target is restrained. It must then make a Constitution saving throw at the end of each of its turns. If it successfully saves three times, the spell ends. If it fails its save three times, it permanently turns to stone and is subjected to the petrified condition. The successes and failures don't need to be consecutive; keep track of both until the target collects three of a kind.</p><p><b>7. Violet.</b> On a failed save, the target is blinded. It must then make a Wisdom saving throw at the start of your next turn. A successful save ends the blindness. If it fails that save, the creature is transported to another plane of existence of the GM's choosing and is no longer blinded. (Typically, a creature that is on a plane that isn't its home plane is banished home, while other creatures are usually cast into the Astral or Ethereal planes.)</p><p><b>8. Special.</b> The target is struck by two rays. Roll twice more, rerolling any 8.</p>",
           "aoe": {
             "type": "cone",
-            "length": "60"
+            "length": 60
           }
         },
         {
@@ -4678,7 +4763,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 5th level or higher, you can increase the size of the cube by 100 feet for each slot level beyond 4th. Thus you could protect a cube that can be up to 200 feet on one side by using a spell slot of 5th level.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "100"
+            "edge": 100
           }
         },
         {
@@ -4699,7 +4784,7 @@
           "description": "<p>A flickering flame appears in your hand. The flame remains there for the duration and harms neither you nor your equipment. The flame sheds bright light in a 10-foot radius and dim light for an additional 10 feet. The spell ends if you dismiss it as an action or if you cast it again.</p><p>You can also attack with the flame, although doing so ends the spell. When you cast this spell, or as an action on a later turn, you can hurl the flame at a creature within 30 feet of you. Make a ranged spell attack. On a hit, the target takes 1d8 fire damage.</p><p>This spell&#39;s damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "20"
+            "radius": 20
           }
         },
         {
@@ -4722,7 +4807,7 @@
           "description": "<p>You create an illusion of an object, a creature, or some other visible phenomenon within range that activates when a specific condition occurs. The illusion is imperceptible until then. It must be no larger than a 30-foot cube, and you decide when you cast the spell how the illusion behaves and what sounds it makes. This scripted performance can last up to 5 minutes.</p><p>When the condition you specify occurs, the illusion springs into existence and performs in the manner you described. Once the illusion finishes performing, it disappears and remains dormant for 10 minutes. After this time, the illusion can be activated again. The triggering condition can be as general or as detailed as you like, though it must be based on visual or audible conditions that occur within 30 feet of the area. For example, you could create an illusion of yourself to appear and warn off others who attempt to open a trapped door, or you could set the illusion to trigger only when a creature says the correct word or phrase.</p><p>Physical interaction with the image reveals it to be an illusion, because things can pass through it. A creature that uses its action to examine the image can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the creature can see through the image, and any noise it makes sounds hollow to the creature.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "30"
+            "edge": 30
           }
         },
         {
@@ -4784,7 +4869,7 @@
           "materials": "Holy water or powdered silver and iron, which the spell consumes",
           "concentration": true,
           "ritual": false,
-          "description": "<p>The protection grants several benefits. Creatures of those types have disadvantage on attack rolls against the target. The target also can&#39;t be charmed, frightened, or possessed by them. If the target is already charmed, frightened, or possessed by such a creature, the target has advantage on any new saving throw against the relevant effect.</p>"
+          "description": "<p>Until the spell ends, one willing creature you touch is protected against certain types of creatures: aberrations, celestials, elementals, fey, fiends, and undead.</p><p>The protection grants several benefits. Creatures of those types have disadvantage on attack rolls against the target. The target also can&#39;t be charmed, frightened, or possessed by them. If the target is already charmed, frightened, or possessed by such a creature, the target has advantage on any new saving throw against the relevant effect.</p>"
         },
         {
           "name": "Protection from Poison",
@@ -4826,7 +4911,7 @@
           "description": "<p>All nonmagical food and drink within a 5-foot radius sphere centered on a point of your choice within range is purified and rendered free of poison and disease.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "5"
+            "radius": 5
           }
         },
         {
@@ -5021,7 +5106,7 @@
           "description": "<p>This spell reverses gravity in a 50-foot-radius, 100-foot high cylinder centered on a point within range. All creatures and objects that aren&#39;t somehow anchored to the ground in the area fall upward and reach the top of the area when you cast this spell. A creature can make a Dexterity saving throw to grab onto a fixed object it can reach, thus avoiding the fall.</p><p>If some solid object (such as a ceiling) is encountered in this fall, falling objects and creature strike it just as they would during a normal downward fall. If an object or creature reaches the top of the area without striking anything, it remains there, oscillating slightly, for the duration.</p><p>At the end of the duration, affected objects and creatures fall back down.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "50"
+            "radius": 50
           }
         },
         {
@@ -5273,7 +5358,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "10"
+            "radius": 10
           }
         },
         {
@@ -5369,7 +5454,7 @@
           "description": "<p>For the duration, no sound can be created within or pass through a 20-foot-radius sphere centered on a point you choose within range. Any creature or object entirely inside the sphere is immune to thunder damage, and creatures are deafened while entirely inside it.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "20"
+            "radius": 20
           }
         },
         {
@@ -5393,7 +5478,7 @@
           "description": "<p>You create the image of an object, a creature, or some other visible phenomenon that is no larger than a 15-foot cube. The image appears at a spot within range and lasts for the duration. The image is purely visual; it isn't accompanied by sound, smell, or other sensory effects.</p><p>You can use your action to cause the image to move to any spot within range. As the image changes location, you can alter its appearance so that its movements appear natural for the image. For example, if you create an image of a creature and move it, you can alter the image so that it appears to be walking.</p><p>Physical interaction with the image reveals it to be an illusion, because things can pass through it. A creature that uses its action to examine the image can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the creature can see through the image.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "15"
+            "edge": 15
           }
         },
         {
@@ -5436,7 +5521,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 2nd level or higher, roll an additional 2d8 for each slot level above 1st.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "20"
+            "radius": 20
           }
         },
         {
@@ -5460,7 +5545,7 @@
           "description": "<p>Until the spell ends, freezing rain and sleet fall in a 20-foot-tall cylinder with a 40-foot radius centered on a point you choose within range. The area is heavily obscured, and exposed flames in the area are doused.</p><p>The ground in the area is covered with slick ice, making it difficult terrain. When a creature enters the spell's area for the first time on a turn or starts its turn there, it must make a Dexterity saving throw. On a failed save, it falls prone.</p><p>If a creature is concentrating in the spell's area, the creature must make a successful Constitution saving throw against your spell save DC or lose concentration.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "40"
+            "radius": 40
           }
         },
         {
@@ -5483,7 +5568,7 @@
           "description": "<p>You alter time around up to six creatures of your choice in a 40-foot cube within range. Each target must succeed on a wisdom saving throwor be affected by this spell for the duration.</p><p>An affected target's speed is halved, it takes a -2 penalty to AC and Dexterity saving throws, and it can't use reactions. On its turn, it can use either an action or a bonus action, not both. Regardless of the creature's abilities or magic items, it can't make more than one melee or ranged attack during its turn.</p><p>If the creature attempts to cast a spell with a casting time of 1 action, roll a d20. On an 11 or higher, the spell doesn't take effect until the creature's next turn, and the creature must use its action on that turn to complete the spell. If it can't, the spell is wasted.</p><p>A creature affected by this spell makes another Wisdom saving throw at the end of its turn. On a successful save, the effect ends for it.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "40"
+            "edge": 40
           }
         },
         {
@@ -5561,7 +5646,7 @@
           "description": "<p>You imbue plants within 30 feet of you with limited sentience and animation, giving them the ability to communicate with you and follow your simple commands. You can question plants about events in the spell's area within the past day, gaining information about creatures that have passed, weather, and other circumstances.</p><p>You can also turn difficult terrain caused by plant growth (such as thickets and undergrowth) into ordinary terrain that lasts for the duration. Or you can turn ordinary terrain where plants are present into difficult terrain that lasts for the duration, causing v ines and branches to hinder pursuers, for example.</p><p>Plants might be able to perform other tasks on your behalf, at the DM's discretion. The spell doesn't enable plants to uproot themselves and move about, but they can freely move branches, tendrils, and stalks.</p><p>If a plant creature is in the area, you can communicate with it as if you shared a common language, but you gain no magical ability to influence it.</p><p>This spell can cause the plants created by the entangle spell to release a restrained creature.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "30"
+            "radius": 30
           }
         },
         {
@@ -5604,7 +5689,7 @@
           "description": "<p>The ground in a 20-foot radius centered on a point within range twists and sprouts hard spikes and thorns. The area becomes difficult terrain for the duration. When a creature moves into or within the area, it takes 2d4 piercing damage for every 5 feet it travels.</p><p>The transformation of the ground is camouflaged to look natural. Any creature that can&#39;t see the area at the time the spell is cast must make a Wisdom (Perception) check against your spell save DC to recognize the terrain as hazardous before entering it.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "20"
+            "radius": 20
           }
         },
         {
@@ -5624,7 +5709,11 @@
           "concentration": true,
           "ritual": false,
           "description": "<p>You call forth spirits to protect you. They flit around you to a distance of 15 feet for the duration. If you are good or neutral, their spectral form appears angelic or fey (your choice). If you are evil, they appear fiendish.</p><p>When you cast this spell, you can designate any number of creatures you can see to be unaffected by it. An affected creature's speed is halved in the area, and when the creature enters the area for the first time on a turn or starts its turn there, it must make a Wisdom saving throw. On a failed save, the creature takes 3d8 radiant damage (if you are good or neutral) or 3d8 necrotic damage (if you are evil). On a successful save, the creature takes half as much damage.</p>",
-          "atHigherLevel": "<p>When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for each slot level above 3rd.</p>"
+          "atHigherLevel": "<p>When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for each slot level above 3rd.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 15
+          }
         },
         {
           "name": "Spiritual Weapon",
@@ -5664,7 +5753,7 @@
           "description": "<p>You create a 20-foot-radius sphere of yellow, nauseating gas centered on a point within range. The cloud spreads around corners, and its area is heavily obscured. The cloud lingers in the air for the duration.</p><p>Each creature that is completely within the cloud at the start of its turn must make a Constitution saving throw against poison. On a failed save, the creature spends its action that turn retching and reeling. Creatures that don't need to breathe or are immune to poison automatically succeed on this saving throw.</p><p>A moderate wind (at least 10 miles per hour) disperses the cloud after 4 rounds. A strong wind (at least 20 miles per hour) disperses it after 1 round.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "20"
+            "radius": 20
           }
         },
         {
@@ -5723,11 +5812,7 @@
           "material": 0,
           "concentration": true,
           "ritual": false,
-          "description": "<p>A churning storm cloud forms, centered on a point you can see and spreading to a radius of 360 feet. Lightning flashes in the area, thunder booms, and strong winds roar. Each creature under the cloud (no more than 5,000 feet beneath the cloud) when it appears must make a Constitution saving throw. On a failed save, a creature takes 2d6 thunder damage and becomes deafened for 5 minutes.</p><p>Each round you maintain concentration on this spell, the storm produces additional effects on your turn.</p><p><b>Round 2.</b> Acidic rain falls from the cloud. Each creature and object under the cloud takes 1d6 acid damage.</p><p><b>Round 3.</b> You call six bolts of lightning from the cloud to strike six creatures or objects of your choice beneath the cloud. A given creature or object can't be struck by more than one bolt. A struck creature must make a Dexterity saving throw. The creature takes 10d6 lightning damage on a failed save, or half as much damage on a successful one.</p><p><b>Round 4.</b> Hailstones rain down from the cloud. Each creature under the cloud takes 2d6 bludgeoning damage.</p><p><b>Round 5–10.</b> Gusts and freezing rain assail the area under the cloud. The area becomes difficult terrain and is heavily obscured. Each creature there takes 1d6 cold damage. Ranged weapon attacks in the area are impossible. The wind and rain count as a severe distraction for the purposes of maintaining concentration on spells. Finally, gusts of strong wind (ranging from 20 to 50 miles per hour) automatically disperse fog, mists, and similar phenomena in the area, whether mundane or magical.</p>",
-          "aoe": {
-            "type": "sphere",
-            "radius": "360"
-          }
+          "description": "<p>A churning storm cloud forms, centered on a point you can see and spreading to a radius of 360 feet. Lightning flashes in the area, thunder booms, and strong winds roar. Each creature under the cloud (no more than 5,000 feet beneath the cloud) when it appears must make a Constitution saving throw. On a failed save, a creature takes 2d6 thunder damage and becomes deafened for 5 minutes.</p><p>Each round you maintain concentration on this spell, the storm produces additional effects on your turn.</p><p><b>Round 2.</b> Acidic rain falls from the cloud. Each creature and object under the cloud takes 1d6 acid damage.</p><p><b>Round 3.</b> You call six bolts of lightning from the cloud to strike six creatures or objects of your choice beneath the cloud. A given creature or object can't be struck by more than one bolt. A struck creature must make a Dexterity saving throw. The creature takes 10d6 lightning damage on a failed save, or half as much damage on a successful one.</p><p><b>Round 4.</b> Hailstones rain down from the cloud. Each creature under the cloud takes 2d6 bludgeoning damage.</p><p><b>Round 5–10.</b> Gusts and freezing rain assail the area under the cloud. The area becomes difficult terrain and is heavily obscured. Each creature there takes 1d6 cold damage. Ranged weapon attacks in the area are impossible. The wind and rain count as a severe distraction for the purposes of maintaining concentration on spells. Finally, gusts of strong wind (ranging from 20 to 50 miles per hour) automatically disperse fog, mists, and similar phenomena in the area, whether mundane or magical.</p>"
         },
         {
           "name": "Suggestion",
@@ -5788,7 +5873,11 @@
           "materials": "Fire and a piece of sunstone",
           "concentration": false,
           "ritual": false,
-          "description": "<p>Brilliant sunlight flashes in a 60-foot radius centered on a point you choose within range. Each creature in that light must make a Constitution saving throw. On a failed save, a creature takes 12d6 radiant damage and is blinded for 1 minute. On a successful save, it takes half as much damage and isn&#39;t blinded by this spell. Undead and oozes have disadvantage on this saving throw.</p><p>A creature blinded by this spell makes another Constitution saving throw at the end of each of its turns. On a successful save, it is no longer blinded.</p><p>This spell dispels any darkness in its area that was created by a spell.</p>"
+          "description": "<p>Brilliant sunlight flashes in a 60-foot radius centered on a point you choose within range. Each creature in that light must make a Constitution saving throw. On a failed save, a creature takes 12d6 radiant damage and is blinded for 1 minute. On a successful save, it takes half as much damage and isn&#39;t blinded by this spell. Undead and oozes have disadvantage on this saving throw.</p><p>A creature blinded by this spell makes another Constitution saving throw at the end of each of its turns. On a successful save, it is no longer blinded.</p><p>This spell dispels any darkness in its area that was created by a spell.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 60
+          }
         },
         {
           "name": "Symbol",
@@ -5885,7 +5974,7 @@
           "description": "<p>As you cast the spell, you draw a 10-foot-diameter circle on the ground inscribed with sigils that link your location to a permanent teleportation circle of your choice, whose sigil sequence you know and that is on the same plane of existence as you. A shimmering portal opens within the circle you drew and remains open until the end of your next turn. Any creature that enters the portal instantly appears within 5 feet of the destination circle or in the nearest unoccupied space if that space is occupied.</p><p>Many major temples, guilds, and other important places have permanent teleportation circles inscribed somewhere within their confines. Each such circle includes a unique sigil sequence—-a string of magical runes arranged in a particular pattern. When you first gain the ability to cast this spell, you learn the sigil sequences for two destinations on the Material Plane, determined by the DM. You can learn additional sigil sequences during your adventures. You can commit a new sigil sequence to memory after studying it for 1 minute.</p><p>You can create a permanent teleportation circle by casting this spell in the same location every day for one year. You need not use the circle to teleport when you cast the spell in this way.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "10"
+            "radius": 10
           }
         },
         {
@@ -5927,7 +6016,7 @@
           "atHigherLevel": "<p>When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "15"
+            "edge": 15
           }
         },
         {
@@ -5968,7 +6057,7 @@
           "description": "<p>A 10-foot-radius immobile dome of force springs into existence around and above you and remains stationary for the duration. The spell ends if you leave its area.</p><p>Nine creatures of Medium size or smaller can fit inside the dome with you. The spell fails if its area includes a larger creature or more than nine creatures. Creatures and objects within the dome when you cast this spell can move through it freely. All other creatures and objects are barred from passing through it. Spells and other magical effects can't extend through the dome or be cast through it. The atmosphere inside the space is comfortable and dry, regardless of the weather outside.</p><p>Until the spell ends, you can command the interior to become dimly lit or dark. The dome is opaque from the outside, of any color you choose, but it is transparent from the inside.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "10"
+            "radius": 10
           }
         },
         {
@@ -6090,7 +6179,7 @@
           "description": "<p>This spell gives the willing creature you touch the ability to see things as they actually are. For the duration, the creature has truesight, notices secret doors hidden by magic, and can see into the Ethereal Plane, all out to a range of 120 feet.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "120"
+            "radius": 120
           }
         },
         {
@@ -6281,7 +6370,11 @@
           "materials": "A pair of platinum rings worth at least 50 gp each, which you and the target must wear for the duration",
           "concentration": false,
           "ritual": false,
-          "description": "<p>This spell wards a willing creature you touch and creates a mystic connection between you and the target until the spell ends. While the target is within 60 feet of you, it gains a +1 bonus to AC and saving throws, and it has resistance to all damage. Also, each time it takes damage, you take the same amount of damage.</p><p>The spell ends if you drop to 0 hit points or if you and the  target become separated by more than 60 feet. It also ends if the spell is cast again on either of the connected creatures. You can also dismiss the spell as an action.</p>"
+          "description": "<p>This spell wards a willing creature you touch and creates a mystic connection between you and the target until the spell ends. While the target is within 60 feet of you, it gains a +1 bonus to AC and saving throws, and it has resistance to all damage. Also, each time it takes damage, you take the same amount of damage.</p><p>The spell ends if you drop to 0 hit points or if you and the  target become separated by more than 60 feet. It also ends if the spell is cast again on either of the connected creatures. You can also dismiss the spell as an action.</p>",
+          "aoe": {
+            "type": "sphere",
+            "radius": 60
+          }
         },
         {
           "name": "Water Breathing",
@@ -6345,7 +6438,7 @@
           "description": "<p>You conjure a mass of thick, sticky webbing at a point of your choice within range. The webs fill a 20-foot cube from that point for the duration. The webs are difficult terrain and lightly obscure their area.</p><p>If the webs aren&#39;t anchored between two solid masses (such as walls or trees) or layered across a floor, wall, or ceiling, the conjured web collapses on itself, and the spell ends at the start of your next turn. Webs layered over a flat surface have a depth of 5 feet.</p><p>Each creature that starts its turn in the webs or that enters them during its turn must make a Dexterity saving throw. On a failed save, the creature is restrained as long as it remains in the webs or until it breaks free.</p><p>A creature restrained by the webs can use its action to make a Strength cheek against your spell save DC. If it suceeeds, it is no longer restrained.</p><p>The webs are flammable. Any 5-foot cube of webs exposed to fire burns away in 1 round, dealing 2d4 fire damage to any creature that starts its turn in the fire.</p>",
           "aoe": {
             "type": "cube",
-            "edge": "20"
+            "edge": 20
           }
         },
         {
@@ -6366,7 +6459,7 @@
           "description": "<p>Drawing on the deepest fears of a group of creatures, you create illusory creatures in their minds, visible only to them. Each creature in a 30-foot-radius sphere centered on a point of your choice within range must make a Wisdom saving throw. On a failed save, a creature becomes frightened for the duration. The illusion calls on the creature&#39;s deepest fears, manifesting its worst nightmares as an implacable threat. At the start of each of the frightened creature&#39;s turns, it must succeed on a Wisdom saving throw or take 4d10 psychic damage. On a successful save, the spell ends for that creature.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "30"
+            "radius": 30
           }
         },
         {
@@ -6461,7 +6554,7 @@
           "description": "<p>You create a magical zone that guards against deception in a 15-foot-radius sphere centered on a point of your choice within range. Until the spell ends, a creature that enters the spell&#39;s area for the first time on turn or starts its turn there must make a Charisma saving throw. On a failed save, a creature can&#39;t speak a deliberate lie while in the radius. you know whether each creature succeeds or fails on its saving throw.</p><p>An affected creature is aware of the spell and can thus avoid answering questions to which it would normally respond with a lie. Such a creature can be evasive in its answers as long as it remains within the boundaries of the truth.</p>",
           "aoe": {
             "type": "sphere",
-            "radius": "15"
+            "radius": 15
           }
         }
       ],
