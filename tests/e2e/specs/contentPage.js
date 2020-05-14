@@ -6,7 +6,7 @@ describe('Content page', () => {
     cy.visit('/content');
     cy.get('.source-action').last().click(); // Delete the default SRD
     cy.contains('Import URL').click();
-    cy.get('#urlloader input[type="text"]').type('bgior.com/misc/externalFile.json'); // A copy of this file is on this repo
+    cy.get('#urlloader input[type="text"]').type('files.bgior.com/weavelore/externalFile.json'); // A copy of this file is on this repo
     cy.contains('OK').click();
     cy.contains('Test Source');
     cy.contains('Spells').click();
