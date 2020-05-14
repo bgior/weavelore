@@ -72,7 +72,7 @@
       </div>
     </div>
 
-    <Diagram :range="numericRange" :aoe="spell.aoe" title="Range visualization"/>
+    <Diagram :defaultRange="numericRange" :aoe="spell.aoe" title="Range visualization"/>
   </div>
 </template>
 <script>

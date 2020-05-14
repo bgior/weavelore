@@ -29,10 +29,17 @@ export default {
   name: 'Diagram',
   props: {
     app: Object,
-    range: Number, // The range of the spell, in feet
+    defaultRange: Number, // The "official" range of the spell, in feet, as defined in the book
     aoe: Object // A hash that represents the Area Of Effect of this spell,
   },
   computed: {
+    // The range of the effect to show in the diagram, in feet. In most cases it will match the
+    // defaultRange of the spell, but in some cases we might want to use a different range for the
+    // AOE. In such cases, the aoe object contains a range attribute that overrides the "official" range.
+    range() {
+      const overrideRange = (this.aoe || {}).range;
+      return overrideRange === undefined ? this.defaultRange : overrideRange;
+    },
     width() { // The width of the canvas, in pixels
       return this.cols * cellSize + margin * 2;
     },

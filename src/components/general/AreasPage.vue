@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="col-12" style="text-align: center">
-      <Diagram :range="range" :aoe="type == '' ? null : { type: type, radius: size, edge: size, length: size, angle: angleRadians, center: center }"/>
+      <Diagram :defaultRange="range" :aoe="type == '' ? null : { type: type, radius: size, edge: size, length: size, angle: angleRadians, center: center }"/>
     </div>
     <b-modal id="areasHelp" title="Notes">
       <ul>
