@@ -3,7 +3,7 @@
 <template>
   <div class="row no-gutters">
     <div class="col-12 query-area">
-      <input type="text" class="form-control query" v-focus v-model="rawQueryText" ref="queryField" placeholder="Search..."/>
+      <input type="text" class="form-control query" v-focus v-model="rawQueryText" ref="queryField" placeholder="Search..." @keydown="handleQueryKeydown"/>
     </div>
   </div>
 </template>
@@ -20,6 +20,18 @@ export default {
   data() { return {
     rawQueryText: ''
   }},
+  methods: {
+    // Add the ability to move through the rule list by using the Up/Down arrows while focused on the query input
+    handleQueryKeydown(evt) {
+      if (evt.keyCode == 38) { // Up arrow
+        this.$emit('navigate-rules', 'up');
+        evt.preventDefault();
+      } else if (evt.keyCode == 40) { // Down arrow
+        this.$emit('navigate-rules', 'down');
+        evt.preventDefault();
+      }
+    }
+  },
   watch: {
     rawQueryText() {
       // Binding the text field directly to query.text can make the app stutter a bit because it has to re-render

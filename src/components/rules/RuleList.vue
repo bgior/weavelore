@@ -2,13 +2,13 @@
 
 <template>
   <div>
-    <div class="row rules scrollable-panel" v-show="anyResultsFound">
-      <div v-for="r in app.rules" v-show="visible(r)" :key="r.codename" :class="`rule col-12 ${panelIsOpen ? (r.codename == selectedRule.codename ? 'selected' : '') : 'col-md-6 col-lg-4 col-xl-3'}`" @click="ruleClicked($event, r.codename)">
+    <div class="row rules scrollable-panel" v-if="rules.length > 0">
+      <div v-for="r in rules" :key="r.codename" :class="`rule col-12 ${panelIsOpen ? (r.codename == selectedRule.codename ? 'selected' : '') : 'col-md-6 col-lg-4 col-xl-3'}`" @click="ruleClicked($event, r.codename)">
         <img :src="require(`@/assets/images/icons/rules/${r.icon}.png`)">
         {{ r.name }}
       </div>
     </div>
-    <div v-show="queryPresent && !anyResultsFound" class="list-message">
+    <div v-else class="list-message">
       No rules found
     </div>
   </div>
@@ -22,7 +22,7 @@ export default {
   name: 'RuleList',
   props: {
     app: Object,
-    query: Object,
+    rules: Array,
     panelIsOpen: Boolean,
     selectedRule: Object
   },
@@ -32,20 +32,9 @@ export default {
     },
     classes() {
       return constants.classes;
-    },
-    // Returns whether the query matches at least one rule
-    anyResultsFound() {
-      return this.app.rules.some(rule => this.visible(rule));
-    },
-    // Returns whether the user has entered any valid query
-    queryPresent() {
-      return this.query.text.length >= this.app.settings.minimumQueryLength || this.query.class || this.query.level || this.query.school;
     }
   },
   methods: {
-    visible(rule) {
-      return this.query.text.length >= this.app.settings.minimumQueryLength && (rule.downcasedName.includes(this.query.text) || (rule.tags && rule.tags.some(t => t.includes(this.query.text))) || (this.query.includeDescription && rule.description.toLowerCase().includes(this.query.text)));
-    },
     ruleClicked(event, key) {
       if (!this.selectedRule) {
         const div = event.currentTarget;

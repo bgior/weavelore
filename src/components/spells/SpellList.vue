@@ -2,15 +2,15 @@
 
 <template>
   <div>
-    <div class="row spells scrollable-panel" v-show="anyResultsFound">
+    <div class="row spells scrollable-panel" v-if="spells.length > 0">
       <template v-if="!detailedModeOn">
-        <div v-for="s in app.spells" v-show="visible(s)" :key="s.codename" :class="`spell col-12 ${panelIsOpen ? (s.codename == selectedSpell.codename ? 'selected' : '') : 'col-md-6 col-lg-4 col-xl-3'}`" @click="spellClicked($event, s.codename)">
+        <div v-for="s in spells" :key="s.codename" :class="`spell col-12 ${panelIsOpen ? (s.codename == selectedSpell.codename ? 'selected' : '') : 'col-md-6 col-lg-4 col-xl-3'}`" @click="spellClicked($event, s.codename)">
           <span class="level">{{ s.level }}</span>
           <img :src="icons.schoolIcon(s)" class="school"/> {{ s.name }}
         </div>
       </template>
       <template v-else>
-        <div v-for="s in app.spells" v-show="visible(s)" :key="s.codename" class="spell col-12" @click="spellClicked($event, s.codename)">
+        <div v-for="s in spells" :key="s.codename" class="spell col-12" @click="spellClicked($event, s.codename)">
           <img v-for="c in classes" :key="c" :src="icons.classIcon(c)" :class="s.classes.includes(c) ? '' : 'absent'"/>
           <img :src="require('@/assets/images/icons/components/verbal.png')" :class="s.verbal ? '' : 'absent'"/>
           <img :src="require('@/assets/images/icons/components/somatic.png')" :class="s.somatic ? '' : 'absent'"/>
@@ -31,7 +31,7 @@
         </div>
       </template>
     </div>
-    <div v-show="queryPresent && !anyResultsFound" class="list-message">
+    <div v-else class="list-message">
       No spells found
     </div>
   </div>
@@ -45,7 +45,7 @@ export default {
   name: 'SpellList',
   props: {
     app: Object,
-    query: Object,
+    spells: Array,
     panelIsOpen: Boolean,
     selectedSpell: Object,
     detailedModeOn: Boolean
@@ -56,31 +56,9 @@ export default {
     },
     classes() {
       return constants.classes;
-    },
-    // Returns whether the query matches at least one spell
-    anyResultsFound() {
-      return this.app.spells.some(spell => this.visible(spell));
-    },
-    // Returns whether the user has entered any valid query
-    queryPresent() {
-      return this.query.text.length >= this.app.settings.minimumQueryLength || this.query.class || this.query.level || this.query.school || this.query.sourceName;
     }
   },
   methods: {
-    visible(spell) {
-      if (this.query.class || this.query.level || this.query.school || this.query.sourceName || this.query.favorites) {
-        // Composite search (with filters)
-        return (spell.codename.includes(this.query.text) || (this.query.includeDescription && spell.description.includes(this.query.text))) &&
-          (!this.query.class || spell.classes.includes(this.query.class)) &&
-          (!this.query.level || spell.level == this.query.level) &&
-          (!this.query.school || spell.school == this.query.school) &&
-          (!this.query.sourceName || spell.sourceName == this.query.sourceName) &&
-          (!this.query.favorites || this.app.settings.favorites.has(spell.codename));
-      } else {
-        // Simple search (no filters)
-        return this.query.text.length >= this.app.settings.minimumQueryLength && (spell.downcasedName.includes(this.query.text) || (this.query.includeDescription && spell.description.toLowerCase().includes(this.query.text)));
-      }
-    },
     spellClicked(event, key) {
       if (!this.selectedSpell) {
         const div = event.currentTarget;

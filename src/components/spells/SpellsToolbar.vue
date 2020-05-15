@@ -3,7 +3,7 @@
 <template>
   <div class="row no-gutters">
     <div class="col-12 col-lg-5 col-xl-6 query-area pr-2">
-      <input type="text" class="form-control query" v-focus v-model="rawQueryText" ref="queryField" placeholder="Search..."/>
+      <input type="text" class="form-control query" v-focus v-model="rawQueryText" ref="queryField" placeholder="Search..." @keydown="handleQueryKeydown"/>
       <div class="search-actions">
         <span @click="clearQuery">
           <img :src="require('@/assets/images/icons/misc/close.png')" class="details-icon" title="Reset query and filters"/>
@@ -82,6 +82,16 @@ export default {
       this.query.sourceName = '';
       this.$refs.queryField.focus();
     },
+    // Add the ability to move through the spell list by using the Up/Down arrows while focused on the query input
+    handleQueryKeydown(evt) {
+      if (evt.keyCode == 38) { // Up arrow
+        this.$emit('navigate-spells', 'up');
+        evt.preventDefault();
+      } else if (evt.keyCode == 40) { // Down arrow
+        this.$emit('navigate-spells', 'down');
+        evt.preventDefault();
+      }
+    }
   },
   watch: {
     rawQueryText() {

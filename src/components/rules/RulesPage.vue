@@ -1,10 +1,11 @@
 <!-- © Copyright 2019 Bruno Giorello. Released under GNU AGPLv3, see 'LICENSE.md'. -->
 <template>
   <div>
-    <RuleSearcher :app="app" :class="panelIsOpen ? 'd-none d-md-flex' : ''" :query="query"/>
+    <RuleSearcher :app="app" :class="panelIsOpen ? 'd-none d-md-flex' : ''" :query="query" @navigate-rules="navigateRules"/>
     <div class="row">
       <div :class="panelIsOpen ? 'col-md-6 col-lg-4 col-xl-3 d-none d-md-block' : 'col-12'">
-        <RuleList :app="app" :query="query" :panelIsOpen="panelIsOpen" :selectedRule="selectedRule" @rule-clicked="openRule"/>
+        <RuleList v-if="queryPresent" :rules="filteredRules" :panelIsOpen="panelIsOpen" :selectedRule="selectedRule" @rule-clicked="openRule"/>
+        <div v-else class="list-message">Type anything to search</div>
       </div>
       <RuleView :app="app" v-if="panelIsOpen" :rule="selectedRule" @clear-rule="clearRule" class="col-md-6 col-lg-8 col-xl-9 scrollable-panel rule-view"/>
     </div>
@@ -38,6 +39,18 @@ export default {
     panelIsOpen() {
       return this.selectedRule != null;
     },
+    // The list of rules that match the user's query
+    filteredRules() {
+      const query = this.query;
+      return this.app.rules.filter(rule => query.text.length >= this.app.settings.minimumQueryLength &&
+        (rule.downcasedName.includes(query.text) || (rule.tags && rule.tags.some(t => t.includes(query.text))) ||
+        (query.includeDescription && rule.description.toLowerCase().includes(query.text)))
+      );
+    },
+    // Returns whether the user has entered any valid query
+    queryPresent() {
+      return this.query.text.length >= this.app.settings.minimumQueryLength || this.query.class || this.query.level || this.query.school;
+    },
     // Determines whether the user's content database contains an outdated version of the SRD database
     updateAvailable() {
       return this.app.contentDatabase.data.sources.some(s =>
@@ -47,6 +60,9 @@ export default {
   },
   methods: {
     openRule(key) {
+      if (this.selectedRule && this.selectedRule.codename == key) { // Do nothing if the rule is already selected
+        return;
+      }
       // Save the currently opened rule in the URL. This has two benefits:
       // - Each rule can be directly accessed by its own URL
       // - Going back in history takes us back to the rule we were before, or to the list if none. This is essential in mobile so that the back button doesn't make us leave the rules page, but return to the list.
@@ -66,6 +82,19 @@ export default {
         this.selectedRule = this.app.rules.find(s => s.codename == this.urlRuleName);
       } else {
         this.selectedRule = null;
+      }
+    },
+    // Allow the user to navigate through the rule list using the arrow keys
+    navigateRules(direction) {
+      const indexOfTheCurrentRule = this.filteredRules.indexOf(this.selectedRule);
+      if (direction == 'up') {
+        if (indexOfTheCurrentRule > 0) {
+          this.openRule(this.filteredRules[indexOfTheCurrentRule - 1].codename);
+        }
+      } else {
+        if (indexOfTheCurrentRule < this.filteredRules.length - 1) {
+          this.openRule(this.filteredRules[indexOfTheCurrentRule + 1].codename);
+        }
       }
     }
   },
