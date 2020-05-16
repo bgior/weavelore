@@ -3,7 +3,7 @@
 <template>
   <div class="row text-left justify-content-center">
     <div class="col-12 col-md-10 col-xl-8 tips">
-      <h1 class="my-4">Tips and tricks<img :src="require('@/assets/images/icons/menu/tips.png')"/></h1>
+      <h1 class="my-4">Tips and tricks<img src="@/assets/images/icons/menu/tips.png"/></h1>
       <h2>Search syntax</h2>
       If you add a period to the start of your query, the text will be searched in spell descriptions in addition to their names.
       <h2>Mobile app</h2>
@@ -16,9 +16,9 @@
       </ul>
       To install, look for an "Add to home" button in your browser of choice.
       <h2>Editing spells</h2>
-      You can create, edit and remove spells by entering <img :src="require('@/assets/images/icons/misc/edition.png')" style="width: 20px"/> <span class="highlight ml-1">Edition mode</span>.
+      You can create, edit and remove spells by entering <img src="@/assets/images/icons/misc/edition.png" style="width: 20px"/> <span class="highlight ml-1">Edition mode</span>.
       <ul>
-        <li><img :src="require('@/assets/images/icons/misc/save1.png')" style="width: 20px"/> <span class="highlight ml-1">Save</span> often (this makes your changes persist after refreshing/closing your browser).</li>
+        <li><img src="@/assets/images/icons/misc/save1.png" style="width: 20px"/> <span class="highlight ml-1">Save</span> often (this makes your changes persist after refreshing/closing your browser).</li>
         <li>Keep backups by <router-link to="/content">exporting your database</router-link>. This way you can restore everything after clearing your browser history.</li>
         <li>Avoid making changes to the default content, because the SRD database may be periodically updated and your changes will be overwritten.</li>
         <li>Long text fields support some HTML. Use <span class="highlight">&lt;p&gt;</span> tags to mark paragraphs. The following tags are also supported: <span class="highlight">&lt;b&gt;</span>, <span class="highlight">&lt;i&gt;</span>, <span class="highlight">&lt;ul&gt;</span>, <span class="highlight">&lt;li&gt;</span>, <span class="highlight">&lt;table&gt;</span> and table sub-tags.</li>

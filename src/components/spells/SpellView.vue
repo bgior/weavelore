@@ -11,10 +11,10 @@
       </div>
       <div class="spell-actions">
         <div class="spell-close d-none d-md-block" @click="$emit('clear-spell')">
-          <img :src="require('@/assets/images/icons/misc/close.png')"/>
+          <img src="@/assets/images/icons/misc/close.png"/>
         </div>
         <div :class="`spell-favorite ${favorited() ? 'favorited' : ''}`" @click="favoriteSpell">
-          <img :src="require('@/assets/images/icons/misc/favorite.png')"/>
+          <img src="@/assets/images/icons/misc/favorite.png"/>
         </div>
       </div>
     </div>
@@ -24,11 +24,11 @@
           <img :src="icons.rangeIcon(spell)"/> {{ spell.range }}
         </router-link><br/>
         <img :src="icons.durationIcon(spell)" title="Duration"/> {{ spell.duration }}<br/>
-        <template v-if="spell.concentration"><img :src="require('@/assets/images/icons/spell_features/concentration.png')" title="Spell requires concentration"/> Concentration<br/></template>
+        <template v-if="spell.concentration"><img src="@/assets/images/icons/spell_features/concentration.png" title="Spell requires concentration"/> Concentration<br/></template>
         <router-link to="/rules/casting-time" title="Casting time">
           <img :src="icons.castingIcon(spell)"/> {{ spell.casting }}
         </router-link><br/>
-        <template v-if="spell.ritual" title="Spell can be cast as ritual"><img :src="require('@/assets/images/icons/spell_features/ritual.png')"/> Ritual</template>
+        <template v-if="spell.ritual" title="Spell can be cast as ritual"><img src="@/assets/images/icons/spell_features/ritual.png"/> Ritual</template>
       </div>
       <div class="col-6 col-lg-4 col-xl-3">
         <div @click="helpFor('classes')" title="Classes">
@@ -39,14 +39,14 @@
         </div>
         <template v-if="spell.atHigherLevel">
           <router-link to="/rules/casting-a-spell-at-a-higher-level" title="Spell improves when cast with higher level slot">
-            <img :src="require('@/assets/images/icons/spell_features/scalable.png')"/> Scalable
+            <img src="@/assets/images/icons/spell_features/scalable.png"/> Scalable
           </router-link>
         </template>
       </div>
       <div class="d-none d-lg-block col-lg-4 col-xl-6">
         <div title="Which book/source this spell originates from">
           <router-link to="/content">
-            <img :src="require('@/assets/images/icons/spell_features/source.png')"/> {{ spell.location || spell.sourceName }}
+            <img src="@/assets/images/icons/spell_features/source.png"/> {{ spell.location || spell.sourceName }}
           </router-link>
         </div>
         <div v-if="spell.material > 0" title="Materials" v-html="spell.materials"></div>
@@ -56,7 +56,7 @@
     <div v-if="spell.atHigherLevel" v-html="prettyHigherLevel" class="spell-higher"></div>
     <Diagram :defaultRange="numericRange" :aoe="spell.aoe" title="Range visualization"/>
     <div class="d-block d-lg-none mobile-foot">
-      <img :src="require('@/assets/images/icons/spell_features/source.png')" title="Which book/source this spell originates from"/> {{ spell.location || spell.sourceName }}<br/>
+      <img src="@/assets/images/icons/spell_features/source.png" title="Which book/source this spell originates from"/> {{ spell.location || spell.sourceName }}<br/>
       <div v-if="spell.material > 0" title="Materials" v-html="prettyMaterials"></div>
     </div>
     <HelpModal :app="app" :topic="helpTopic"/>

@@ -48,11 +48,11 @@
     <div class="mt-4">Description:</div>
     <textarea v-model="spell.description" class="form-control" rows="4" placeholder="Description"></textarea>
     <template v-if="spell.atHigherLevel != null">
-      <div class="mt-4"><img :src="require('@/assets/images/icons/spell_features/scalable.png')" class="se-icon"/> At higher levels:</div>
+      <div class="mt-4"><img src="@/assets/images/icons/spell_features/scalable.png" class="se-icon"/> At higher levels:</div>
       <textarea v-model="spell.atHigherLevel" class="form-control" rows="2" placeholder="At higher levels"></textarea>
     </template>
     <div v-show="spell.material > 0">
-      <div class="mt-4"><img :src="require('@/assets/images/icons/components/material.png')" class="se-icon"/> Materials:</div>
+      <div class="mt-4"><img src="@/assets/images/icons/components/material.png" class="se-icon"/> Materials:</div>
       <input type="text" v-model="spell.materials" class="form-control" placeholder="Materials"/>
     </div>
 

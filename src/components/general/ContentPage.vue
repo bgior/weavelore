@@ -3,7 +3,7 @@
 <template>
   <div class="row text-left justify-content-center">
     <div class="col-12 col-md-10 col-xl-8">
-      <h1 class="my-4">My content<img :src="require('@/assets/images/icons/menu/content.png')"/></h1>
+      <h1 class="my-4">My content<img src="@/assets/images/icons/menu/content.png"/></h1>
       <div class="my-4">
         <div class="sources-intro w-100">
           <span>
@@ -11,13 +11,13 @@
           </span>
           <span class="no-shrink pb-3 pr-3">
             <strong class="source-amounts">
-              <img :src="require('@/assets/images/icons/menu/spells.png')" style="filter: brightness(2.3)" title="Total amount of spells" alt="Spells"> {{ app.spells.length }}
-              <img :src="require('@/assets/images/icons/menu/rules.png')" class="ml-3" style="filter: brightness(2.0)" title="Total amount of rules" alt="Rules"> {{ app.rules.length }}
+              <img src="@/assets/images/icons/menu/spells.png" style="filter: brightness(2.3)" title="Total amount of spells" alt="Spells"> {{ app.spells.length }}
+              <img src="@/assets/images/icons/menu/rules.png" class="ml-3" style="filter: brightness(2.0)" title="Total amount of rules" alt="Rules"> {{ app.rules.length }}
             </strong>
           </span>
         </div>
         <div v-for="source in sources" class="source mb-3">
-          <img :src="require('@/assets/images/icons/misc/content.png')" class="source-icon" alt="">
+          <img src="@/assets/images/icons/misc/content.png" class="source-icon" alt="">
           <div class="source-info pl-2">
             <div class="source-head">
               <span class="source-title d-flex">
@@ -28,11 +28,11 @@
                 <template v-else>{{ source.name }} <span v-if="source.version > 0" class="source-version badge ml-2">v{{ source.version }}</span></template>
               </span>
               <span class="source-amounts no-shrink ml-4">
-                <img :src="require('@/assets/images/icons/menu/spells.png')" style="filter: brightness(1.8)" title="Amount of spells in this source" alt="Spells"> {{ source.spells.length }}
-                <img :src="require('@/assets/images/icons/menu/rules.png')" class="ml-3" style="filter: brightness(1.6)" title="Amount of rules in this source" alt="Rules"> {{ source.rules.length }}
-                <img :src="require('@/assets/images/icons/misc/exportFile.png')" class="source-action ml-3" @click="exportSource(source)" title="Export this source"/>
-                <img :src="require('@/assets/images/icons/misc/edition.png')" :class="{'source-action ml-2': true, active: sourceBeingEdited == source}" @click="toggleSourceBeingEdited(source)" title="Edit this source"/>
-                <img :src="require('@/assets/images/icons/misc/close.png')" class="source-action ml-2" @click="deleteSource(source)" title="Delete this source"/>
+                <img src="@/assets/images/icons/menu/spells.png" style="filter: brightness(1.8)" title="Amount of spells in this source" alt="Spells"> {{ source.spells.length }}
+                <img src="@/assets/images/icons/menu/rules.png" class="ml-3" style="filter: brightness(1.6)" title="Amount of rules in this source" alt="Rules"> {{ source.rules.length }}
+                <img src="@/assets/images/icons/misc/exportFile.png" class="source-action ml-3" @click="exportSource(source)" title="Export this source"/>
+                <img src="@/assets/images/icons/misc/edition.png" :class="{'source-action ml-2': true, active: sourceBeingEdited == source}" @click="toggleSourceBeingEdited(source)" title="Edit this source"/>
+                <img src="@/assets/images/icons/misc/close.png" class="source-action ml-2" @click="deleteSource(source)" title="Delete this source"/>
               </span>
             </div>
             <textarea v-if="sourceBeingEdited == source" class="form-control" v-model="source.description" maxlength="512"></textarea>
@@ -43,57 +43,57 @@
       <div class="row sources-actions">
         <div class="col-12 col-md-6 col-xl-4 mt-1">
           <button class="btn btn-primary w-100" @click="openFileSelector">
-            <img :src="require('@/assets/images/icons/misc/importFile.png')"/>
+            <img src="@/assets/images/icons/misc/importFile.png"/>
             Import file
           </button>
           <input ref="uploader" type="file" @change="handleFileSelect" accept=".json" style="display:none" multiple/>
         </div>
         <div class="col-12 col-md-6 col-xl-4 mt-1">
           <button class="btn btn-primary w-100" v-b-modal.urlloader>
-            <img :src="require('@/assets/images/icons/misc/importLink.png')"/>
+            <img src="@/assets/images/icons/misc/importLink.png"/>
             Import URL
           </button>
         </div>
         <div class="col-12 col-md-6 col-xl-4 mt-1">
           <button class="btn btn-primary w-100" @click="exportDatabase" :disabled="sources.length == 0">
-            <img :src="require('@/assets/images/icons/misc/exportFile.png')"/>
+            <img src="@/assets/images/icons/misc/exportFile.png"/>
             Export all
           </button>
           <a ref="downloadLink" href="#" class="d-none"></a>
         </div>
         <div class="col-12 col-md-6 col-xl-4 mt-1">
           <button class="btn btn-primary w-100" @click="loadSRD" :disabled="sources.some(s => s.name == 'SRD 5.1')">
-            <img :src="require('@/assets/images/icons/misc/srd.png')"/>
+            <img src="@/assets/images/icons/misc/srd.png"/>
             Load SRD
           </button>
         </div>
         <div class="col-12 col-md-6 col-xl-4 mt-1">
           <button class="btn btn-primary w-100" @click="addSource">
-            <img :src="require('@/assets/images/icons/misc/addSource.png')"/>
+            <img src="@/assets/images/icons/misc/addSource.png"/>
             New source
           </button>
         </div>
         <div class="col-12 col-md-6 col-xl-4 mt-1">
           <button class="btn btn-primary w-100" @click="resetDatabase" :disabled="sources.length == 0">
-            <img :src="require('@/assets/images/icons/misc/trash.png')"/>
+            <img src="@/assets/images/icons/misc/trash.png"/>
             Delete all
           </button>
         </div>
         <div class="col-12 col-md-6 col-xl-4 mt-1">
           <button class="btn btn-primary w-100" @click="saveDatabase" :disabled="sources.length == 0">
-            <img :src="require('@/assets/images/icons/misc/save2.png')"/>
+            <img src="@/assets/images/icons/misc/save2.png"/>
             Save changes
           </button>
         </div>
         <div class="col-12 col-md-6 col-xl-4 mt-1">
           <button class="btn btn-primary w-100" @click="validateDatabase" :disabled="sources.length == 0" title="Check your content sources for any issues">
-            <img :src="require('@/assets/images/icons/misc/check.png')"/>
+            <img src="@/assets/images/icons/misc/check.png"/>
             Validate
           </button>
         </div>
         <div class="col-12 col-md-6 col-xl-4 mt-1">
           <a class="btn btn-primary w-100" href="https://github.com/bgior/weavelore/wiki/Content-FAQ" target="_blank">
-            <img :src="require('@/assets/images/icons/misc/help.png')"/>
+            <img src="@/assets/images/icons/misc/help.png"/>
             Help
           </a>
         </div>

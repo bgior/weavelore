@@ -3,7 +3,7 @@
 <template>
   <div class="row text-left justify-content-center">
     <div class="col-12 col-md-10 col-xl-8">
-      <h1 class="my-4">Settings<img :src="require('@/assets/images/icons/menu/settings.png')"/></h1>
+      <h1 class="my-4">Settings<img src="@/assets/images/icons/menu/settings.png"/></h1>
       <div class="row">
         <div class="col-12">
           <b-form-group label="Require a minimum query length?">

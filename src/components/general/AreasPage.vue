@@ -3,7 +3,7 @@
 <template>
   <div class="row text-left justify-content-center">
     <div class="col-12 col-md-10 col-xl-8">
-      <h1 class="my-4">Area calculator<img :src="require('@/assets/images/icons/menu/areas.png')"/></h1>
+      <h1 class="my-4">Area calculator<img src="@/assets/images/icons/menu/areas.png"/></h1>
       <div class="row">
         <div class="col-6 col-md-3">
           Type: <span v-b-modal.areasHelp id="areasHelp">( ? )</span>

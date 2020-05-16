@@ -4,7 +4,7 @@
 <template>
   <div class="row text-left justify-content-center">
     <div class="col-12 col-md-10 col-xl-8">
-      <h1 class="my-4">Updates<img :src="require('@/assets/images/icons/misc/upgrade.png')" style="filter: brightness(0.5);"></h1>
+      <h1 class="my-4">Updates<img src="@/assets/images/icons/misc/upgrade.png" style="filter: brightness(0.5);"></h1>
       <div v-if="app.appUpdateAvailable">
         <div>
           <p>A new version of the app is ready to be installed!</p>
@@ -15,7 +15,7 @@
       </div>
       <p>Current version: <b>{{ appVersion }}</b></p>
       <button v-if="app.appUpdateAvailable" @click="updateNow()" :disabled="applyingNewVersion" class="btn btn-primary">
-        <img :src="require('@/assets/images/icons/misc/sync.png')" style="width: 20px; opacity: 0.5"/> Update now
+        <img src="@/assets/images/icons/misc/sync.png" style="width: 20px; opacity: 0.5"/> Update now
       </button>
     </div>
   </div>

@@ -4,16 +4,16 @@
 <template>
   <span>
     <span v-if="app.editionModeOn" @click="addNewSpell()">
-      <img :src="require('@/assets/images/icons/misc/addSpell.png')" class="details-icon" title="Add a new blank spell"/>
+      <img src="@/assets/images/icons/misc/addSpell.png" class="details-icon" title="Add a new blank spell"/>
     </span>
     <span v-if="app.editionModeOn" @click="deleteSpell()">
-      <img :src="require('@/assets/images/icons/misc/deleteSpell.png')" :class="{ 'details-icon': true, disabled: !selectedSpell }" title="Delete the currently selected spell"/>
+      <img src="@/assets/images/icons/misc/deleteSpell.png" :class="{ 'details-icon': true, disabled: !selectedSpell }" title="Delete the currently selected spell"/>
     </span>
     <span v-if="app.editionModeOn" @click="validateAndSave()">
-      <img :src="require('@/assets/images/icons/misc/save1.png')" class="details-icon" title="Save changes"/>
+      <img src="@/assets/images/icons/misc/save1.png" class="details-icon" title="Save changes"/>
     </span>
     <span @click="app.editionModeOn = !app.editionModeOn">
-      <img :src="require('@/assets/images/icons/misc/edition.png')" :class="{ 'details-icon': true, active: app.editionModeOn }" title="Toggle spell edition mode"/>
+      <img src="@/assets/images/icons/misc/edition.png" :class="{ 'details-icon': true, active: app.editionModeOn }" title="Toggle spell edition mode"/>
     </span>
   </span>
 </template>

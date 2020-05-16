@@ -10,7 +10,7 @@
       </div>
       <div class="rule-actions">
         <div class="rule-close d-none d-md-block" @click="$emit('clear-rule')">
-          <img :src="require('@/assets/images/icons/misc/close.png')"/>
+          <img src="@/assets/images/icons/misc/close.png"/>
         </div>
       </div>
     </div>
@@ -18,8 +18,8 @@
     <div class="rule-description" v-html="prettyDescription" @click="handleDescriptionClick">
     </div>
     <div class="rule-foot">
-      <span title="Which book/source this rule originates from"><img :src="require('@/assets/images/icons/spell_features/source.png')"/> {{ rule.location || rule.sourceName }}</span><br/>
-      <span class="rule-tags" v-if="rule.tags" title="Additional tags associated to this rule"><img :src="require('@/assets/images/icons/misc/tag.png')"/> {{ rule.tags.join(", ") }}</span>
+      <span title="Which book/source this rule originates from"><img src="@/assets/images/icons/spell_features/source.png"/> {{ rule.location || rule.sourceName }}</span><br/>
+      <span class="rule-tags" v-if="rule.tags" title="Additional tags associated to this rule"><img src="@/assets/images/icons/misc/tag.png"/> {{ rule.tags.join(", ") }}</span>
     </div>
   </div>
 </template>

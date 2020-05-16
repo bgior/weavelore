@@ -3,7 +3,7 @@
 <template>
   <div class="row text-left justify-content-center">
     <div class="col-12 col-md-10 col-xl-8">
-      <h1 class="my-4">Stats<img :src="require('@/assets/images/icons/menu/stats.png')"/></h1>
+      <h1 class="my-4">Stats<img src="@/assets/images/icons/menu/stats.png"/></h1>
       <p>Total spells: <b>{{ app.spells.length }}</b> ({{ app.settings.favorites.size }} favorites)</p>
       <div class="row">
         <div class="col-12 col-sm-4">

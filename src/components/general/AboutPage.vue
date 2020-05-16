@@ -3,7 +3,7 @@
 <template>
   <div class="row text-left justify-content-center">
     <div class="col-12 col-md-10 col-xl-8 about">
-      <h1 class="my-4">About<img :src="require('@/assets/images/logo/logo64.png')" style="filter: contrast(0) brightness(0.8)"/></h1>
+      <h1 class="my-4">About<img src="@/assets/images/logo/logo64.png" style="filter: contrast(0) brightness(0.8)"/></h1>
       <div class="row">
         <div class="col-12 col-md-4 about-image" :style="{ backgroundImage: `url(${require('@/assets/images/logo/logo_large.jpg')})`}">
         </div>
