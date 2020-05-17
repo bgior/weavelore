@@ -6,13 +6,13 @@
       <input type="text" class="form-control query" v-focus v-model="rawQueryText" ref="queryField" placeholder="Search..." @keydown="handleQueryKeydown"/>
       <div class="search-actions">
         <span @click="clearQuery">
-          <img src="@/assets/images/icons/misc/close.png" class="details-icon" title="Reset query and filters"/>
+          <img src="@/assets/images/icons/misc/close.png" class="details-icon" title="Reset query and filters" alt=""/>
         </span>
         <span class="d-none d-md-inline-block" @click="$emit('toggle-detailed-view')">
-          <img src="@/assets/images/icons/misc/details.png" :class="`details-icon ${detailedModeOn ? 'active' : ''}`" title="Toggle detailed spell list"/>
+          <img src="@/assets/images/icons/misc/details.png" :class="`details-icon ${detailedModeOn ? 'active' : ''}`" title="Toggle detailed spell list" alt=""/>
         </span>
         <span @click="query.favorites = !query.favorites">
-          <img src="@/assets/images/icons/misc/favorite.png" :class="`details-icon ${query.favorites ? 'active' : ''}`" title="Toggle favorites filter"/>
+          <img src="@/assets/images/icons/misc/favorite.png" :class="`details-icon ${query.favorites ? 'active' : ''}`" title="Toggle favorites filter" alt=""/>
         </span>
         <SpellEditionControls :app="app" :selectedSpell="selectedSpell" @select-spell="s => $emit('select-spell', s)"/>
       </div>

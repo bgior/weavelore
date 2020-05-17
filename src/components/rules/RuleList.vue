@@ -4,7 +4,7 @@
   <div>
     <div class="row rules scrollable-panel" v-if="rules.length > 0">
       <div v-for="r in rules" :key="r.codename" :class="`rule col-12 ${panelIsOpen ? (r.codename == selectedRule.codename ? 'selected' : '') : 'col-md-6 col-lg-4 col-xl-3'}`" @click="ruleClicked($event, r.codename)">
-        <img :src="require(`@/assets/images/icons/rules/${r.icon}.png`)">
+        <img :src="require(`@/assets/images/icons/rules/${r.icon}.png`)" alt="">
         {{ r.name }}
       </div>
     </div>

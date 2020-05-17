@@ -1,4 +1,5 @@
 <!-- © Copyright 2019 Bruno Giorello. Released under GNU AGPLv3, see 'LICENSE.md'. -->
+
 <template>
   <div>
     <RuleSearcher :app="app" :class="panelIsOpen ? 'd-none d-md-flex' : ''" :query="query" @navigate-rules="navigateRules"/>

@@ -3,7 +3,7 @@
 <template>
   <div class="row text-left justify-content-center">
     <div class="col-12 col-md-10 col-xl-8">
-      <h1 class="my-4">News <img src="@/assets/images/icons/menu/news.png"/></h1>
+      <h1 class="my-4">News <img src="@/assets/images/icons/menu/news.png" alt=""/></h1>
       <div v-if="message">{{ message }}</div>
       <div v-for="item in news" :key="item.title">
         <div class="news-item">

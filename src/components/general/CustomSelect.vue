@@ -3,11 +3,11 @@
 <template>
   <div class="cs" v-on-clickaway="close">
     <div :class="`cs-field ${value == '' ? 'blank' : ''}`" @click="open = !open">
-      <img v-if="selectedOption.image" v-show="value != ''" class="cs-field-icon" :src="selectedOption.image"/> {{ selectedOption.text || selectedOption.value }}
+      <img v-if="selectedOption.image" v-show="value != ''" class="cs-field-icon" :src="selectedOption.image" alt=""/> {{ selectedOption.text || selectedOption.value }}
     </div>
     <div :class="`cs-options ${ align == 'right' ? 'cs-right' : ''}`" v-show="open">
       <div v-for="option in options" :key="option.value" @click="choose(option.value)" class="cs-option">
-        <img v-if="option.image" class="cs-option-icon" :src="option.image"/> {{ option.text || option.value }}
+        <img v-if="option.image" class="cs-option-icon" :src="option.image" alt=""/> {{ option.text || option.value }}
       </div>
     </div>
   </div>

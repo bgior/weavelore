@@ -3,14 +3,14 @@
 <template>
   <div class="rule-details">
     <div class="rule-head">
-      <img :src="require(`@/assets/images/icons/rules/${rule.icon}.png`)" class="rule-icon"/>
+      <img :src="require(`@/assets/images/icons/rules/${rule.icon}.png`)" class="rule-icon" alt=""/>
       <div class="rule-title">
         <div class="rule-name">{{ rule.name }}</div>
         <div class="rule-category" title="Category">{{ rule.category }}</div>
       </div>
       <div class="rule-actions">
         <div class="rule-close d-none d-md-block" @click="$emit('clear-rule')">
-          <img src="@/assets/images/icons/misc/close.png"/>
+          <img src="@/assets/images/icons/misc/close.png" alt="Close"/>
         </div>
       </div>
     </div>
@@ -18,8 +18,8 @@
     <div class="rule-description" v-html="prettyDescription" @click="handleDescriptionClick">
     </div>
     <div class="rule-foot">
-      <span title="Which book/source this rule originates from"><img src="@/assets/images/icons/spell_features/source.png"/> {{ rule.location || rule.sourceName }}</span><br/>
-      <span class="rule-tags" v-if="rule.tags" title="Additional tags associated to this rule"><img src="@/assets/images/icons/misc/tag.png"/> {{ rule.tags.join(", ") }}</span>
+      <span title="Which book/source this rule originates from"><img src="@/assets/images/icons/spell_features/source.png" alt="Source"/> {{ rule.location || rule.sourceName }}</span><br/>
+      <span class="rule-tags" v-if="rule.tags" title="Additional tags associated to this rule"><img src="@/assets/images/icons/misc/tag.png" alt="Tags"/> {{ rule.tags.join(", ") }}</span>
     </div>
   </div>
 </template>

@@ -7,7 +7,6 @@
       <div class="spell-title">
         <div class="spell-name">{{ spell.name }}</div>
         <div class="spell-type">{{ prettyLevel }} {{ spell.school }}</div>
-
       </div>
       <div class="spell-actions">
         <div class="spell-close d-none d-md-block" @click="$emit('clear-spell')">

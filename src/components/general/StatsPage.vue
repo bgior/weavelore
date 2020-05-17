@@ -3,27 +3,27 @@
 <template>
   <div class="row text-left justify-content-center">
     <div class="col-12 col-md-10 col-xl-8">
-      <h1 class="my-4">Stats<img src="@/assets/images/icons/menu/stats.png"/></h1>
+      <h1 class="my-4">Stats<img src="@/assets/images/icons/menu/stats.png" alt=""/></h1>
       <p>Total spells: <b>{{ app.spells.length }}</b> ({{ app.settings.favorites.size }} favorites)</p>
       <div class="row">
-        <div class="col-12 col-sm-4">
-          <p><b>By school</b></p>
+        <section class="col-12 col-sm-4">
+          <h2 class="mb-3">By school</h2>
           <p v-for="school in constants.schools" :key="school">
-            <img class="stats-icon" :src="icons.schoolIcon({school})"/> {{ stats.schools[school] }} {{ school }}
+            <img class="stats-icon" :src="icons.schoolIcon({school})" alt=""/> {{ stats.schools[school] }} {{ school }}
           </p>
-        </div>
-        <div class="col-12 col-sm-4">
-          <p><b>By level</b></p>
+        </section>
+        <section class="col-12 col-sm-4">
+          <h2 class="mb-3">By level</h2>
           <p v-for="level in constants.levels" :key="level">
             <span class="level">{{ level }}</span>  {{ stats.levels[level] }} spells
           </p>
-        </div>
-        <div class="col-12 col-sm-4">
-          <p><b>By class</b></p>
+        </section>
+        <section class="col-12 col-sm-4">
+          <h2 class="mb-3">By class</h2>
           <p v-for="className in constants.classes" :key="className">
-            <img class="stats-icon" :src="icons.classIcon(className)"/>  {{ stats.classes[className] }} {{ className }} spells
+            <img class="stats-icon" :src="icons.classIcon(className)" alt=""/>  {{ stats.classes[className] }} {{ className }} spells
           </p>
-        </div>
+        </section>
       </div>
     </div>
   </div>

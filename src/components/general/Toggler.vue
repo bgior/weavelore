@@ -1,9 +1,9 @@
 <!-- © Copyright 2019 Bruno Giorello. Released under GNU AGPLv3, see 'LICENSE.md'. -->
-<!-- A simple checkbox-like component. -->
 
+<!-- A simple checkbox-like component. -->
 <template>
   <div :class="`toggler ${checked ? '' : 'absent'}`" @click="$emit('toggle')">
-    <img :src="icon" class="toggler-icon clickable"/> {{ text }}
+    <img :src="icon" class="toggler-icon clickable" alt=""/> {{ text }}
   </div>
 </template>
 <style>

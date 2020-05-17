@@ -33,7 +33,6 @@ import NewsPage from './NewsPage.vue';
 import UpdatesPage from './UpdatesPage.vue';
 import ContentPage from './ContentPage.vue';
 import RulesPage from '../rules/RulesPage.vue';
-import TestPage from './TestPage.vue';
 import NotFound from './NotFound.vue';
 import Alert from './Alert.vue';
 import UpdateNotice from './UpdateNotice.vue';
@@ -59,7 +58,6 @@ const router = new VueRouter({
     { path: '/content', component: ContentPage },
     { path: '/ogl', component: OGLPage },
     { path: '/updates', component: UpdatesPage },
-    { path: '/test', component: TestPage },
     { path: '*', component: NotFound }
   ]
 })

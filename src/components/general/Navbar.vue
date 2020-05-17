@@ -13,17 +13,17 @@
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item to="/"><img src="@/assets/images/icons/menu/spells.png"/> Spells</b-nav-item>
-            <b-nav-item to="/rules"><img src="@/assets/images/icons/menu/rules.png"/> Rules</b-nav-item>
-            <b-nav-item-dropdown :html="`<img src='${require('@/assets/images/icons/menu/settings.png')}'/> More`">
-              <b-dropdown-item to="/content"><img src="@/assets/images/icons/menu/content.png"/> Content</b-dropdown-item>
-              <b-dropdown-item to="/stats"><img src="@/assets/images/icons/menu/stats.png"/> Stats</b-dropdown-item>
-              <b-dropdown-item to="/areas"><img src="@/assets/images/icons/menu/areas.png"/> Areas</b-dropdown-item>
-              <b-dropdown-item to="/tips"><img src="@/assets/images/icons/menu/tips.png"/> Tips</b-dropdown-item>
-              <b-dropdown-item to="/news"><img src="@/assets/images/icons/menu/news.png"/> News</b-dropdown-item>
-              <b-dropdown-item to="/settings"><img src="@/assets/images/icons/menu/settings.png"/> Settings</b-dropdown-item>
-              <b-dropdown-item to="/ogl"><img src="@/assets/images/icons/menu/ogl.png"/> OGL</b-dropdown-item>
-              <b-dropdown-item to="/about"><img src="@/assets/images/logo/logo64.png" style="filter: contrast(0) brightness(1.4)"/> About</b-dropdown-item>
+            <b-nav-item to="/"><img src="@/assets/images/icons/menu/spells.png" alt=""/> Spells</b-nav-item>
+            <b-nav-item to="/rules"><img src="@/assets/images/icons/menu/rules.png" alt=""/> Rules</b-nav-item>
+            <b-nav-item-dropdown :html="`<img src='${require('@/assets/images/icons/menu/settings.png')}' alt=''/> More`">
+              <b-dropdown-item to="/content"><img src="@/assets/images/icons/menu/content.png" alt=""/> Content</b-dropdown-item>
+              <b-dropdown-item to="/stats"><img src="@/assets/images/icons/menu/stats.png" alt=""/> Stats</b-dropdown-item>
+              <b-dropdown-item to="/areas"><img src="@/assets/images/icons/menu/areas.png" alt=""/> Areas</b-dropdown-item>
+              <b-dropdown-item to="/tips"><img src="@/assets/images/icons/menu/tips.png" alt=""/> Tips</b-dropdown-item>
+              <b-dropdown-item to="/news"><img src="@/assets/images/icons/menu/news.png" alt=""/> News</b-dropdown-item>
+              <b-dropdown-item to="/settings"><img src="@/assets/images/icons/menu/settings.png" alt=""/> Settings</b-dropdown-item>
+              <b-dropdown-item to="/ogl"><img src="@/assets/images/icons/menu/ogl.png" alt=""/> OGL</b-dropdown-item>
+              <b-dropdown-item to="/about"><img src="@/assets/images/logo/logo64.png" style="filter: contrast(0) brightness(1.4)" alt=""/> About</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>

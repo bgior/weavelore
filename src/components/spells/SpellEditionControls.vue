@@ -1,19 +1,19 @@
 <!-- © Copyright 2019 Bruno Giorello. Released under GNU AGPLv3, see 'LICENSE.md'. -->
-<!-- This component manages the section of the SpellsToolbar dedicated to spell edition-related functions. -->
 
+<!-- This component manages the section of the SpellsToolbar dedicated to spell edition-related functions. -->
 <template>
   <span>
     <span v-if="app.editionModeOn" @click="addNewSpell()">
-      <img src="@/assets/images/icons/misc/addSpell.png" class="details-icon" title="Add a new blank spell"/>
+      <img src="@/assets/images/icons/misc/addSpell.png" class="details-icon" title="Add a new blank spell" alt=""/>
     </span>
     <span v-if="app.editionModeOn" @click="deleteSpell()">
-      <img src="@/assets/images/icons/misc/deleteSpell.png" :class="{ 'details-icon': true, disabled: !selectedSpell }" title="Delete the currently selected spell"/>
+      <img src="@/assets/images/icons/misc/deleteSpell.png" :class="{ 'details-icon': true, disabled: !selectedSpell }" title="Delete the currently selected spell" alt=""/>
     </span>
     <span v-if="app.editionModeOn" @click="validateAndSave()">
-      <img src="@/assets/images/icons/misc/save1.png" class="details-icon" title="Save changes"/>
+      <img src="@/assets/images/icons/misc/save1.png" class="details-icon" title="Save changes" alt=""/>
     </span>
     <span @click="app.editionModeOn = !app.editionModeOn">
-      <img src="@/assets/images/icons/misc/edition.png" :class="{ 'details-icon': true, active: app.editionModeOn }" title="Toggle spell edition mode"/>
+      <img src="@/assets/images/icons/misc/edition.png" :class="{ 'details-icon': true, active: app.editionModeOn }" title="Toggle spell edition mode" alt=""/>
     </span>
   </span>
 </template>

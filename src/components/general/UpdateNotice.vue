@@ -3,7 +3,7 @@
 <!-- Notification shown on the corner of the screen when there's an app update awaiting installation. -->
 <template>
   <router-link to="/updates" class="app-update-notice" title="New version available">
-    <img src="@/assets/images/icons/misc/upgrade.png"/>
+    <img src="@/assets/images/icons/misc/upgrade.png" alt="Update"/>
   </router-link>
 </template>
 <style>
