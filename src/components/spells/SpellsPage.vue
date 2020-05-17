@@ -134,6 +134,23 @@ export default {
     '$route': function() {
       this.loadSpellInURL();
     }
+  },
+  metaInfo() {
+    if (this.selectedSpell) {
+      const spellDescriptionWithoutHTML = this.selectedSpell.description.replace(/<\/?[^>]+>/g, '');
+      return {
+        title: this.selectedSpell.name + " - WeaveLore",
+        meta: [
+          {
+            vmid: "description",
+            name: "description",
+            content: spellDescriptionWithoutHTML.length > 300 ? spellDescriptionWithoutHTML.substring(0, 300) + '...' : spellDescriptionWithoutHTML
+          }
+        ]
+      }
+    } else {
+      return {}; // Use the default data defined in App.vue
+    }
   }
 }
 </script>

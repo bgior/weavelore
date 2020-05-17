@@ -295,6 +295,13 @@ export default {
       }
       this.app.alert(message);
     }
+  },
+  metaInfo: {
+    title: "Content - WeaveLore",
+    meta: [
+      { vmid: "description", name: "description", content: "Manage your WeaveLore content sources from this page." },
+      { vmid: "robots", name: "robots", content: "noindex" }
+    ]
   }
 }
 </script>

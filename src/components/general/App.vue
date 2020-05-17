@@ -47,7 +47,7 @@ const router = new VueRouter({
   routes: [
     { path: '/', component: SpellsPage },
     { path: '/spells/:urlSpellName', component: SpellsPage, props: true },
-    { path: '/spells', component: SpellsPage },
+    { path: '/spells', redirect: "/" }, // This path was used in previous versions of the app, we leave this redirection to prevent 404'ing users
     { path: '/rules/:urlRuleName', component: RulesPage, props: true },
     { path: '/rules', component: RulesPage },
     { path: '/stats', component: StatsPage },
@@ -126,6 +126,13 @@ export default {
         });
       }
     }
+  },
+  metaInfo: {
+    title: 'WeaveLore',
+    meta: [
+      { vmid: "description", name: "description", content: "WeaveLore is a free and open-source web application to browse D&D 5e spells. It's packed with features and includes a mobile app. Try it now!" },
+      { vmid: "robots", name: "robots", content: "all" }
+    ]
   }
 }
 Vue.directive('focus', {

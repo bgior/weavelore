@@ -64,6 +64,13 @@ export default {
     constants() {
       return constants;
     }
+  },
+  metaInfo: {
+    title: "Statistics - WeaveLore",
+    meta: [
+      { vmid: "description", name: "description", content: "View statistics about all the spells currently loaded in the application, such as spells by school, class and level." },
+      { vmid: "robots", name: "robots", content: "noindex" }
+    ]
   }
 }
 </script>

@@ -40,6 +40,12 @@ export default {
   name: 'TipsPage',
   props: {
     app: Object
+  },
+  metaInfo: {
+    title: "Tips - WeaveLore",
+    meta: [
+      { vmid: "description", name: "description", content: "Learn tips and tricks to take full advantage of the features of WeaveLore, a free and open-source web application to browse D&D 5e spells." }
+    ]
   }
 }
 </script>

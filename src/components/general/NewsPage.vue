@@ -66,6 +66,12 @@ export default {
       this.message = "Sorry, we could not load the latest news.";
       console.error(error);
     });
+  },
+  metaInfo: {
+    title: "News - WeaveLore",
+    meta: [
+      { vmid: "description", name: "description", content: "View the latest major events and news concerning WeaveLore development. Check out the subreddit too for more detailed information." }
+    ]
   }
 }
 </script>

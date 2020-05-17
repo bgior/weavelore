@@ -13,7 +13,7 @@
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item to="/spells"><img src="@/assets/images/icons/menu/spells.png"/> Spells</b-nav-item>
+            <b-nav-item to="/"><img src="@/assets/images/icons/menu/spells.png"/> Spells</b-nav-item>
             <b-nav-item to="/rules"><img src="@/assets/images/icons/menu/rules.png"/> Rules</b-nav-item>
             <b-nav-item-dropdown :html="`<img src='${require('@/assets/images/icons/menu/settings.png')}'/> More`">
               <b-dropdown-item to="/content"><img src="@/assets/images/icons/menu/content.png"/> Content</b-dropdown-item>

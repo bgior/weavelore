@@ -38,6 +38,12 @@ export default {
     appVersion() {
       return constants.appVersion;
     }
+  },
+  metaInfo: {
+    title: "About - WeaveLore",
+    meta: [
+      { vmid: "description", name: "description", content: "Learn more about WeaveLore, a free and open-source web application to browse D&D 5e spells. More information about the project is available on GitHub." }
+    ]
   }
 }
 </script>

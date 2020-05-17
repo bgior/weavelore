@@ -4,7 +4,7 @@
   <div class="row text-left justify-content-center">
     <div class="col-12 col-md-10 col-xl-8">
       <h1 class="my-4">About OGL<img src="@/assets/images/icons/menu/ogl.png"/></h1>
-      <p>When clicking on the "Load standard content" button on the import page, Open Game Content from the <b>SRD</b> (System Reference Document) 5.1, released under the terms of the <b>OGL</b> (Open Game License), is used by the application.</p>
+      <p>The default application data is Open Game Content from the <b>SRD</b> (System Reference Document) 5.1, released under the terms of the <b>OGL</b> (Open Game License), is used by the application.</p>
       <p>A copy of the license text is included below in accordance to the terms:</p>
       <div v-html="licenseText" class="license-text my-4">
       </div>
@@ -31,6 +31,12 @@ export default {
       this.licenseText = "Sorry, we could not load the license text.";
       console.error(error);
     });
+  },
+  metaInfo: {
+    title: "OGL - WeaveLore",
+    meta: [
+      { vmid: "description", name: "description", content: "Learn more about how WeaveLore uses content from the SRD (System Reference Document) 5.1, released under the OGL (Open Game License)." }
+    ]
   }
 }
 </script>

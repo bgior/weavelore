@@ -59,6 +59,10 @@ import Diagram from '../spells/Diagram.vue';
 
 export default {
   name: 'AreasPage',
+  components: {
+    Diagram,
+    CustomSelect
+  },
   props: {
     app: Object
   },
@@ -87,9 +91,11 @@ export default {
       }
     }
   },
-  components: {
-    Diagram,
-    CustomSelect
+  metaInfo: {
+    title: "AoE Calculator - WeaveLore",
+    meta: [
+      { vmid: "description", name: "description", content: "Visualize the AoE (Area of Effect) of different D&D 5e spells on a grid using this handy simulator. Supports spheres, cones and cubes of arbitrary size." }
+    ]
   }
 }
 </script>

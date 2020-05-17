@@ -105,6 +105,28 @@ export default {
     '$route': function() {
       this.loadRuleInURL();
     }
+  },
+  metaInfo() {
+    if (this.selectedRule) {
+      const ruleDescriptionWithoutHTML = this.selectedRule.description.replace(/<\/?[^>]+>/g, '');
+      return {
+        title: this.selectedRule.name + " - WeaveLore",
+        meta: [
+          {
+            vmid: "description",
+            name: "description",
+            content: ruleDescriptionWithoutHTML.length > 300 ? ruleDescriptionWithoutHTML.substring(0, 300) + '...' : ruleDescriptionWithoutHTML
+          }
+        ]
+      }
+    } else {
+      return {
+        title: "Rules - Weavelore",
+        meta: [
+          { vmid: "description", name: "description", content: "Browse a list of rules taken from the D&D 5e SRD (System Reference Document), or add your own rules and notes." }
+        ]
+      }
+    }
   }
 }
 </script>

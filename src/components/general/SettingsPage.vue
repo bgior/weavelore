@@ -34,6 +34,13 @@
       if (this.dirty) {
         this.app.settingsDatabase.saveToStorage();
       }
+    },
+    metaInfo: {
+      title: "Settings - WeaveLore",
+      meta: [
+        { vmid: "description", name: "description", content: "Configure WeaveLore to match your preferences." },
+        { vmid: "robots", name: "robots", content: "noindex" }
+      ]
     }
   }
 </script>

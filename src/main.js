@@ -2,6 +2,7 @@
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueMeta from 'vue-meta';
 import App from './components/general/App.vue';
 
 import BootstrapVue from 'bootstrap-vue';
@@ -12,6 +13,9 @@ import './registerServiceWorker';
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
+Vue.use(VueMeta, {
+  refreshOnceOnNavigation: true
+});
 
 Vue.config.productionTip = false;
 
