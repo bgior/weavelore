@@ -7,13 +7,12 @@ import Validator from '@/util/contentDatabaseValidator.js';
 class ContentDatabase {
 
   constructor(contentJSON, runValidations = true) {
-    this.data = getDefaultData();
-    this.awaitingFetch = false; // This boolean is true while an asynchronous data load from URL is taking place
+    this.data = getBlankData();
     this.loadJSON(contentJSON, runValidations);
   }
-  // Returns true if the database has at least one spell
+  // Returns true if the database has at least one source
   isEmpty() {
-    return !this.data.sources.some(s => s.spells.length > 0);
+    return this.data.sources.length == 0;
   }
   // Returns an array of all spells contained, sorted alphabetically
   getSpells() {
@@ -66,20 +65,20 @@ class ContentDatabase {
     this.saveToStorage();
   }
   // Fetch a JSON from a URL and then load it
-  loadURL(url, onSuccess, onError = console.error) {
-    this.awaitingFetch = true;
-    fetch(url).then(res => res.json()).then(json => {
-      try {
-        this.loadJSON(json);
-        onSuccess();
-      } catch (e) {
-        onError(e);
-      }
-    }).catch(error => {
-      onError(`Failed to fetch URL. See console for details.`);
-      console.error(error);
-    }).finally(() => {
-      this.awaitingFetch = false;
+  loadURL(url) {
+    return new Promise((resolve, reject) => {
+      fetch(url).then(res => res.json()).then(json => {
+        try {
+          this.loadJSON(json);
+          resolve();
+        } catch (e) {
+          reject("Failed to import database fetched from URL, see console for details.");
+          console.error(e);
+        }
+      }).catch(error => {
+        reject("Failed to fetch database from URL, see console for details.");
+        console.error(error);
+      });
     });
   }
   // Add a new source to the database
@@ -95,7 +94,7 @@ class ContentDatabase {
   }
   // Delete all sources from the database
   deleteAllSources() {
-    this.data = getDefaultData();
+    this.data = getBlankData();
     this.saveToStorage();
   }
   // Add a new spell to the database under the given source
@@ -167,8 +166,8 @@ class ContentDatabase {
   validate() {
     Validator.validate(this.data);
   }
-  // Get the ContentDatabase persisted in LocalStorage, or if absent/invalid, a default blank one
-  static getFromStorageOrDefault() {
+  // Get the ContentDatabase persisted in LocalStorage, or if absent/invalid, a default one
+  static getFromStorageOrBlank() {
     try {
       if (window.localStorage.content) {
         let contentJSON = JSON.parse(window.localStorage.content);
@@ -180,15 +179,15 @@ class ContentDatabase {
     } catch (e) {
       console.error("Couldn't load the local database, using default instead. Reason: " + JSON.stringify(e));
     }
-    return this.getDefault();
+    return this.getBlank();
   }
-  // Get a default blank database with no sources
-  static getDefault() {
-    return new ContentDatabase(getDefaultData());
+  // Get an empty database with no sources
+  static getBlank() {
+    return new ContentDatabase(getBlankData());
   }
 }
 // Get a JSON representing a blank database
-function getDefaultData() {
+function getBlankData() {
   return {
     format: "WLC",
     formatVersion: "0.2.0",

@@ -8,7 +8,7 @@ const getSRD = () => JSON.parse(JSON.stringify(srd));
 
 describe('ContentDatabase', () => {
   it('loads the default data correctly', () => {
-    const db = ContentDatabase.getDefault();
+    const db = ContentDatabase.getBlank();
     expect(db.data.sources.length).toBe(0);
     db.loadJSON(getSRD());
     expect(db.data.sources[0].name).toBe('SRD 5.1');
@@ -47,21 +47,21 @@ describe('ContentDatabase', () => {
 
   it('merges sources correctly', () => {
     // Ensure that loaded sources overwrite the previous ones only if the version is equal or greater
-    const file1 = ContentDatabase.getDefault().data;
+    const file1 = ContentDatabase.getBlank().data;
     file1.sources = [
       { name: "SourceA", description: "F1", version: 1, spells: [], rules: [] },
       { name: "SourceB", description: "F1", version: 10, spells: [], rules: [] },
       { name: "SourceC", description: "F1", version: 10, spells: [], rules: [] },
       { name: "SourceD", description: "F1", version: 10, spells: [], rules: [] }
     ];
-    const file2 = ContentDatabase.getDefault().data;
+    const file2 = ContentDatabase.getBlank().data;
     file2.sources = [
       { name: "SourceB", description: "F2", version: 9, spells: [], rules: [] },
       { name: "SourceC", description: "F2", version: 10, spells: [], rules: [] },
       { name: "SourceD", description: "F2", version: 11, spells: [], rules: [] },
       { name: "SourceE", description: "F2", version: 1, spells: [], rules: [] }
     ];
-    const db = ContentDatabase.getDefault();
+    const db = ContentDatabase.getBlank();
     db.loadJSON(file1);
     db.loadJSON(file2);
     const sources = db.data.sources;
@@ -75,15 +75,16 @@ describe('ContentDatabase', () => {
   });
 
   it('yields the same data when imported and then exported', () => {
-    const database = ContentDatabase.getDefault();
+    const database = ContentDatabase.getBlank();
     database.loadJSON(getSRD());
     expect(database.export()).toBe(JSON.stringify(getSRD()));
   });
 
   it('yields the same data when persisted and then loaded', () => {
-    const originalDB = ContentDatabase.getDefault();
-    originalDB.loadJSON(getSRD()); // Automatically persists originalDB in localStorage
-    const loadedDB = ContentDatabase.getFromStorageOrDefault();
-    expect(JSON.stringify(originalDB.data)).toBe(JSON.stringify(loadedDB.data));
+    const originalDB = ContentDatabase.getBlank();
+    originalDB.addSource({ name: "SourceA", description: "D1", version: 1, spells: [], rules: [] });
+    originalDB.saveToStorage();
+    const loadedDB = ContentDatabase.getFromStorageOrBlank();
+    expect(JSON.stringify(loadedDB.data)).toBe(JSON.stringify(originalDB.data));
   });
 })

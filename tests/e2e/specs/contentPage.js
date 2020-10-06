@@ -27,19 +27,19 @@ describe('Content page', () => {
 
     // Create a new source, edit and save it
     cy.contains('New source').click();
-    cy.get('.source-action.ml-2').first().click(); // Toggle edition mode
+    cy.get('.source-action[title="Edit this source"]').last().click(); // Toggle edition mode
     cy.get('.font-weight-bold').type("{selectall}{backspace}Source name!");
     cy.get('textarea.form-control').type("{selectall}{backspace}Source description!");
-    cy.get('.source-title > .ml-2').type("{selectall}{backspace}97");
+    cy.get('*[title="Version number for this source"]').type("{selectall}{backspace}97");
     cy.contains('Save changes').click();
 
     // Check if it persisted correctly
     cy.visit('/content');
     cy.get('.source').should('have.length', 2);
-    cy.get('.source-action.ml-2').first().click();
+    cy.get('.source-action[title="Edit this source"]').last().click();
     cy.get('.font-weight-bold').should("have.value", "Source name!");
     cy.get('textarea.form-control').should("have.value", "Source description!");
-    cy.get('.source-title > .ml-2').should("have.value", "97");
+    cy.get('*[title="Version number for this source"]').should("have.value", "97");
 
     // Delete source individually
     cy.get('.source-action').last().click(); // Click on the delete button

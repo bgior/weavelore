@@ -2,9 +2,9 @@
 
 <template>
   <div id="app">
-    <Navbar :app="app"/>
+    <Navbar :enabled="!awaitingInitialFetch"/>
     <main class="container-fluid">
-      <div v-if="app.contentDatabase.awaitingFetch" class="text-center">
+      <div v-if="awaitingInitialFetch" class="text-center">
         <svg id="loadingIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
           <g fill="none" stroke="#393939" stroke-width="5" stroke-linecap="square" stroke-linejoin="bevel">
             <path d="M92 50a42 42 0 01-41 42M8 50A42 42 0 0149 8M30 70a28 28 0 0039 0m1-40a28 28 0 00-39 0M35 50a15 15 0 0015 15m15-15a15 15 0 00-15-15M19 81l11-11M70 30l11-11M19 50h16M65 50h16"/>
@@ -39,6 +39,7 @@ import UpdateNotice from './UpdateNotice.vue';
 
 import ContentDatabase from '@/util/contentDatabase.js';
 import SettingsDatabase from '@/util/settingsDatabase.js';
+import constants from '@/util/constants.js';
 
 const timeBetweenAppUpdateChecksInMs = 1000 * 60 * 60 * 1; // 1 hour
 const router = new VueRouter({
@@ -71,7 +72,7 @@ export default {
     UpdateNotice
   },
   data() {
-    const contentDatabase = ContentDatabase.getFromStorageOrDefault();
+    const contentDatabase = ContentDatabase.getFromStorageOrBlank();
     const settingsDatabase = SettingsDatabase.getFromStorageOrDefault();
     return {
       app: {
@@ -83,11 +84,12 @@ export default {
         appUpdateAvailable: false, // Whether an updated version of the app is awaiting activation
         editionModeOn: false, // Whether we should show the spell editor instead of the normal spell view
         alert: (msg, type, duration) => this.$refs.alert.alert(msg, type, duration), // A helper function to display messages from anywhere
-        reloadDatabase: function() { // Fetch the data from the contentDatabase again
+        reloadDatabase: function() { // Fetch the data from the contentDatabase again into this Vue component
           this.spells = this.contentDatabase.getSpells();
           this.rules = this.contentDatabase.getRules();
         }
       },
+      awaitingInitialFetch: false, // If true, it means we're waiting for an AJAX request to populate the content database
       alertMessage: null,
       alertType: null,
       lastAppUpdateCheck: new Date()
@@ -99,14 +101,26 @@ export default {
     }
   },
   created() {
-    // Share the Vue app reference here so that the Service Worker can call notifyUpdate()
-    window.vueApp = this;
-    this.app.reloadDatabase();
-    // If the database is empty, load the SRD
-    if (this.app.spells.length == 0 && this.app.rules.length == 0) {
-      this.app.contentDatabase.loadURL('/srd.json', () => {
+    window.vueApp = this; // Share the Vue app reference here so that the Service Worker can call notifyUpdate()
+    if (this.app.contentDatabase.isEmpty()) {
+      // If the database is empty, load the default content file(s)
+      const defaultContentFileURLs = process.env.VUE_APP_DEFAULT_CONTENTFILES.split(",");
+      this.awaitingInitialFetch = true;
+      Promise.all(defaultContentFileURLs.map(url => this.app.contentDatabase.loadURL(url))).then(() => {
         this.app.reloadDatabase();
+        this.awaitingInitialFetch = false;
       });
+    } else {
+      // If an existing database was loaded, ensure the SRD is up-to-date
+      if (this.app.contentDatabase.data.sources.some(s => s.name == 'SRD 5.1' && s.version < constants.srdVersion)) {
+        this.app.contentDatabase.loadURL('/srd.json').then(() => {
+          this.app.reloadDatabase()
+        }).catch(err => {
+          this.showError(err)
+        });
+      } else {
+        this.app.reloadDatabase();
+      }
     }
   },
   watch: {

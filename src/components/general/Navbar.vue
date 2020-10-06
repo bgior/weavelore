@@ -9,7 +9,7 @@
           WeaveLore
         </router-link>
       </b-navbar-brand>
-      <template v-if="!app.contentDatabase.awaitingFetch">
+      <template v-if="enabled">
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
@@ -35,7 +35,7 @@
 export default {
   name: 'Navbar',
   props: {
-    app: Object
+    enabled: Boolean
   }
 }
 </script>

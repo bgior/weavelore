@@ -21,7 +21,6 @@ import SpellList from './SpellList.vue';
 import SpellsToolbar from './SpellsToolbar.vue';
 import SpellView from './SpellView.vue';
 import SpellEditor from './SpellEditor.vue';
-import constants from '@/util/constants.js';
 
 export default {
   name: 'SpellsPage',
@@ -109,26 +108,11 @@ export default {
           this.openSpell(this.filteredSpells[indexOfTheCurrentSpell + 1].codename);
         }
       }
-    },
-    // Load the latest version of the SRD into the content database
-    updateSRD() {
-      try {
-        this.app.contentDatabase.loadURL('/srd.json',
-          () => this.app.reloadDatabase(),
-          err => this.showError(err)
-        );
-      } catch (err) {
-        this.showError(err);
-      }
     }
   },
   created() {
     // If the URL contains a spell, display it
     this.loadSpellInURL();
-    // If an updated version of the SRD content is available, load it immediately
-    if (this.app.contentDatabase.data.sources.some(s => s.name == 'SRD 5.1' && s.version < constants.srdVersion)) {
-      this.updateSRD();
-    }
   },
   watch: {
     '$route': function() {

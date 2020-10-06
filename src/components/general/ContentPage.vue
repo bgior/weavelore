@@ -229,17 +229,12 @@ export default {
       }
     },
     handleURLSelect() {
-      try {
-        this.app.contentDatabase.loadURL(this.urlToImport,
-          () => {
-            this.app.reloadDatabase();
-            this.app.alert(null);
-          },
-          this.showError
-        );
-      } catch (e) {
+      this.app.contentDatabase.loadURL(this.urlToImport).then(() => {
+        this.app.reloadDatabase();
+        this.app.alert(null);
+      }).catch(e => {
         this.showError(e);
-      }
+      });
     },
     exportDatabase() {
       this.download(`WeaveLoreExport-${this.app.contentDatabase.data.sources.length}c-${this.app.spells.length}s-${this.app.rules.length}r.json`, this.app.contentDatabase.export());
@@ -289,6 +284,8 @@ export default {
       let message;
       if (error.name == "ValidationError") {
         message = "Validation error: " + error.message;
+      } else if (typeof(error) == "string") {
+        message = error;
       } else {
         message = "Sorry, an unexpected error occurred. See the console for details.";
         console.error(error.message || error);
