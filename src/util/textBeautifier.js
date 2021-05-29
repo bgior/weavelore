@@ -42,7 +42,7 @@ class TextBeautifier {
 }
 TextBeautifier.substitutions = [
   [/([\d,]+[- ](f[eo]{2}t|miles?))/g, '<span class="sx-distance">$1</span>'],
-  [/(\d+[- ](round?|hours?|minutes?|days?))/g, '<span class="sx-time">$1</span>'],
+  [/(\d+[- ](rounds?|hours?|minutes?|days?))/g, '<span class="sx-time">$1</span>'],
   [/(\d+[- ](pounds?))/g, '<span class="sx-weight">$1</span>'],
   [/(DC|(([Ss]trength|[Dd]exterity|[Cc]onstitution|[Ii]ntelligence|[Ww]isdom|[Cc]harisma)? saving throws?)|\w*? \(\w+?\) checks?)/g, '<span class="sx-sthrow">$1</span>'],
   [/([^\w](advantage)[^\w])/g, '<span class="sx-advantage">$1</span>'],
