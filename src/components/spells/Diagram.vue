@@ -18,7 +18,7 @@ const feetPerCell = 5; // How many feet each cell in the grid represents
 const circleRadius = 6; // The radius of the circles that represent the player and the target mob, in px
 const pixelsPerFoot = cellSize / feetPerCell; // How many pixels represent each foot
 const pixelsPerCell = feetPerCell * pixelsPerFoot; // How many pixels are in each grid cell
-const minRange = 10; // The minimum spell range (doesn't make much sense to diagram a 5-feet-range spell unless it's an AOE), in feet
+const minRange = 10; // The minimum spell range (doesn't make much sense to diagram a 5-foot-range spell unless it's an AOE), in feet
 const maxRange = 300; // The maximum spell range (prevent drawing humongous grids for spells with very long range), in feet
 const maxAOERadius = 120; // The maximum AOE radius (same reason as above), in feet
 const coneAmplitude = Math.atan(0.5) * 2; // The amplitude of the cone AOE, in radians (isosceles triangle where base equals height, ~ 53 degrees)
@@ -188,7 +188,7 @@ export default {
               ctx.stroke();
               ctx.fillStyle = "#ccc";
               const textOffsetY = this.isCenteredInIntersection ? 4 : 13; // Place the text right above the sphere
-              ctx.fillText(this.aoe.radius + "-feet radius", target.x - 38, target.y - radiusInPixels - textOffsetY); // 38 and 4 are values to roughly center the text
+              ctx.fillText(this.aoe.radius + "-foot radius", target.x - 38, target.y - radiusInPixels - textOffsetY); // 38 and 4 are values to roughly center the text
               // Highligh individual squares
               ctx.setLineDash([]);
               ctx.strokeStyle = "#913a3a";
@@ -214,7 +214,7 @@ export default {
               ctx.rect(target.x, target.y - halfEdge * pixelsPerFoot, this.aoe.edge * pixelsPerFoot, this.aoe.edge * pixelsPerFoot);
               ctx.stroke();
               ctx.fillStyle = "#ccc";
-              ctx.fillText(this.aoe.edge + "-feet cube", target.x  + halfEdge * pixelsPerFoot - 38, target.y - halfEdge * pixelsPerFoot - 4);
+              ctx.fillText(this.aoe.edge + "-foot cube", target.x  + halfEdge * pixelsPerFoot - 38, target.y - halfEdge * pixelsPerFoot - 4);
               // Highligh individual squares
               ctx.setLineDash([]);
               for (let x = target.x; x < target.x + this.aoe.edge * pixelsPerFoot; x += pixelsPerCell) {
